@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="margin: 100px;"></div>
+<h2>{% if form.instance.pk %}Edit Blog{% else %}Create Blog{% endif %}</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+<a href="{% url 'blog_list' %}" class="btn btn-secondary">Back to Blogs</a>
+{% endblock %}

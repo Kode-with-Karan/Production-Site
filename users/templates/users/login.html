@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load socialaccount %}
+{% block content %}
+<div id="particles-container"></div>
+<section class="section-lg section-one-screen">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <form class="panel" method="post">
+                    {% csrf_token %}
+                    <div class="panel-header">
+                        <div class="row row-10 align-items-end">
+                            <div class="col-6 col-sm-7"><a href="index.html"><img src="images/logo-default-155x43.png"
+                                        alt=""></a></div>
+                            <div class="col-6 col-sm-5 text-right"><a class="font-weight-bold" href="{% url 'login' %}">Sign
+                                    In</a><span class="px-2">|</span><a href="{% url 'register' %}">Register</a></div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row row-10">
+                            <!-- <div class="col-md-4">
+                                <button class="btn btn-primary btn-block"> <span class="fa fa-facebook-f"></span>
+                                    Facebook</button>
+                            </div> -->
+                            <div class="col-md-4">
+                                <a href="{% provider_login_url 'twitter' %}"><button class="btn btn-info btn-block"><span class="fa fa-twitter"></span>
+                                    Twitter</button></a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="{% provider_login_url 'google' %}"><button class="btn btn-danger btn-block"><span class="fa fa-google"></span> Google</button></a>
+                            </div>
+                        </div>
+                        <div class="row row-30 mt-4">
+                            <div class="col-lg-5 order-lg-2">
+                                <!-- <h4>You'll Have Access To Your:</h4>
+                                <ul>
+                                    <li>Unlimited Email Storage</li>
+                                    <li>Unlimited Photo Sharing/Storage</li>
+                                    <li>Unlimited Downloads</li>
+                                    <li>Unlimited Service Tickets</li>
+                                </ul> -->
+                            </div>
+                            <div class="col-lg-7 order-lg-1">
+                                <div class="form-group">
+                                    <label for="user">Username</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span
+                                                class="input-group-text fa fa-user"></span></div>
+                                        <input class="form-control" id="id_username" type="text" name="username"
+                                            placeholder="Enter username" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pass">Password</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span
+                                                class="input-group-text fa fa-lock"></span></div>
+                                        <input class="form-control" id="id_password" type="password" name="password"
+                                            placeholder="Enter password">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                        <div class="row row-10">
+                            <div class="col-sm-6">
+                                <div class="custom-control custom-switch custom-switch-lg custom-switch-primary">
+                                    <input class="custom-control-input" type="checkbox" id="terms" required/>
+                                    <label class="custom-control-label" for="terms" >I agree to <a href="{% url 'terms' %}">Terms and Conditions </a>
+                                    </label>
+                                </div>
+                                <div class="custom-control custom-switch custom-switch-lg custom-switch-primary">
+                                    <input class="custom-control-input" type="checkbox" id="Privacy" required/>
+                                    <label class="custom-control-label" for="Privacy" >I agree to <a href="{% url 'privacy' %}">Privacy-policy </a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 text-sm-right">
+                                <button class="btn btn-primary" type="submit">Sign In</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <h2>Login</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+</form>
+<p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p> -->
+{% endblock %}

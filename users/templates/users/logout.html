@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'nav_white.html' %}
+<div style="margin: 100px;"></div>
+<h2>You have been logged out</h2>
+<p><a href="{% url 'login' %}">Login again</a></p>
+{% endblock %}
+

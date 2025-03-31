@@ -1,0 +1,23 @@
+
+{% load static %}
+
+{% block content %}
+<!-- <link rel="stylesheet" href="{% static 'css/auth_styles.css' %}"> -->
+
+<div class="social-login-container" style="display: none;">
+    <h2>Sign in with Google</h2>
+    <p>You are about to sign in using Google.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn">Continue with Google</button>
+    </form>
+</div>
+<script>
+    window.onload = function () {
+        
+        document.getElementsByClassName("btn")[0].click()
+
+    };
+</script>
+{% endblock %}

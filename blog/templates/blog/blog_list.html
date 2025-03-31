@@ -1,0 +1,104 @@
+{% extends 'base_black.html' %}
+{% load static %}
+{% block nav_bg %}
+<div class="page-header-1-figure m-parallax">
+    <div class="page-header-1-image m-parallax-image"
+        style="background-image: url({% static 'images/bg-image-2.jpg' %});"></div>
+</div>
+{% endblock nav_bg %}
+{% block nav_content %}
+<section class="breadcrumbs-custom">
+    <div class="breadcrumbs-custom-inner">
+        <div class="container">
+            <div class="breadcrumbs-custom-main m-parallax-content">
+                <h2 class="breadcrumbs-custom-title">Blog</h2>
+                <p>Welcome to Our Blog! 🌟 Explore insightful articles, industry trends, and creative stories crafted by
+                    our talented creators. Stay inspired and keep discovering! 🚀</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock nav_content %}
+{% block content %}
+
+<section class="section section-lg bg-default">
+    <div class="container">
+        <div class="text-center wow fadeIn" data-wow-delay="100">
+            <h2>Popular Blogs</h2>
+        </div>
+        <div class="owl-carousel owl-theme-1 wow fadeIn" data-items="1" data-sm-items="2" data-md-items="3"
+            data-lg-items="3" data-xl-items="3" data-xxl-items="3" data-margin="15px" data-xxl-margin="40px"
+            data-nav="true" data-dots="false" data-autoplay="true" data-wow-delay="100">
+            {% for blog in blogs %}
+            <div class="item">
+                <div class="box-nina">
+                    <div class="box-nina-media"><img src="{{ blog.main_image.url }}" alt="" width="356" height="412" />
+                    </div>
+                    <div class="box-nina-text">
+                        <h4><a class="link-white" href="{% url 'blog_detail' blog.slug %}">{{ blog.title }}</a></h4>
+                        <div class="box-nina-info"><span class="icon mdi mdi-calendar-today"></span><span>By {{ blog.author }} | {{ blog.created_at|date:"F j, Y" }}</span></div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No blogs available.</p>
+            {% endfor %}    
+        
+        </div>
+
+    </div>
+</section>
+
+
+
+
+{% endblock %}
+
+
+<!-- <section class="section section-lg bg-default">
+    <div class="container">
+        <div class="text-center wow fadeIn" data-wow-delay="100">
+            <h2>Popular Blogs</h2>
+        </div>
+        <div class="owl-carousel owl-theme-1 wow fadeIn" data-items="1" data-sm-items="2" data-md-items="3"
+            data-lg-items="3" data-xl-items="3" data-xxl-items="3" data-margin="15px" data-xxl-margin="40px"
+            data-nav="true" data-dots="false" data-autoplay="true" data-wow-delay="100">
+
+
+            {% for blog in blogs %}
+            <div class="item">
+                <div class="box-nina">
+                    <div class="box-nina-media"><img src="{{ blog.main_image.url }}" alt="" width="356" height="412" />
+                    </div>
+                    <div class="box-nina-text">
+                        <h4><a class="link-white" href="{% url 'blog_detail' blog.slug %}">{{ blog.title }}</a></h4>
+                        <div class="box-nina-info"><span class="icon mdi mdi-calendar-today"></span><span>By {{ blog.author }} | {{ blog.created_at|date:"F j, Y" }}</span></div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No blogs available.</p>
+            {% endfor %}
+
+        </div>
+    </div>
+</section> -->
+
+<!-- 
+<div style="margin: 100px;"></div>
+<h2>Blog Posts</h2>
+<a href="{% url 'blog_create' %}" class="btn btn-primary">Create New Blog</a>
+<hr>
+{% for blog in blogs %}
+    <div class="card mb-3">
+        {% if blog.cover_image %}
+            <img src="{{ blog.cover_image.url }}" class="card-img-top" alt="{{ blog.title }}">
+        {% endif %}
+        <div class="card-body">
+            <h3><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title }}</a></h3>
+            <p>By {{ blog.author }} | {{ blog.created_at|date:"F j, Y" }}</p>
+            <p>{{ blog.content|truncatewords:30 }}</p>
+            <a href="{% url 'blog_detail' blog.slug %}" class="btn btn-sm btn-info">Read More</a>
+        </div>
+    </div> 
+    {% endfor %}-->

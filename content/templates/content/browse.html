@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<section class="section section-md bg-default">
+    <div class="container">
+        <div class="row row-40 justify-content-center">
+            <div class="col-xl-10">
+                <form class="rd-search rd-search-inline" method="GET">
+                    <div class="form-wrap">
+                        <!-- <label class="form-label" for="rd-search-form-input">Search...</label>
+                        <input class="form-input" id="rd-search-form-input" type="text" name="s" autocomplete="off"> -->
+                        <input class="form-input" type="text" name="q" placeholder="Search..." value="{{ request.GET.q }}">
+                        <select class="form-input" name="content_type">
+                            <option value="">All</option>
+                            <option value="Film">Film</option>
+                            <option value="Podcast">Podcast</option>
+                            <option value="Documentary">Documentary</option>
+                        </select>
+                        <select class="form-input" name="sort_by">
+                            <option value="latest">Latest</option>
+                            <option value="popular">Most Viewed</option>
+                        </select>
+                    </div>
+                    <div class="form-button">
+                        <!-- <button class="search-submit" type="submit">Submit</button> -->
+                    </div>
+                </form>
+                <div class="rd-search-results"> </div>
+            </div>
+        </div>
+    </div>
+</section> 
+
+
+
+<div class="container">
+    <h2>Browse Content</h2>
+
+    <!-- <form method="GET">
+        <input type="text" name="q" placeholder="Search..." value="{{ request.GET.q }}">
+        <select name="content_type">
+            <option value="">All</option>
+            <option value="Film">Film</option>
+            <option value="Podcast">Podcast</option>
+            <option value="Documentary">Documentary</option>
+        </select>
+        <select name="sort_by">
+            <option value="latest">Latest</option>
+            <option value="popular">Most Viewed</option>
+        </select>
+        <button type="submit">Search</button>
+    </form> -->
+
+    <div class="content-list">
+        {% for content in contents %}
+        <div class="content-item">
+            <h3><a href="{% url 'content_detail' content.id %}">{{ content.title }}</a></h3>
+            <p><strong>Type:</strong> {{ content.content_type }}</p>
+            <p><strong>Uploaded By:</strong> {{ content.uploaded_by.username }}</p>
+            <p><strong>Views:</strong> {{ content.views }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

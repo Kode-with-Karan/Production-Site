@@ -1,0 +1,217 @@
+{% load static %}
+<div class="page">
+<!-- Page Header-->
+<header class="section page-header page-header-1 context-dark">
+    <div class="page-header-1-figure m-parallax">
+        <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg-image-3.jpg' %});"></div>
+    </div>
+    <!-- RD Navbar -->
+    <div class="rd-navbar-wrap">
+        <nav class="rd-navbar rd-navbar-classic" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed"
+            data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static"
+            data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static"
+            data-xl-device-layout="rd-navbar-static" data-lg-stick-up-offset="1px" data-xl-stick-up-offset="1px"
+            data-xxl-stick-up-offset="1px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+            <div class="rd-navbar-main-outer">
+                <div class="rd-navbar-main">
+                    <!-- RD Navbar Panel-->
+                    <div class="rd-navbar-panel">
+                        <!-- RD Navbar Toggle-->
+                        <button class="rd-navbar-toggle"
+                            data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+                        <!-- RD Navbar Brand-->
+                        <div class="rd-navbar-brand"><a class="brand" href="index.html"><img class="brand-logo-dark"
+                                    src="{% static 'images/logo-default-133x19.png' %}" alt="" width="133" height="19"
+                                    srcset="{% static 'images/logo-default-266x37.png' %} 2x" /><img class="brand-logo-light"
+                                    src="{% static 'images/logo-inverse-133x19.png' %}" alt="" width="133" height="19"
+                                    srcset="{% static 'images/logo-inverse-266x37.png' %} 2x" /></a>
+                        </div>
+                    </div>
+                    <div class="rd-navbar-nav-wrap">
+                        <!-- RD Navbar Nav-->
+                        <ul class="rd-navbar-nav">
+                            <li class="rd-nav-item"><a class="rd-nav-link" href="index.html">Home</a>
+                            </li>
+                            <li class="rd-nav-item"><a class="rd-nav-link" href="categories.html">Categories</a>
+                            </li>
+                            <li class="rd-nav-item"><a class="rd-nav-link" href="#">Movies</a>
+                                <!-- RD Navbar Dropdown-->
+                                <ul class="rd-menu rd-navbar-dropdown">
+                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="movies-1.html">Movies
+                                            1</a></li>
+                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="movies-2.html">Movies
+                                            2</a></li>
+                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="movies-3.html">Movies
+                                            3</a></li>
+                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link"
+                                            href="movie-page.html">Movie Page</a></li>
+                                </ul>
+                            </li>
+                            <li class="rd-nav-item active"><a class="rd-nav-link" href="#">Pages</a>
+                                <!-- RD Navbar Megamenu-->
+                                <ul class="rd-menu rd-navbar-megamenu">
+                                    <li class="rd-megamenu-item">
+                                        <p class="rd-megamenu-title">Elements</p>
+                                        <div class="rd-megamenu-block">
+                                            <ul class="rd-megamenu-list">
+                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link"
+                                                        href="typography.html">Typography</a></li>
+                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link"
+                                                        href="buttons.html">Buttons</a></li>
+                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link"
+                                                        href="forms.html">Forms</a></li>
+                                            </ul>
+                                            <ul class="rd-megamenu-list">
+                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link"
+                                                        href="icon-lists.html">Icon Lists</a></li>
+                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link"
+                                                        href="counters-and-accordions.html">Counters &amp;
+                                                        Accordions</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="rd-megamenu-item">
+                                        <p class="rd-megamenu-title">Pages</p>
+                                        <div class="rd-megamenu-block">
+                                            <ul class="rd-megamenu-list">
+                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link"
+                                                        href="about.html">About</a></li>
+                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link"
+                                                        href="our-team.html">Our Team</a></li>
+                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link"
+                                                        href="contact-us.html">Contact Us</a></li>
+                                            </ul>
+                                            <ul class="rd-megamenu-list">
+                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link"
+                                                        href="404-page.html">404 Page</a></li>
+                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link"
+                                                        href="coming-soon.html">Coming Soon</a></li>
+                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link"
+                                                        href="privacy-policy.html">Privacy policy</a></li>
+                                                <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link"
+                                                        href="search-results.html">Search results</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="rd-nav-item"><a class="rd-nav-link" href="grid-blog.html">Blog</a>
+                                <!-- RD Navbar Dropdown-->
+                                <ul class="rd-menu rd-navbar-dropdown">
+                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="blog-post.html">Blog
+                                            post</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="rd-navbar-collapse-outer context-light">
+                        <button class="rd-navbar-collapse-toggle"
+                            data-multitoggle="#rd-navbar-collapse, #toggle-inner"><span
+                                class="rd-navbar-collapse-toggle-element" id="toggle-inner"><span></span></span><span
+                                class="rd-navbar-collapse-toggle-text">Menu</span></button>
+                        <div class="rd-navbar-collapse" id="rd-navbar-collapse">
+                            <button class="rd-navbar-collapse-close" data-multitoggle="#rd-navbar-collapse"><span
+                                    class="rd-navbar-collapse-toggle-element active"><span></span></span></button>
+                            <h5 class="font-weight-sbold">Address & Phone</h5>
+                            <p class="ls-1 text-gray-500"> 9 Valley St. Brooklyn, NY 11203</p>
+                            <p class="ls-1"><a class="link-gray-500" href="tel:#">1-800-346-6277</a></p>
+                            <div class="divider divider-small"></div>
+                            <h5 class="font-weight-sbold">Latest Movies</h5>
+                            <!-- Swiper-->
+                            <div class="swiper-container swiper-slider swiper-slider-pyramid"
+                                data-simulate-touch="false" data-direction="horizontal" data-slide-effect="coverflow">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <article class="tour-minimal context-dark">
+                                            <div class="tour-minimal-inner"
+                                                style="background-image: url({% static 'images/movie-3-img-02-258x273.jpg' %});">
+                                                <div class="tour-minimal-header">
+                                                    <div class="tour-minimal-badge">new</div>
+                                                </div>
+                                                <div class="tour-minimal-main">
+                                                    <h6 class="tour-minimal-title"><a href="movie-page.html">Ready
+                                                            Player One</a></h6>
+                                                </div>
+                                                <div class="tour-minimal-caption">
+                                                    <p>A falsis, mortem festus acipenser.</p>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <article class="tour-minimal context-dark">
+                                            <div class="tour-minimal-inner"
+                                                style="background-image: url({% static 'images/movie-3-img-03-258x273.jpg' %});">
+                                                <div class="tour-minimal-header">
+                                                </div>
+                                                <div class="tour-minimal-main">
+                                                    <h6 class="tour-minimal-title"><a href="movie-page.html">Alita:
+                                                            Battle Angel</a></h6>
+                                                </div>
+                                                <div class="tour-minimal-caption">
+                                                    <p>Fidelis exsul foris tractares bromium est.</p>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <article class="tour-minimal context-dark">
+                                            <div class="tour-minimal-inner"
+                                                style="background-image: url({% static 'images/movie-3-img-04-258x273.jpg' %});">
+                                                <div class="tour-minimal-header">
+                                                </div>
+                                                <div class="tour-minimal-main">
+                                                    <h6 class="tour-minimal-title"><a href="movie-page.html">Wonder
+                                                            Park</a></h6>
+                                                </div>
+                                                <div class="tour-minimal-caption">
+                                                    <p>Rusticus, salvus scutums nunquam talem de.</p>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                                <!--Swiper Pagination-->
+                                <div class="swiper-pagination"></div>
+                            </div><a class="button button-default-outline" href="categories.html">View All Movies</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rd-navbar-placeholder"></div>
+        </nav>
+    </div>
+
+</header>
+<!-- Basic Info-->
+<!-- <section class="section section-lg bg-default">
+    <div class="container">
+        <div class="row row-50 justify-content-center align-items-center">
+            <div class="col-md-10 col-lg-7">
+                <h4 class="block-1 lh-1"> A Few Words About EMovies Streaming Service</h4>
+                <div class="block-2 mt-20 mt-md-30 mt-lg-50">
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur.</p>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur.</p>
+                </div><a class="button button-lg button-primary mt-lg-40" href="#">Read More</a>
+            </div>
+            <div class="col-md-10 col-lg-5 parallax-scene-js">
+                <div class="section-image-1 v2"><img src="{% static 'images/section-image-1-546x33.png' %}" alt="" width="546"
+                        height="33" />
+                    <div class="section-image-decorative-1">
+                        <div class="layer" data-depth="-.25">
+                            <div class="item"></div>
+                        </div>
+                    </div>
+                    <div class="section-image-decorative-2">
+                        <div class="layer" data-depth="+.25">
+                            <div class="item"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->

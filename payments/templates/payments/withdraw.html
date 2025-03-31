@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="margin: 200px;"></div>
+<form method="POST">
+    {% csrf_token %}
+    <label for="amount">Enter Withdrawal Amount ($):</label>
+    <input type="number" name="amount" min="10" required>
+    
+    <label for="stripe_account">Enter Stripe Account ID:</label>
+    <input type="text" name="stripe_account" required>
+
+    <button type="submit">Withdraw</button>
+</form>
+
+{% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+
+
+<!-- <h2>Withdraw Funds</h2>
+
+<p>Your Balance: <strong>${{ balance }}</strong></p>
+
+{% if messages %}
+    {% for message in messages %}
+        <p style="color: {% if message.tags == 'error' %}red{% else %}green{% endif %};">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    <label>Amount:</label>
+    <input type="number" name="amount" step="0.01" min="10" required>
+    
+    <label>Stripe Account ID:</label>
+    <input type="text" name="stripe_account" required>
+
+    <button type="submit">Withdraw</button>
+</form> -->
+
+{% endblock %}

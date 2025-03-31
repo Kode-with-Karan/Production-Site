@@ -1,0 +1,93 @@
+{% extends 'base_black.html' %}
+{% load static %}
+{% block nav_bg %}
+<div class="page-header-1-figure m-parallax">
+    <div class="page-header-1-image m-parallax-image" style="background-image: url({{content.thumbnail.url}});"></div>
+    <!-- <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg-image-1.jpg' %});"></div> -->
+</div>
+{% endblock nav_bg %}
+{% block nav_content %}
+<section class="breadcrumbs-custom">
+    <div class="breadcrumbs-custom-inner">
+        <div class="container">
+            <div class="breadcrumbs-custom-main m-parallax-content">
+                <h2 class="breadcrumbs-custom-title">Movie Page</h2>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in reprehenderit.</p>
+                <div class="group group-sm group-middle"><a class="button button-sm button-icon button-icon-left button-light" href="{% url 'content_display' pk=content.pk %}"><span class="icon mdi mdi-play"></span>Watch Now</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock nav_content %}
+{% block content %}
+<section class="section section-lg bg-color-7">
+    <div class="container">
+        <div class="row row-30 flex-column-reverse flex-lg-row">
+            <div class="col-lg-8">
+                <article class="post-info inset-1">
+                    <h4 class="post-info-title">{{content.title}}</h4>
+                    <div class="post-info-meta">
+                        <ul class="post-info-meta-list">
+                            <li><span class="icon mdi mdi-calendar-blank"></span><span class="small-text font-weight-sbold">Mar 21, 2019</span></li>
+                            <li><span class="icon mdi mdi-star-outline"></span><span class="small-text font-weight-sbold">IMDB: 5,8\10</span></li>
+                            <li><span class="icon mdi mdi-earth"></span><span class="small-text font-weight-sbold">USA</span></li>
+                        </ul>
+                    </div>
+                    <p>{{content.description}}</p>
+                    <table class="post-info-table">
+                        <tr>
+                            <td>Сountry</td>
+                            <td>{{ content.country|default:"Not Mentioned" }}</td>
+                        </tr>
+                        <tr>
+                            <td>Cast</td>
+                            <td>{{ content.cast|default:"Not Mentioned" }}</td>
+                        </tr>
+                        <tr>
+                            <td>Duration</td>
+                            <td>{{ content.duration|default:"Not Mentioned" }}</td>
+                        </tr>
+                        <tr>
+                            <td>Genre</td>
+                            <td>{{ content.genre|default:"Not Mentioned" }}</td>
+                        </tr>
+                    </table>
+                    <h3 class="mt-40 mt-md-50 mt-lg-50 mt-xl-80">Photos</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere metus et tortor pulvinar venenatis. Aliquam erat volutpat. Nam ultrices semper felis, at laoreet metus</p>
+                    <div class="row row-6 row-x-6" data-lightgallery="group">
+                        <div class="col-4"><a class="thumbnail-light" href="{% static 'content/images/single-tour-1-original.jpg' %}" data-lightgallery="item"><img class="thumbnail-light-image" src="{% static 'content/images/single-tour-1-355x359.jpg' %}" alt="" width="355" height="359"/></a></div>
+                        <div class="col-4"><a class="thumbnail-light" href="{% static 'content/images/single-tour-2-original.jpg' %}" data-lightgallery="item"><img class="thumbnail-light-image" src="{% static 'content/images/single-tour-2-355x359.jpg' %}" alt="" width="355" height="359"/></a></div>
+                        <div class="col-4"><a class="thumbnail-light" href="{% static 'content/images/single-tour-3-original.jpg' %}" data-lightgallery="item"><img class="thumbnail-light-image" src="{% static 'content/images/single-tour-3-355x359.jpg' %}" alt="" width="355" height="359"/></a></div>
+                    </div>
+                </article>
+            </div>
+            <div class="col-lg-4 text-center text-lg-left">
+                <div class="movie-page-imageg"><img src="{{content.thumbnail.url}}" alt="" width="375" height="491" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 
+
+<div class="container">
+    <h2>{{ content.title }}</h2>
+    <p><strong>Type:</strong> {{ content.content_type }}</p>
+    <p><strong>Uploaded By:</strong> {{ content.uploaded_by.username }}</p>
+    <p><strong>Views:</strong> {{ content.views }}</p>
+    <p><strong>Likes:</strong> {{ content.likes }}</p>
+
+    {% if content.file.url %}
+        <video width="100%" controls>
+            <source src="{{ content.file.url }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    {% endif %}
+
+    <p>{{ content.description }}</p>
+
+    {% if content.earnings %}
+        <p><strong>Earnings:</strong> ${{ content.earnings }}</p>
+    {% endif %} -->
+</div>
+{% endblock %}

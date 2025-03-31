@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en">
+
+<head>
+    <title>{% block title %} {% endblock title %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    {% block link %} {% endblock link %}
+    {% block js %} {% endblock js %}
+
+    {% include 'style.html' %}
+
+    {% block extrahead %}
+  
+    {% endblock extrahead %}
+
+</head>
+
+<body>
+    {% include 'loader.html' %}
+
+    <!-- Navbar -->
+    {% block navbar %}
+    {% include 'nav_white.html' %}
+    {% endblock %}
+    <!-- <div class="page"> -->
+
+  {% block content %}
+
+  {% endblock content %}
+
+<!-- Main Footer -->
+{% include 'footer.html' %}
+<!-- </div> -->
+<!-- Main JS -->
+{% include 'js.html' %}
+  {% block extrascript %}
+
+  {% endblock extrascript %}
+</body>
+
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'upload_content' %}">Upload</a>
+        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'browse_content' %}">Browse</a></li>
+        <li><a href="{% url 'notifications' %}">Notifications
+                {% if user.is_authenticated and unread_notifications > 0 %}
+                <span class="badge">{{ unread_notifications }}</span>
+                {% endif %}
+
+            </a></li>
+        <li><a href="{% url 'earnings' %}">Earnings</a></li>
+        <li><a href="{% url 'contact' %}">Support</a></li>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Logout">
+        </form>
+        {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </nav>
+
+    <div>
+
+    </div>
+</body>
+
+</html> -->

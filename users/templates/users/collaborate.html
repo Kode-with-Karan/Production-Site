@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include 'nav_white.html' %}
+<div style="margin: 100px;"></div>
+<h2>Collaborations</h2>
+
+<!-- Ongoing Collaborations -->
+<section>
+    <h3>Ongoing Collaborations</h3>
+    <ul>
+        {% for collab in ongoing_collaborations %}
+            <li>
+                <strong>{{ collab.project_name }}</strong> - Role: {{ collab.role }}
+            </li>
+        {% empty %}
+            <p>No ongoing collaborations.</p>
+        {% endfor %}
+    </ul>
+</section>
+
+<!-- Past Collaborations -->
+<section>
+    <h3>Past Collaborations</h3>
+    <ul>
+        {% for collab in past_collaborations %}
+            <li>
+                <strong>{{ collab.project_name }}</strong> - Role: {{ collab.role }} (Completed)
+            </li>
+        {% empty %}
+            <p>No past collaborations.</p>
+        {% endfor %}
+    </ul>
+</section>
+
+<!-- Collaboration Requests -->
+<section>
+    <h3>Collaboration Requests</h3>
+    <ul>
+        {% for request in collaboration_requests %}
+            <li>
+                <strong>{{ request.project.project_name }}</strong> - Requested Role: {{ request.requested_role }}
+                <form method="post" action="{% url 'accept_collaboration' request.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Accept</button>
+                </form>
+                <form method="post" action="{% url 'reject_collaboration' request.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Reject</button>
+                </form>
+            </li>
+        {% empty %}
+            <p>No collaboration requests.</p>
+        {% endfor %}
+    </ul>
+</section>
+
+<!-- Apply for a Collaboration -->
+<section>
+    <h3>Apply for a Collaboration</h3>
+    <form method="post" action="{% url 'apply_collaboration' %}">
+        {% csrf_token %}
+        <label for="project">Select Project:</label>
+        <select name="project" id="project">
+            {% for project in available_projects %}
+                <option value="{{ project.id }}">{{ project.project_name }}</option>
+            {% endfor %}
+        </select>
+        <label for="role">Role:</label>
+        <input type="text" name="role" required>
+        <button type="submit">Apply</button>
+    </form>
+</section>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base_black.html' %}
+{% load static %}
+{% block nav_bg %}
+<div class="page-header-1-figure m-parallax">
+    <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg-image-4.jpg' %});"></div>
+    <!-- <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg-image-1.jpg' %});"></div> -->
+</div>
+{% endblock nav_bg %}
+{% block nav_content %}
+<section class="breadcrumbs-custom">
+    <div class="breadcrumbs-custom-inner">
+        <div class="container">
+            <div class="breadcrumbs-custom-main m-parallax-content">
+                <h2 class="breadcrumbs-custom-title">Movie Page</h2>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in reprehenderit.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock nav_content %}
+{% block content %}
+<section class="section section-lg bg-color-7">
+    <div class="container">
+        <div class="row row-30 flex-column-reverse flex-lg-row">
+            <div class="col-lg-8">
+                <article class="post-info inset-1">
+                    <table class="post-info-table">
+                        <tr>
+                            <td>Username</td>
+                            <td>{{ profile.user  }}</td>
+                        </tr>
+                        <tr>
+                            <td>Bio</td>
+                            <td>{{ profile.bio }}</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>{{ profile.email }}</td>
+                        </tr>
+                        <tr>
+                            <td>Website</td>
+                            <td>{{ profile.website }}</td>
+                        </tr>
+   
+                    </table>
+                    <br>
+                    <a href="{% url 'edit_profile' %}"><button class="button button-lg button-primary" type="submit" >Edit Profile</button></a>
+
+                </article>
+            </div>
+            {% if profile.profile_picture %}
+            <div class="col-lg-4 text-center text-lg-left">
+                <div class="movie-page-imageg"><img src="{{profile.profile_picture.url}}" alt="" width="375" height="491" />
+                </div>
+            </div>
+            {% else %}
+            <div class="col-lg-4 text-center text-lg-left">
+                <div class="movie-page-imageg"><img src="/media/default.png" alt="" width="375" height="491" />
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+
+
+<!-- <div style="margin: 100px;"></div>
+<h2>{{ user.username }}'s Profile</h2>
+<img src="{{ user.profile.image.url }}" alt="Profile Picture" width="150px">
+<p>Email: {{ user.email }}</p>
+<a href="{% url 'edit_profile' %}">Edit Profile</a> -->
+{% endblock %}

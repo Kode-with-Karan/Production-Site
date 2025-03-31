@@ -1,0 +1,422 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- FScreen-->
+<section class="section bg-custom-1 position-relative">
+    <div class="swiper-container swiper-slider swiper-slider-1" data-loop="false" data-autoplay="50000"
+        data-simulate-touch="false">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="swiper-slide-caption main-section text-center text-md-left">
+                    <div class="container">
+                        <div
+                            class="row row-40 flex-column-reverse flex-md-row justify-content justify-content-lg-between">
+                            <div class="col-md-6 col-lg-5 col-xl-6">
+                                <ul class="list-movie-info" data-caption-animate="fadeIn" data-caption-delay="50">
+                                    <li>Create </li>
+                                    <li>Upload </li>
+                                    <li>Earn </li>
+                                </ul>
+                                <h1 class="block-8" data-caption-animate="fadeInUp" data-caption-delay="100" style="color: #ffe142;">
+                                    EchoesRipple</h1>
+                                <h3 class="block-8" data-caption-animate="fadeInUp" data-caption-delay="100">
+                                    Productions</h3>
+                                <p class="block-9" data-caption-animate="fadeInUp" data-caption-delay="250">
+                                    Explore real-world issues, inspiring stories, and deep investigations through our documentaries. Gain knowledge, perspective, and awareness about important topics that shape our world.</p>
+                                <div class="text-center text-lg-left button-custom-offset"><a
+                                        class="button button-custom" href="{% url 'about' %}">
+                                        <span class="icon mdi mdi-read"></span>Read More</a></div>
+                            </div>
+                            <div class="col-md-6 col-lg-7 col-xl-5 onset-1">
+                                <div class="slider-image onset-left-2"><img src="{% static 'images/home_bgg.jpg' %}"
+                                        alt="" width="422" height="522" />
+                                    <!-- <div class="slider-image-title"><span>Animation</span></div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Swiper Pagination-->
+        <!-- <div class="swiper-pagination"></div>
+        Swiper Navigation
+        <div class="swiper-button-prev" style="transform: rotate(180deg);"></div>
+        <div class="swiper-button-next"></div> -->
+    </div>
+    <div class="decorative-word">Echoes</div>
+    <div class="figure-classic-pattern"></div>
+    <div class="figure-classic-pattern v-2"></div>
+    <div class="figure-classic-pattern v-3"></div>
+</section>
+
+{% if promoted %}
+<h2>🔥 Featured Content</h2>
+<div class="promoted-section">
+    {% for promo in promoted %}
+        <div class="promoted-item">
+            <h3>{{ promo.content.title }}</h3>
+            <img src="{{ promo.content.thumbnail.url }}" alt="{{ promo.content.title }}">
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+<!-- FScreen-->
+<!-- <section class="section bg-custom-1 position-relative">
+    <div class="swiper-container swiper-slider swiper-slider-1" data-loop="true" data-autoplay="50000"
+        data-simulate-touch="false">
+        <div class="swiper-wrapper">
+            {% for item in contents %}
+            <div class="swiper-slide">
+                <div class="swiper-slide-caption main-section text-center text-md-left">
+                    <div class="container">
+                        <div
+                            class="row row-40 flex-column-reverse flex-md-row justify-content justify-content-lg-between">
+                            <div class="col-md-6 col-lg-5 col-xl-6"> -->
+                                <!-- <ul class="list-movie-info" data-caption-animate="fadeIn" data-caption-delay="50">
+                                    <li>USA</li>
+                                    <li>Mar 21, 2019</li>
+                                    <li>imdb: 5,8\10</li>
+                                </ul> -->
+                                <!-- <h1 class="block-8" data-caption-animate="fadeInUp" data-caption-delay="100">
+                                    {{ item.title }}</h1>
+                                <p class="block-9" data-caption-animate="fadeInUp" data-caption-delay="250">
+                                    {{ item.description }}</p>
+                                <div class="text-center text-lg-left button-custom-offset"><a
+                                        class="button button-custom" href="{% url 'content_display' pk=item.pk %}"
+                                        ><span class="icon mdi mdi-play"></span>Watch
+                                        now</a></div>
+                            </div>
+                            <div class="col-md-6 col-lg-7 col-xl-5 onset-1">
+                                <div class="slider-image onset-left-2"><img src="{{ item.thumbnail.url }}"
+                                        alt="" width="422" height="522" /> -->
+                                    <!-- <div class="slider-image-title"><span>Animation</span></div> -->
+                                <!-- </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div> -->
+        <!--Swiper Pagination-->
+        <!-- <div class="swiper-pagination"></div> -->
+        <!--Swiper Navigation-->
+        <!-- <div class="swiper-button-prev" style="transform: rotate(180deg);"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+    <div class="decorative-word">Echoes</div>
+    <div class="figure-classic-pattern"></div>
+    <div class="figure-classic-pattern v-2"></div>
+    <div class="figure-classic-pattern v-3"></div>
+</section> -->
+<!--Popular Movies-->
+<section class="section section-lg bg-default">
+    <div class="container">
+        <div class="text-center wow fadeIn" data-wow-delay="100">
+            <h2>Popular Content</h2>
+            <p>Here are some of the most popular content that our users & viewers enjoy.</p>
+        </div>
+        <div class="owl-carousel owl-theme-1 wow fadeIn" data-items="1" data-sm-items="2" data-md-items="3"
+            data-lg-items="3" data-xl-items="3" data-xxl-items="3" data-margin="15px" data-xxl-margin="40px"
+            data-nav="true" data-dots="false" data-autoplay="true" data-wow-delay="100">
+
+
+            {% for item in contents %}
+            <div class="item">
+                <div class="box-nina">
+                    <div class="box-nina-media"><img src="{{ item.thumbnail.url }}" alt="" width="356"
+                            height="412" />
+                    </div>
+                    <div class="box-nina-text">
+                        <h4><a class="link-white" href="{% url 'content_detail' pk=item.pk %}">{{ item.title }}</a></h4>
+                        <div class="box-nina-info"><span class="icon mdi mdi-calendar-today"></span><span>2019,
+                                Adventures</span></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!--Trending TV Shows-->
+<section class="section section-lg bg-default">
+    <div class="container">
+        <div class="text-center wow fadeIn" data-wow-delay="300">
+            <h2>Trending Content</h2>
+            <p>Check out the highly rated content on EchoesRipple.</p>
+        </div>
+        <div class="owl-carousel owl-theme-1 wow fadeIn" data-items="1" data-sm-items="2" data-md-items="3"
+            data-lg-items="3" data-xl-items="3" data-xxl-items="3" data-margin="15px" data-xxl-margin="40px"
+            data-nav="true" data-dots="false" data-autoplay="true" data-wow-delay="450">
+
+            {% for item in contents %}
+            <div class="item">
+                <div class="box-nina">
+                    <div class="box-nina-media"><img src="{{ item.thumbnail.url }}" alt="" width="356"
+                            height="412" />
+                    </div>
+                    <div class="box-nina-text">
+                        <h4><a class="link-white" href="{% url 'content_detail' pk=item.pk %}">{{ item.title }}</a></h4>
+                        <div class="box-nina-info"><span class="icon mdi mdi-calendar-today"></span><span>2019,
+                                Adventures</span></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+<!--Popular Categories-->
+<section class="section section-lg bg-color-7">
+    <div class="container">
+        <div class="row row-50 flex-lg-row-reverse align-items-center justify-content-xl-between">
+            <div class="col-lg-4 col-xl-5 col-xxl-4">
+                <div class="block-7">
+                    <h2 class="wow fadeIn">Popular <br> Categories</h2>
+                    <p class="text-2 block-10 mt-md-20 mt-xxl-35 wow fadeIn" data-wow-delay=".025s">All content
+                        at EMovies is divided into several categories that helps you to easily navigate between
+                        them and find what you like.</p><a
+                        class="button button-lg button-primary mt-md-20 mt-xxl-44 wow fadeIn" href="{% url 'home' %}"
+                        data-wow-delay=".05s">view all</a>
+                </div>
+            </div>
+            <div class="col-lg-8 col-xl-7">
+                <div class="row row-30">
+                    <div class="col-sm-6 wow fadeIn">
+                        <a class="destination-1 context-dark" href="{% url 'category' 'short_film' %}">
+                            <figure class="destination-1-figure">
+                                <div class="destination-1-image bg-image"
+                                    style="background-image: url({% static 'content/images/destinations-1-363x260.png' %});"></div>
+                            </figure>
+                            <div class="destination-1-caption">
+                                <p class="heading-4 destination-1-title"><i class="fa-solid fa-video"></i> &nbsp; Short Film</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 wow fadeIn" data-wow-delay=".025s">
+                        <a class="destination-1 context-dark" href="{% url 'category' 'podcast' %}">
+                            <figure class="destination-1-figure">
+                                <div class="destination-1-image bg-image"
+                                    style="background-image: url({% static 'content/images/destinations-2-363x260.png' %});"></div>
+                            </figure>
+                            <div class="destination-1-caption">
+                                <p class="heading-4 destination-1-title"><i class="fa-solid fa-microphone-lines"></i> &nbsp; Podcast</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 wow fadeIn" data-wow-delay=".025s">
+                        <a class="destination-1 context-dark" href="{% url 'category' 'documentary' %}">
+                            <figure class="destination-1-figure">
+                                <div class="destination-1-image bg-image"
+                                    style="background-image: url({% static 'content/images/destinations-3-363x260.png' %});"></div>
+                            </figure>
+                            <div class="destination-1-caption">
+                                <p class="heading-4 destination-1-title"><i class="fa-solid fa-book"></i> &nbsp; Documentary</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 wow fadeIn" data-wow-delay=".05s">
+                        <a class="destination-1 context-dark" href="{% url 'category' 'entertainment' %}">
+                            <figure class="destination-1-figure">
+                                <div class="destination-1-image bg-image"
+                                    style="background-image: url({% static 'content/images/destinations-4-363x260.png' %});"></div>
+                            </figure>
+                            <div class="destination-1-caption">
+                                <p class="heading-4 destination-1-title"><i class="fa-solid fa-circle-play"></i> &nbsp; Entertainment Project</p>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- <div class="col-sm-6 d-none d-lg-block"></div> -->
+                    <div class="col-sm-6 wow fadeIn" data-wow-delay=".075s">
+                        <a class="destination-1 context-dark" href="{% url 'category' 'animation' %}">
+                            <figure class="destination-1-figure">
+                                <div class="destination-1-image bg-image"
+                                    style="background-image: url({% static 'content/images/destinations-5-363x260.png' %});"></div>
+                            </figure>
+                            <div class="destination-1-caption">
+                                <p class="heading-4 destination-1-title"><i class="fa-solid fa-child-reaching"></i> &nbsp; Animation</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 wow fadeIn" data-wow-delay=".075s">
+                        <a class="destination-1 context-dark" href="{% url 'category' 'interviews' %}">
+                            <figure class="destination-1-figure">
+                                <div class="destination-1-image bg-image"
+                                    style="background-image: url({% static 'content/images/destinations-6-363x260.png' %});"></div>
+                            </figure>
+                            <div class="destination-1-caption">
+                                <p class="heading-4 destination-1-title"><i class="fa-solid fa-clipboard-question"></i> &nbsp; Interviews</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 wow fadeIn" data-wow-delay=".075s">
+                        <a class="destination-1 context-dark" href="{% url 'category' 'education' %}">
+                            <figure class="destination-1-figure">
+                                <div class="destination-1-image bg-image"
+                                    style="background-image: url({% static 'content/images/destinations-7-363x260.png' %});"></div>
+                            </figure>
+                            <div class="destination-1-caption">
+                                <p class="heading-4 destination-1-title"><i class="fa-solid fa-school"></i> &nbsp; Education</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 wow fadeIn" data-wow-delay=".075s">
+                        <a class="destination-1 context-dark" href="{% url 'category' 'music' %}">
+                            <figure class="destination-1-figure">
+                                <div class="destination-1-image bg-image"
+                                    style="background-image: url({% static 'content/images/destinations-8-363x260.png' %});"></div>
+                            </figure>
+                            <div class="destination-1-caption">
+                                <p class="heading-4 destination-1-title"><i class="fa-solid fa-film"></i> &nbsp; Music</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 wow fadeIn" data-wow-delay=".075s">
+                        <a class="destination-1 context-dark" href="{% url 'category' 'web_series' %}">
+                            <figure class="destination-1-figure">
+                                <div class="destination-1-image bg-image"
+                                    style="background-image: url({% static 'content/images/destinations-9-363x260.png' %});"></div>
+                            </figure>
+                            <div class="destination-1-caption">
+                                <p class="heading-4 destination-1-title"><i class="fa-solid fa-film"></i> &nbsp; Web Series</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Watch Anywhere-->
+<section class="section section-custom-2 bg-default">
+    <div class="container">
+        <div class="row row-40 row-60 justify-content-between">
+            <div class="col-lg-5">
+                <!-- <h5 class="wow fadeInUp" data-wow-delay=".025s">Download Our App</h5> -->
+                <h2 class="style-title-2 wow fadeInUp" data-wow-delay=".05s">Advertise with us?</h2>
+                <h6 class="text-gray-500 font-weight-regular ls-2 wow fadeInUp" data-wow-delay=".075s">Reach a highly engaged audience by promoting your brand on our platform! Whether you're a filmmaker, artist, or business looking to connect with creative minds, we offer customized advertising solutions to help you grow.
+                    <br><br>
+                    <ul>
+                        <li>✔️ Targeted Exposure – Connect with content creators, filmmakers, and entertainment enthusiasts.</li>
+                        <li>✔️ Diverse Ad Options – Choose from banner ads, sponsored content, video promotions, and more.</li>
+                        <li>✔️ Maximized Engagement – Our platform ensures your brand reaches the right audience at the right time.</li>
+                        <br>
+                        <li>📩 Get in Touch – Let’s discuss how we can amplify your brand’s presence!</h6></li>
+                    </ul>
+                    
+                    
+                    
+                    
+                    
+                <!-- <div class="button-wrap wow fadeInUp" data-wow-delay="1s"><a href="#"><img
+                            src="{% static 'content/images/button-img-01-151x49.png' %}" alt="" width="151" height="49" /></a><a href="#"><img
+                            src="{% static 'content/images/button-img-02-153x49.png' %}" alt="" width="153" height="49" /></a></div> -->
+            </div>
+            <div class="col-lg-7 parallax-scene-js">
+                <div class="section-image-1"><img src="{% static 'content/images/section-image-1-546x33.png' %}" alt="" width="546"
+                        height="33" />
+                    <div class="section-image-decorative-1">
+                        <div class="layer" data-depth="-.25">
+                            <div class="item"></div>
+                        </div>
+                    </div>
+                    <div class="section-image-decorative-2">
+                        <div class="layer" data-depth="+.25">
+                            <div class="item"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- News-->
+<section class="section section-lg bg-color-7">
+    <div class="container">
+        <div class="text-center wow fadeIn" data-wow-delay=".020s">
+            <h3 class="font-sec font-weight-sbold">News</h3>
+        </div>
+        <div class="row row-30 offset-top-1">
+
+            {% for blog in blogs %}
+
+            <div class="col-sm-6 col-lg-3 wow fadeIn">
+                <!-- Post Creative-->
+                <article class="post-creative"><a class="post-creative-image" href="{% url 'blog_detail' blog.slug %}"
+                        style="background-image: url({{ blog.main_image.url }});"></a>
+                    <div class="post-creative-main">
+                        <p class="post-creative-title"><a href="blog-post.html">{{ blog.title }}</a></p>
+                        <time class="post-creative-time" datetime="2020">By {{ blog.author }} | {{ blog.created_at|date:"F j, Y" }}</time>
+                    </div>
+                </article>
+            </div>
+            {% empty %}
+            <p>No blogs available.</p>
+            {% endfor %}    
+        </div>
+    </div>
+</section>
+<style>
+    /* Popup Styles */
+    #cookie-popup {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #222;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        display: none;
+        z-index: 1000;
+        text-align: center;
+    }
+    #cookie-popup button {
+        background: #f8b400;
+        color: #222;
+        border: none;
+        padding: 8px 12px;
+        margin-left: 10px;
+        cursor: pointer;
+        border-radius: 3px;
+        font-weight: bold;
+    }
+</style>
+<!-- Cookie Popup -->
+<div id="cookie-popup">
+    🍪 We use cookies to enhance your experience. By continuing, you agree to our <a href="{% url 'privacy' %}" style="color: #f8b400;">Privacy Policy</a>.
+    <button onclick="acceptCookies_necessary()">Accept necessary</button>
+    <button onclick="acceptCookies()"> Accept </button>
+    <button onclick="denyCookies()"> Deny </button>
+</div>
+
+<script>
+    // Function to show the popup after 2 seconds
+    window.onload = function () {
+        setTimeout(function () {
+            if (!localStorage.getItem("cookiesAccepted")) {
+                document.getElementById("cookie-popup").style.display = "block";
+            }
+        }, 2000);
+    };
+
+    // Function to hide the popup and store consent
+    function acceptCookies_necessary() {
+        localStorage.setItem("cookiesAccepted", 'necessary');
+        document.getElementById("cookie-popup").style.display = "none";
+    }
+    function acceptCookies() {
+        localStorage.setItem("cookiesAccepted", 'All');
+        document.getElementById("cookie-popup").style.display = "none";
+    }
+    function denyCookies() {
+        localStorage.setItem("cookiesAccepted", "Deny");
+        document.getElementById("cookie-popup").style.display = "none";
+    }
+</script>
+{% endblock %}

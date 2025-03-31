@@ -1,0 +1,102 @@
+{% extends 'base_black.html' %}
+{% load static %}
+{% block nav_bg %}
+<div class="page-header-1-figure m-parallax">
+    <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg.png' %});"></div>
+</div>
+{% endblock nav_bg %}
+{% block nav_content %}
+<section class="breadcrumbs-custom">
+    <div class="breadcrumbs-custom-inner">
+        <div class="container">
+            <div class="breadcrumbs-custom-main m-parallax-content">
+                <h2 class="breadcrumbs-custom-title">🎬Content Maker – Bring Your Vision to Life with EchoesRipple! 🚀</h2>
+                <p>EchoesRipple is built for Content Maker, storytellers, and visionaries who want to create, showcase, and monetize their projects without limitations. Whether you’re making an indie short film, a compelling documentary, or an animated masterpiece—this is your platform to shine.</p>
+                <p>🎥 Submit Your Film. Build Your Team. Connect with Investors. Get Money.</p>
+                <div class="group group-sm group-middle"><a class="button button-sm button-icon button-icon-left button-light" data-lightgallery="item" href="https://youtu.be/VML6rQWssSk"><span class="icon mdi mdi-play"></span>Watch Now</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock nav_content %}
+{% block content %}
+
+<div>
+
+    <h5 style="text-align: center;margin-top: 50px;">Getting Started</h5>
+    <h3 style="text-align: center;color: #f3c10c;">Upload & Grow</h3>
+    <!-- Features-->
+<section class="section section-lg text-center text-sm-left">
+    <div class="container">
+        <ul class="list-group-1 row row-50" style="align-items: center;">
+            <li class="col-sm-6 col-lg-3">
+                <article class="lg-1-item">
+                    <!-- <div class="icon lg-1-item-icon linearicons-pictures"></div> -->
+                    <img src="{% static 'images/filmmaker_image1.png' %}" alt="">
+                    <div class="lg-1-item-main">
+                        <h5 class="lg-1-item-title">Create Your Project</h5>
+                        <p>
+                            <ul style="list-style:circle">
+                                <li style="display:list-item;color: #f3c10c;">Upload your Short Film, Documentary, Animation, Music Video, or Educational Content in minutes.</li>
+                                <li style="display:list-item;color: #f3c10c;">Add a title, description, genre, and production details.</li>
+                                <li style="display:list-item;color: #f3c10c;">Your project is private by default, but you can invite team members to collaborate</li>
+                            </ul>
+                        </p>
+                    </div>
+                </article>
+            </li>
+            <li class="col-sm-6 col-lg-3">
+                <article class="lg-1-item">
+                    <!-- <div class="icon lg-1-item-icon linearicons-eye"></div> -->
+                    <img src="{% static 'images/about_team.png' %}" alt="">
+                    <div class="lg-1-item-main">
+                        <h5 class="lg-1-item-title">Build Your Dream Team</h5>
+                        <p>
+                            <ul style="list-style:circle">
+                                <li style="display:list-item;color: #f3c10c;">Need actors, editors, or crew? List opportunities for key roles in your production. </li>
+                                <li style="display:list-item;color: #f3c10c;">Find like-minded creatives to join your team and help bring your vision to life.</li>
+                            </ul>
+                        </p>
+                    </div>
+                </article>
+            </li>
+            <li class="col-sm-6 col-lg-3">
+                <article class="lg-1-item">
+                    <!-- <div class="icon lg-1-item-icon linearicons-3d-glasses"></div> -->
+                    <img src="{% static 'images/about_investor.png' %}" alt="">
+                    <div class="lg-1-item-main">
+                        <h5 class="lg-1-item-title">Connect with Investors & Bavking up Your Film</h5>
+                        <p>
+                            <ul style="list-style:circle">
+                                <li style="display:list-item;color: #f3c10c;">Looking for Money? List your project for potential investors.</li>
+                                <li style="display:list-item;color: #f3c10c;">EchoesRipple helps match Content Maker with the right backers who believe in your vision.</li>
+                                <li style="display:list-item;color: #f3c10c;">No more chasing deals—let the right investors come to you!</li>
+                            </ul>
+                        </p>
+                    </div>
+                </article>
+            </li>
+            <li class="col-sm-6 col-lg-3">
+                <article class="lg-1-item">
+                    <!-- <div class="icon lg-1-item-icon linearicons-3d-glasses"></div> -->
+                    <img src="{% static 'images/filmmaker_image2.png' %}" alt="">
+                    <div class="lg-1-item-main">
+                        <h5 class="lg-1-item-title">Get Discovered & Grow Your Audience</h5>
+                        <p>
+                            <ul style="list-style:circle">
+                                <li style="display:list-item;color: #f3c10c;">Once your project is ready, publish it on EchoesRipple’s global platform.</li>
+                                <li style="display:list-item;color: #f3c10c;">Our smart recommendation system helps your film reach the right audience, faster.</li>
+                                <li style="display:list-item;color: #f3c10c;">Viewers engage with your content, share it, and help boost your visibility.</li>
+                            </ul>
+                        </p>
+                    </div>
+                </article>
+            </li>
+            
+        </ul>
+    </div>
+</section>
+</div>
+
+
+{% endblock %}

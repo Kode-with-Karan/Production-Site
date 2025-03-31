@@ -1,0 +1,116 @@
+{% extends 'base_black.html' %}
+{% load static %}
+{% block nav_bg %}
+<div class="page-header-1-figure m-parallax">
+    <div class="page-header-1-image m-parallax-image"
+        style="background-image: url({% static 'images/bg.png' %});"></div>
+</div>
+{% endblock nav_bg %}
+{% block nav_content %}
+<section class="breadcrumbs-custom">
+    <div class="breadcrumbs-custom-inner">
+        <div class="container">
+            <div class="breadcrumbs-custom-main m-parallax-content">
+                <h2 class="breadcrumbs-custom-title">Your Feedback Matters!</h2>
+                <p> Help us improve—share your thoughts and suggestions with us!</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock nav_content %}
+{% block content %}
+
+<!-- Addresses-->
+<section class="section section-md bg-color-7">
+    <div class="container">
+        <div class="row row-30">
+            <div class="col-sm-6 col-lg-4">
+                <!-- Box 1-->
+                <address class="box-1">
+                    <p class="heading-5 box-1-title">Address</p>
+                    <p class="box-1-address">Opening hours: 9 am - 5 pm</p>
+                    <p class="box-1-tel heading-5">9 Valley St. Brooklyn, NY 11203</p>
+                </address>
+            </div>
+            <!-- <div class="col-sm-6 col-lg-4">
+                
+                <address class="box-1">
+                    <p class="heading-5 box-1-title">Phone</p>
+                    <p class="box-1-address">Have a question? Feel free to call us!</p>
+                    <p class="box-1-tel heading-5"><a href="tel:#">+1-212-201-6535</a></p>
+                </address>
+            </div> -->
+            <div class="col-sm-6 col-lg-4">
+                <!-- Box 1-->
+                <address class="box-1">
+                    <p class="heading-5 box-1-title">E-mail</p>
+                    <p class="box-1-address">Send your testimonials and complaints</p>
+                    <p class="box-1-tel heading-5"><a href="mailto:#">info@echoesripple.com</a></p>
+                </address>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Get in Touch-->
+<section class="section section-lg bg-default">
+    <div class="container">
+        <h4>Get in Touch</h4>
+        <!-- RD Mailform-->
+        <form class="rd-form rd-mailform form-lg" data-form-output="form-output-global" data-form-type="contact"
+            method="post">
+            {% csrf_token %}
+            <div class="row row-30">
+                <div class="col-lg-4">
+                    <div class="form-wrap form-wrap-icon">
+                        <input class="form-input" id="contact-name" type="text" name="name"
+                            data-constraints="@Required">
+                        <label class="form-label" for="contact-name">Name</label>
+                        <div class="icon form-icon mdi mdi-account-outline text-primary"></div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-wrap form-wrap-icon">
+                        <input class="form-input" id="contact-phone" type="text" name="phone"
+                            data-constraints="@PhoneNumber">
+                        <label class="form-label" for="contact-phone">Phone</label>
+                        <div class="icon form-icon mdi mdi-phone text-primary"></div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-wrap form-wrap-icon">
+                        <input class="form-input" id="contact-email" type="email" name="email"
+                            data-constraints="@Email @Required">
+                        <label class="form-label" for="contact-email">E-mail</label>
+                        <div class="icon form-icon mdi mdi-email-outline text-primary"></div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-wrap form-wrap-icon">
+                        <label class="form-label" for="contact-message">Message</label>
+                        <textarea class="form-input" id="contact-message" name="message"
+                            data-constraints="@Required"></textarea>
+                        <div class="icon form-icon mdi mdi-message-outline text-primary"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-wrap form-wrap-button">
+                <button class="button button-lg button-primary" type="submit">Send Message</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- <div class="container">
+    <h2>Contact Us</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+    </form>
+    <h3>Support Info</h3>
+    <p>Email: support@yourwebsite.com</p>
+    <p>Phone: +123 456 7890</p>
+</div> -->
+{% endblock %}

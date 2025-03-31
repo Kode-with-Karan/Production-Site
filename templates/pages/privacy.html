@@ -1,0 +1,52 @@
+{% extends 'base_black.html' %}
+{% load static %}
+{% block nav_bg %}
+<div class="page-header-1-figure m-parallax">
+    <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg.png' %});"></div>
+</div>
+{% endblock nav_bg %}
+{% block nav_content %}
+<section class="breadcrumbs-custom">
+    <div class="breadcrumbs-custom-inner">
+        <div class="container">
+            <div class="breadcrumbs-custom-main m-parallax-content">
+                <h2 class="breadcrumbs-custom-title">Privacy Policy</h2>
+                <p>Your data is safe with us! Learn how we collect, use, and protect your information.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock nav_content %}
+{% block content %}
+
+<section class="section section-lg bg-default">
+    <div class="container">
+        <!-- Terms list-->
+        <dl class="list-terms">
+            <dt class="heading-5">Privacy Policy
+            </dt>
+            <dd>At Echoes Productions, we are committed to protecting your privacy and personal information. This Privacy Policy outlines the types of information we collect from our clients, how we use this information, and the measures we take to ensure that your information is kept secure.</dd>
+            <dt class="heading-5">Information Collection and Use</dt>
+            <dd>Echoes Productions collects information from our clients in order to provide them with the best possible video production services. This information may include your name, address, phone number, email address, and payment information. <br>
+                We may also collect information about the video production projects you request, including the type of video, the desired length, and any specific instructions or preferences you have. This information is used to ensure that we are able to meet your video production needs.
+                <br>
+                Echoes Productions may also collect information about how you use our website, including the pages you visit and the information you request. This information is used to improve the functionality and content of our website.</dd>
+            <dt class="heading-5">Information Sharing and Disclosure</dt>
+            <dd>Echoes Productions will not sell, trade, or rent your personal information to third parties. We may, however, share your information with third-party service providers who are working on our behalf, such as payment processors, video production specialists, and shipping companies.
+                <br>
+                We may also disclose your information if required to do so by law, such as in response to a subpoena or court order.</dd>
+            <dt class="heading-5">Security Measures</dt>
+            <dd>Echoes Productions takes the security of your information very seriously. We have implemented physical, electronic, and managerial measures to protect your information from unauthorized access, use, or disclosure.
+                <br>
+                Your information is stored on secure servers and is protected by secure firewalls. In addition, we require that all of our service providers sign confidentiality agreements to ensure that they are also taking appropriate measures to protect your information.</dd>
+            <dt class="heading-5">Data Retention</dt>
+            <dd>Echoes Productions will retain your personal information for as long as necessary to provide you with the video production services you have requested, or for other business purposes, such as complying with legal requirements.</dd>
+            <dt class="heading-5">Changes to This Privacy Policy</dt>
+            <dd>Echoes Productions may update this Privacy Policy from time to time. If we make any changes to this Privacy Policy, we will notify you by posting the revised Privacy Policy on our website.</dd>
+            <dt class="heading-5">Contact Us</dt>
+            <dd>If you have any questions or concerns about this Privacy Policy or would like to request access to or correction of your personal information, please use the contact now button below.</dd>
+        </dl>
+        <!-- <a class="privacy-link" href="mailto:#">privacy@demolink.org</a> -->
+    </div>
+</section>
+{% endblock %}

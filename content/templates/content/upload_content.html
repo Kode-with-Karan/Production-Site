@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                    <li><strong>{{ field|title }}</strong>: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+
+
+
+<section class="section section-lg bg-color-7">
+    <div class="container">
+        <div class="row row-30 flex-column-reverse flex-lg-row">
+            <div class="col-lg-8">
+                <article class="post-info inset-1">
+                    <h4 class="post-info-title">Upload Your Content</h4>
+                    <p>Share your creativity with the world! Upload your films, podcasts, and more for free on EchoesRipple.
+
+                        Start earning from your content today! 🚀</p>
+
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                        
+                    
+                        <table class="post-info-table">
+                        <tr>
+                            <td>Title</td>
+                            <td><input class="form-input form-control-has-validation" id="id_title" type="text" name="title" data-constraints="@Required" fdprocessedid="w2q0tf">
+                            </td>
+                    
+                                <!-- <td>Сountry</td>
+                            <td>USA</td> -->
+                        </tr>
+                        <tr>
+                            <td>Country</td>
+                            <td><input class="form-input form-control-has-validation" id="id_country" type="text" name="country"  fdprocessedid="w2q0tf">
+                            </td>
+                    
+                                <!-- <td>Сountry</td>
+                            <td>USA</td> -->
+                        </tr>
+                        <tr>
+                            <td>Genre</td>
+                            <td><input class="form-input form-control-has-validation" id="id_genre" type="text" name="genre"  fdprocessedid="w2q0tf">
+                            </td>
+                    
+                                <!-- <td>Сountry</td>
+                            <td>USA</td> -->
+                        </tr>
+                        <tr>
+                            <td>Age Rating</td>
+                            <td><input class="form-input form-control-has-validation" id="id_age_rating" type="number" name="age_rating"  fdprocessedid="w2q0tf">
+                            </td>
+                    
+                                <!-- <td>Сountry</td>
+                            <td>USA</td> -->
+                        </tr>
+                        <tr>
+                            <td>Duration</td>
+                            <td><input class="form-input form-control-has-validation" id="id_duration" type="text" name="duration"  fdprocessedid="w2q0tf">
+                            </td>
+                    
+                                <!-- <td>Сountry</td>
+                            <td>USA</td> -->
+                        </tr>
+                        <tr>
+                            <td>Cast</td>
+                            <td><textarea class="form-input form-control-has-validation" id="id_cast" name="cast" ></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td><textarea class="form-input form-control-has-validation" id="id_description" name="description" data-constraints="@Required"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Content Type</td>
+                            <!-- <td><input class="form-input form-control-has-validation" id="contact-name" type="text" name="name" data-constraints="@Required" fdprocessedid="w2q0tf"> -->
+                                <td>
+                                <select class="form-input form-control-has-validation" name="content_type" required="" id="id_content_type" fdprocessedid="gpvadp">
+                                <option value="" selected="">---------</option>
+                              
+                                <option value="short_film">Short Film</option>
+                              
+                                <option value="podcast">Podcast</option>
+                              
+                                <option value="documentary">Documentary</option>
+                              
+                                <option value="entertainment">Entertainment Project</option>
+                              
+                              </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>File</td>
+                            <td><input class="form-input form-control-has-validation" id="id_file" type="file" name="file" data-constraints="@Required" fdprocessedid="w2q0tf">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Thumbnail</td>
+                            <td><input class="form-input form-control-has-validation" id="id_thumbnail" accept="image/*" type="file" name="thumbnail" data-constraints="@Required" fdprocessedid="w2q0tf">
+                            </td>
+                        </tr>
+                    </table>
+                    <label>
+                        <input type="checkbox" name="promote"> Promote this content?
+                    </label>
+                
+                    <select name="promotion_duration">
+                        <option value="1">1 Day - $5</option>
+                        <option value="3">3 Days - $12</option>
+                        <option value="7">7 Days - $25</option>
+                    </select>
+
+                    <button class="button button-lg button-primary" type="submit" >Upload</button>
+                </form>
+                    
+                </article>
+            </div>
+            <div class="col-lg-4 text-center text-lg-left">
+                <div class="movie-page-imageg"><img src="{% static 'content/images/movie-page-image-375x491.jpg' %}" alt="" width="375" height="491" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let promoteCheckbox = document.querySelector("#id_promote");
+        let durationField = document.querySelector("#id_promotion_duration").closest("p");
+
+        function togglePromotionOptions() {
+            durationField.style.display = promoteCheckbox.checked ? "block" : "none";
+        }
+
+        promoteCheckbox.addEventListener("change", togglePromotionOptions);
+        togglePromotionOptions();  // Run on page load
+    });
+</script>
+
+<!-- <div style="margin: 100px;"></div>
+<h2>Upload Your Content</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+</form> -->
+{% endblock %}

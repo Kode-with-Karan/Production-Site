@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'nav_white.html' %}
+<div style="margin: 100px;"></div>
+<div class="container">
+    <h2>Notifications</h2>
+    <ul>
+        {% for notification in notifications %}
+            <li>{{ notification.message }} - {{ notification.timestamp }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

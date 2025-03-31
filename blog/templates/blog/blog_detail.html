@@ -1,0 +1,251 @@
+{% extends 'base_black.html' %}
+{% load static %}
+{% block nav_bg %}
+<div class="page-header-1-figure m-parallax">
+    <div class="page-header-1-image m-parallax-image" style="background-image: url({{blog.banner_image.url}});"></div>
+</div>
+{% endblock nav_bg %}
+{% block nav_content %}
+<section class="breadcrumbs-custom">
+    <div class="breadcrumbs-custom-inner">
+        <div class="container">
+            <div class="breadcrumbs-custom-main m-parallax-content">
+                <h2 class="breadcrumbs-custom-title">{{ blog.title }}</h2>
+                <p>{{ blog.content|truncatewords:15 }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock nav_content %}
+{% block content %}
+<section class="section section-md bg-default">
+    <div class="container">
+        <article class="blog-layout">
+            <div class="blog-layout-main">
+                <div class="blog-layout-main-item">
+                    <article class="post-corporate"><img class="post-corporate-image" src="{{blog.main_image.url}}"
+                            alt="" width="768" height="396" />
+                        <ul class="post-corporate-meta">
+                            <li><span class="icon mdi mdi-calendar-today"></span>
+                                <time datetime="2020">{{ blog.created_at|date:"F j, Y" }}</time>
+                            </li>
+                            <li><span class="icon mdi mdi-account"></span><span>{{ blog.author }}</span></li>
+                            <li><span class="icon mdi mdi-tag-outline"></span><span>{{ blog.category }}</span></li>
+                        </ul>
+                        <div class="post-corporate-divider"></div>
+                        <h4 class="post-corporate-title">{{ blog.title }}</h4>
+                        <p>{{ blog.content }}</p>
+                        <!-- Quote Primary-->
+                        <blockquote class="quote-primary">
+                            <!-- <div class="quote-primary-text">
+                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+                            </div> -->
+                            <div class="quote-primary-footer">
+                                <svg class="quote-primary-line" width="70" height="8" viewBox="0 0 70 8" fill="none"
+                                    role="presentation">
+                                    <path
+                                        d="M0 1C5 1 5 7 9.92 7C14.84 7 14.92 1 19.85 1C24.78 1 24.85 7 29.77 7C34.69 7 34.77 1 39.71 1C44.65 1 44.71 7 49.63 7C54.55 7 54.63 1 59.57 1C64.51 1 64.57 7 69.5 7"
+                                        stroke-width="1.98" stroke-miterlimit="10"></path>
+                                </svg>
+                                <p class="heading-5 quote-primary-cite">{{blog.author}}</p>
+                            </div>
+                        </blockquote>
+
+                        
+                        <div class="post-corporate-gallery" data-lightgallery="group">
+                            {% if blog.optional_image1%} 
+                            <a class="post-corporate-thumbnail post-corporate-thumbnail-1" href=""><img
+                                    class="post-corporate-thumbnail-image" src="{{blog.optional_image1.url}}" alt=""
+                                    width="768" height="396" /></a>
+                                    {%endif%}
+                                    {% if blog.optional_image2%} 
+                            <a class="post-corporate-thumbnail post-corporate-thumbnail-2" href=""><img
+                                    class="post-corporate-thumbnail-image" src="{{blog.optional_image2.url}}" alt=""
+                                    width="278" height="331" /></a>
+                                    {%endif%}
+                                    {% if blog.optional_image3%} 
+                            <a class="post-corporate-thumbnail post-corporate-thumbnail-3" href=""><img
+                                    class="post-corporate-thumbnail-image" src="{{blog.optional_image3.url}}" alt=""
+                                    width="480" height="331" /></a>
+                                    {%endif%}
+                        </div>
+
+                       
+
+                        
+                        <!-- <ul class="post-corporate-tags">
+                            <li><a href="#">News</a></li>
+                            <li><a href="#">Cartoons</a></li>
+                            <li><a href="#">disney</a></li>
+                        </ul> -->
+                        <div class="post-corporate-divider"></div>
+                        <div class="post-corporate-footer">
+                            <h5 class="text-gray-500 font-weight-medium">Share this post: {{ blog.analytics.shares }}
+                                &nbsp;&nbsp; Views : {{ blog.analytics.views }}</h5>
+                            <div>
+                                <div class="group group-sm"><a class="link-1 icon mdi mdi-facebook" href="#"></a><a
+                                        class="link-1 icon mdi mdi-instagram" href="#"></a><a
+                                        class="link-1 icon mdi mdi-behance" href="#"></a><a
+                                        class="link-1 icon mdi mdi-twitter" href="#"></a></div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="blog-layout-main-item">
+                    <h4 class="text-center text-sm-left">Related Posts</h4>
+                    <div class="row row-40">
+                        {% for related in related_blogs|slice:":2" %}
+                        <div class="col-sm-6">
+                            <!-- Post Classic-->
+                            <article class="post-classic ml-sm-0"><a class="post-classic-figure"
+                                    href="{% url 'blog_detail' related.slug %}"><img class="post-classic-image"
+                                        src="{{ related.main_image.url }}" alt="" width="339" height="251" /></a>
+                                <time class="post-classic-time" datetime="2020">{{ related.created_at|date:"F j, Y" }}</time>
+                                <div class="post-classic-divider"></div>
+                                <p class="heading-5 post-classic-title"><a
+                                        href="{% url 'blog_detail' related.slug %}">{{ related.title }}</a></p>
+                            </article>
+                        </div>
+                        {% empty %}
+                        <p>No related posts available.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="blog-layout-main-item">
+                    <h4>Leave a Reply</h4>
+                    <!-- RD Mailform-->
+                     
+                    <!-- {% if user.is_authenticated %}
+                    <h3>Leave a Comment</h3>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit">Post Comment</button>
+                    </form>
+                {% else %}
+                    <p><a href="{% url 'login' %}">Log in</a> to post a comment.</p>
+                {% endif %} -->
+                    
+                    {% if user.is_authenticated %}
+                    
+                    <form  method="post">
+                        {% csrf_token %}
+                        <div class="row row-30">
+
+                            <div class="col-12">
+                                <div class="form-wrap form-wrap-icon">
+                                    <label class="form-label" for="id_content">Message</label>
+                                    <textarea class="form-input" id="id_content" name="content"
+                                        data-constraints="@Required"></textarea>
+                                    <div class="icon form-icon mdi mdi-message-outline text-primary"></div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-wrap form-wrap-button">
+                            <button class="button button-lg button-primary" type="submit">Submit</button>
+                        </div>
+                        
+                    </form>
+                    {% else %}
+                    <p><a href="{% url 'login' %}">Log in</a> to post a comment.</p>
+                    {% endif %}
+                </div>
+                <h2>Comments</h2>
+                {% for comment in comments %}
+                    <div class="comment">
+                        <strong>{{ comment.user.username }}</strong> - {{ comment.created_at|date:"d M Y, H:i" }}
+                        <p>{{ comment.content }}</p>
+                    </div>
+                {% empty %}
+                    <p>No comments yet. Be the first to comment!</p>
+                {% endfor %}
+            </div>
+
+            <div class="blog-layout-aside">
+
+                <div class="blog-layout-aside-item">
+                    <h5>Categories</h5>
+                    <ul class="list-categories">
+
+                        {% for category in categories %}
+                        <li>
+
+                        <li><a href="{% url 'blog_list' %}?category={{ category.slug }}"><span class="lc-text">{{ category.name }}</span><span class="lc-counter">{{ category.blog_count }}</span></a>
+                        </li>
+                        </li>
+                        {% empty %}
+                        <li>No categories available.</li>
+                        {% endfor %}
+
+
+                    </ul>
+                </div>
+                <div class="blog-layout-aside-item">
+                    <h5>Recent Posts</h5>
+                    <div class="group-post-minimal">
+                        {% for related in related_blogs|slice:"2:" %}
+                        <article class="post-minimal"><a class="post-minimal-media"
+                                href="{% url 'blog_detail' related.slug %}"><img class="post-minimal-image"
+                                    src="{{ related.main_image.url }}" alt="" width="79" height="78" /></a>
+                            <div class="post-minimal-main">
+                                <p class="post-minimal-title"><a class="link-black"
+                                        href="{% url 'blog_detail' related.slug %}">{{ related.title }}</a></p>
+                                <time class="post-minimal-time" datetime="2020">{{ related.created_at|date:"F j, Y" }}</time>
+                            </div>
+                        </article>
+
+                        {% empty %}
+                        <p>No additional related posts available.</p>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+            </div>
+        </article>
+    </div>
+</section>
+<!-- <div style="margin: 100px;"></div>
+<h2>{{ blog.title }}</h2>
+<p>By {{ blog.author }} | {{ blog.created_at|date:"F j, Y" }}</p>
+
+<p><strong>Views:</strong> {{ blog.analytics.views }}</p>
+<p><strong>Shares:</strong> {{ blog.analytics.shares }}</p>
+
+
+<p>Share this post:</p>
+<a href="https://twitter.com/intent/tweet?text={{ blog.title }}&url={{ request.build_absolute_uri }}"
+   target="_blank" onclick="increaseShareCount()">Twitter</a> |
+<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"
+   target="_blank" onclick="increaseShareCount()">Facebook</a>
+
+   <h2>Comments</h2>
+{% for comment in comments %}
+    <div class="comment">
+        <strong>{{ comment.user.username }}</strong> - {{ comment.created_at|date:"d M Y, H:i" }}
+        <p>{{ comment.content }}</p>
+    </div>
+{% empty %}
+    <p>No comments yet. Be the first to comment!</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+    <h3>Leave a Comment</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Post Comment</button>
+    </form>
+{% else %}
+    <p><a href="{% url 'login' %}">Log in</a> to post a comment.</p>
+{% endif %}
+
+
+<script>
+    function increaseShareCount() {
+        fetch("{% url 'blog_share' blog.slug %}", {method: 'POST', headers: {'X-CSRFToken': '{{ csrf_token }}'}});
+    }
+</script> -->
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'nav_white.html' %}
+<div style="margin: 100px;"></div>
+<h2>Make a Payment</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Amount:</label>
+    <input type="number" name="amount" required>
+    <button type="submit">Pay</button>
+</form>
+{% endblock %}

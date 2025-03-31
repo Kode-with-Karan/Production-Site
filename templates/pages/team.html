@@ -1,0 +1,113 @@
+{% extends 'base_black.html' %}
+{% load static %}
+{% block nav_bg %}
+<div class="page-header-1-figure m-parallax">
+    <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg.png' %});"></div>
+</div>
+{% endblock nav_bg %}
+{% block nav_content %}
+<section class="breadcrumbs-custom">
+    <div class="breadcrumbs-custom-inner">
+        <div class="container">
+            <div class="breadcrumbs-custom-main m-parallax-content">
+                <h2 class="breadcrumbs-custom-title">Our Team</h2>
+                <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in reprehenderit.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock nav_content %}
+{% block content %}
+<section class="section section-lg bg-gray-100">
+    <div class="container">
+        <div class="row row-50 justify-content-center">
+            <!-- <div class="col-md-10 col-lg-7 col-xl-6">
+                <div class="row row-30">
+                    <div class="col-sm-6">
+                        
+                        <article class="profile-classic"><img class="profile-classic-image" src="{% static 'images/our-team-1-272x197.jpg' %}" alt="" width="272" height="197" />
+                            <div class="profile-classic-main">
+                                <p class="profile-classic-position">Founder, Owner</p>
+                                <p class="profile-classic-name heading-5">Peter Jones</p>
+                                <div class="profile-classic-unit">
+                                    <div class="icon mdi mdi-phone"></div><a href="tel:#">1-800-36-677</a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-sm-6">
+                        
+                        <article class="profile-classic"><img class="profile-classic-image" src="{% static 'images/our-team-2-272x197.jpg' %}" alt="" width="272" height="197" />
+                            <div class="profile-classic-main">
+                                <p class="profile-classic-position">Content Manager</p>
+                                <p class="profile-classic-name heading-5">Edward Smith</p>
+                                <div class="profile-classic-unit">
+                                    <div class="icon mdi mdi-phone"></div><a href="tel:#">1-800-36-677</a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-sm-6">
+                        
+                        <article class="profile-classic"><img class="profile-classic-image" src="{% static 'images/our-team-3-272x197.jpg' %}" alt="" width="272" height="197" />
+                            <div class="profile-classic-main">
+                                <p class="profile-classic-position">Web Designer</p>
+                                <p class="profile-classic-name heading-5">Mark Williams</p>
+                                <div class="profile-classic-unit">
+                                    <div class="icon mdi mdi-phone"></div><a href="tel:#">1-800-36-677</a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-sm-6">
+                        
+                        <article class="profile-classic"><img class="profile-classic-image" src="{% static 'images/our-team-4-272x197.jpg' %}" alt="" width="272" height="197" />
+                            <div class="profile-classic-main">
+                                <p class="profile-classic-position">PR Manager</p>
+                                <p class="profile-classic-name heading-5">Harry Robinson</p>
+                                <div class="profile-classic-unit">
+                                    <div class="icon mdi mdi-phone"></div><a href="tel:#">1-800-36-677</a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div> -->
+            <div class="col-md-10 col-lg-5 col-xl-6">
+                <!-- Box 2-->
+                <article class="box-2">
+                    <div class="box-2-inner">
+                        <h4>Get in Touch</h4>
+                        <!-- RD Mailform-->
+                        <form class="rd-form rd-mailform form-lg" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+                            <div class="form-wrap form-wrap-icon">
+                                <input class="form-input" id="contact-name" type="text" name="name" data-constraints="@Required">
+                                <label class="form-label" for="contact-name">Full Name</label>
+                                <div class="icon form-icon mdi mdi-account-outline"></div>
+                            </div>
+                            <div class="form-wrap form-wrap-icon">
+                                <input class="form-input" id="contact-email" type="email" name="email" data-constraints="@Email @Required">
+                                <label class="form-label" for="contact-email">E-mail</label>
+                                <div class="icon form-icon mdi mdi-email-outline"></div>
+                            </div>
+                            <div class="form-wrap form-wrap-icon">
+                                <input class="form-input" id="contact-phone" type="text" name="phone" data-constraints="@PhoneNumber">
+                                <label class="form-label" for="contact-phone">Phone</label>
+                                <div class="icon form-icon mdi mdi-phone"></div>
+                            </div>
+                            <div class="form-wrap form-wrap-icon">
+                                <label class="form-label" for="contact-message">Message</label>
+                                <textarea class="form-input" id="contact-message" name="message" data-constraints="@Required"></textarea>
+                                <div class="icon form-icon mdi mdi-message-outline"></div>
+                            </div>
+                            <div class="form-wrap form-wrap-button text-center">
+                                <button class="button button-lg button-primary" type="submit">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

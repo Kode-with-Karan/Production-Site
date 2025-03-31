@@ -1,0 +1,104 @@
+{% extends 'base_black.html' %}
+{% load static %}
+{% block nav_bg %}
+<div class="page-header-1-figure m-parallax">
+    <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg.png' %});"></div>
+</div>
+{% endblock nav_bg %}
+{% block nav_content %}
+<section class="breadcrumbs-custom">
+    <div class="breadcrumbs-custom-inner">
+        <div class="container">
+            <div class="breadcrumbs-custom-main m-parallax-content">
+                <h2 class="breadcrumbs-custom-title">Professionals – Connect. Collaborate. Create.</h2>
+                <p>EchoesRipple is where actors, directors, editors, cinematographers, and all creative professionals find exciting projects, connect with filmmakers, and showcase their talent. Whether you're just starting out or a seasoned industry pro, this is your platform to shine.</p>
+                <p>🎬 Join projects. Build your career. Get discovered.</p>
+                <div class="group group-sm group-middle"><a class="button button-sm button-icon button-icon-left button-light" data-lightgallery="item" href="https://youtu.be/VML6rQWssSk"><span class="icon mdi mdi-play"></span>Watch Now</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock nav_content %}
+{% block content %}
+
+<div>
+
+    <h5 style="text-align: center;margin-top: 50px;">Getting Started</h5>
+    <h3 style="text-align: center;color: #f3c10c;"> How It Works – Get Matched & Get Hired</h3>
+    <!-- Features-->
+<section class="section section-lg text-center text-sm-left">
+    <div class="container">
+        <ul class="list-group-1 row row-50" style="align-items: center;">
+            <li class="col-sm-6 col-lg-3">
+                <article class="lg-1-item">
+                    <!-- <div class="icon lg-1-item-icon linearicons-pictures"></div> -->
+                    <img src="{% static 'images/talent_image1.png' %}" alt="">
+                    <div class="lg-1-item-main">
+                        <h5 class="lg-1-item-title">Create Your Profile</h5>
+                        <p>
+                            <ul style="list-style:circle">
+                                <li style="display:list-item;color: #f3c10c;">Signing up is fast & free – get started in under a minute!</li>
+                                <li style="display:list-item;color: #f3c10c;">Use your real name (this is a professional network)..</li>
+                                <li style="display:list-item;color: #f3c10c;">Confirm your email to activate your account.</li>
+                            </ul>
+                        </p>
+                    </div>
+                </article>
+            </li>
+            <li class="col-sm-6 col-lg-3">
+                <article class="lg-1-item">
+                    <!-- <div class="icon lg-1-item-icon linearicons-eye"></div> -->
+                    <img src="{% static 'images/talent_image2.png' %}" alt="">
+                    <div class="lg-1-item-main">
+                        <h5 class="lg-1-item-title">Showcase Your Work & Experience</h5>
+                        <p>
+                            <ul style="list-style:circle">
+                                <li style="display:list-item;color: #f3c10c;">Add your credits & skills – the more details, the better your matches!</li>
+                                <li style="display:list-item;color: #f3c10c;">Our system automatically pulls existing credits, or you can add them manually</li>
+                                <li style="display:list-item;color: #f3c10c;">Your profile helps filmmakers find and connect with you.</li>
+                            </ul>
+                        </p>
+                    </div>
+                </article>
+            </li>
+            <li class="col-sm-6 col-lg-3">
+                <article class="lg-1-item">
+                    <!-- <div class="icon lg-1-item-icon linearicons-3d-glasses"></div> -->
+                    <img src="{% static 'images/talent_image3.png' %}" alt="">
+                    <div class="lg-1-item-main">
+                        <h5 class="lg-1-item-title">Set Your Preferences & Interests</h5>
+                        <p>
+                            <ul style="list-style:circle">
+                                <li style="display:list-item;color: #f3c10c;">Looking for acting roles? Editing gigs? Directing opportunities?</li>
+                                <li style="display:list-item;color: #f3c10c;">Activate your interests and let our smart matching system connect you with the right projects.</li>
+                                <li style="display:list-item;color: #f3c10c;">Your profile becomes visible to filmmakers actively seeking talent like you.</li>
+                            </ul>
+                        </p>
+                    </div>
+                </article>
+            </li>
+            <li class="col-sm-6 col-lg-3">
+                <article class="lg-1-item">
+                    <!-- <div class="icon lg-1-item-icon linearicons-3d-glasses"></div> -->
+                    <img src="{% static 'images/talent_image4.png' %}" alt="">
+
+                    <div class="lg-1-item-main">
+                        <h5 class="lg-1-item-title">Match, Message & Get Hired</h5>
+                        <p>
+                            <ul style="list-style:circle">
+                                <li style="display:list-item;color: #f3c10c;">Browse projects that fit your expertise.</li>
+                                <li style="display:list-item;color: #f3c10c;">Send direct messages to producers, directors, and fellow creatives.</li>
+                                <li style="display:list-item;color: #f3c10c;">Receive invitations from filmmakers searching for your skills.</li>
+                            </ul>
+                        </p>
+                    </div>
+                </article>
+            </li>
+            
+        </ul>
+    </div>
+</section>
+</div>
+
+
+{% endblock %}

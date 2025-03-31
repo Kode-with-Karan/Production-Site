@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Your Earnings: ${{ earnings.earnings }}</h2>
+<a href="{% url 'request_withdrawal' %}">Withdraw Funds</a>
+<!-- <div style="margin: 100px;"></div>
+<form method="post">
+    {% csrf_token %}
+    <label for="amount">Enter Amount to Withdraw:</label>
+    <input type="number" name="amount" required>
+    <button type="submit">Withdraw</button>
+</form> -->
+<!-- <div class="container">
+    <h2>Earnings Dashboard</h2>
+
+    <h3>Total Earnings</h3>
+    <table>
+        <tr>
+            <th>Content</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+        {% for earning in earnings %}
+        <tr>
+            <td>{{ earning.content.title }}</td>
+            <td>${{ earning.amount }}</td>
+            <td>{{ earning.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Request Withdrawal</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="number" name="amount" placeholder="Amount" required>
+        <select name="method">
+            <option value="Bank">Bank Transfer</option>
+            <option value="PayPal">PayPal</option>
+        </select>
+        <button type="submit">Withdraw</button>
+    </form>
+
+    <h3>Withdrawal History</h3>
+    <table>
+        <tr>
+            <th>Amount</th>
+            <th>Method</th>
+            <th>Status</th>
+            <th>Requested At</th>
+        </tr>
+        {% for withdrawal in withdrawals %}
+        <tr>
+            <td>${{ withdrawal.amount }}</td>
+            <td>{{ withdrawal.method }}</td>
+            <td>{{ withdrawal.status }}</td>
+            <td>{{ withdrawal.requested_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div> -->
+{% endblock %}

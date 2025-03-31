@@ -1,0 +1,64 @@
+{% extends 'base_black.html' %}
+{% load static %}
+{% block nav_bg %}
+<div class="page-header-1-figure m-parallax">
+    <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg.png' %});"></div>
+</div>
+{% endblock nav_bg %}
+{% block nav_content %}
+<section class="breadcrumbs-custom">
+    <div class="breadcrumbs-custom-inner">
+        <div class="container">
+            <div class="breadcrumbs-custom-main m-parallax-content">
+                <h2 class="breadcrumbs-custom-title">Contact with Our Team</h2>
+                <p> Got Questions? Need Support? 🤝</p>
+                <p> Reach out to our team—we're here to help! Contact us anytime for assistance. </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock nav_content %}
+{% block content %}
+<section class="section section-lg bg-gray-100">
+    <div class="container">
+        <div class="row row-50 justify-content-center">
+           
+            <div class="col-md-10 col-lg-5 col-xl-6">
+                <!-- Box 2-->
+                <article class="box-2">
+                    <div class="box-2-inner">
+                        <h4>Get in Touch</h4>
+                        <!-- RD Mailform-->
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-wrap form-wrap-icon">
+                                <input class="form-input" id="contact-name" type="text" name="name" data-constraints="@Required">
+                                <label class="form-label" for="contact-name">Full Name</label>
+                                <div class="icon form-icon mdi mdi-account-outline"></div>
+                            </div>
+                            <div class="form-wrap form-wrap-icon">
+                                <input class="form-input" id="contact-email" type="email" name="email" data-constraints="@Email @Required">
+                                <label class="form-label" for="contact-email">E-mail</label>
+                                <div class="icon form-icon mdi mdi-email-outline"></div>
+                            </div>
+                            <div class="form-wrap form-wrap-icon">
+                                <input class="form-input" id="contact-phone" type="text" name="phone" data-constraints="@PhoneNumber">
+                                <label class="form-label" for="contact-phone">Phone</label>
+                                <div class="icon form-icon mdi mdi-phone"></div>
+                            </div>
+                            <div class="form-wrap form-wrap-icon">
+                                <label class="form-label" for="contact-message">Message</label>
+                                <textarea class="form-input" id="contact-message" name="message" data-constraints="@Required"></textarea>
+                                <div class="icon form-icon mdi mdi-message-outline"></div>
+                            </div>
+                            <div class="form-wrap form-wrap-button text-center">
+                                <button class="button button-lg button-primary" type="submit">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

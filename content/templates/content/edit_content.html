@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% if form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                    <li><strong>{{ field|title }}</strong>: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+
+<section class="section section-lg bg-color-7">
+    <div class="container">
+        <div class="row row-30 flex-column-reverse flex-lg-row">
+            <div class="col-lg-8">
+                <article class="post-info inset-1">
+                    <h4 class="post-info-title">Edit The Content</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere metus et tortor pulvinar venenatis. Aliquam erat volutpat. Nam ultrices semper felis, at laoreet metus</p>
+
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                        
+                    
+                        <table class="post-info-table">
+                          <tr>
+                            <td>Title</td>
+                            <td><input class="form-input form-control-has-validation" type="text" name="title" value="{{ content.title }}">
+                            </td>
+                    
+                                <!-- <td>Сountry</td>
+                            <td>USA</td> -->
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td><textarea class="form-input form-control-has-validation" name="description" data-constraints="@Required">{{ content.description }}</textarea>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <button class="button button-lg button-primary" type="submit" >Upload</button>
+                </form>
+                    
+                </article>
+            </div>
+            <div class="col-lg-4 text-center text-lg-left">
+                <div class="movie-page-imageg"><img src="{{ content.thumbnail.url }}" alt="" width="375" height="491" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <div style="margin: 100px;"></div>
+  <h2>Edit Content</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <label for="title">Title:</label>
+    <input type="text" name="title" value="{{ content.title }}" required>
+
+    <label for="description">Description:</label>
+    <textarea name="description" required>{{ content.description }}</textarea>
+
+    <button type="submit">Save Changes</button>
+  </form>
+  <a href="{% url 'dashboard' %}">Cancel</a> -->
+{% endblock %}
