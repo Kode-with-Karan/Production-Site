@@ -48,8 +48,63 @@ def home(request):
 
 def category(request, content_type):
     contents = Content.objects.filter(content_type=content_type).order_by('-uploaded_at')
-    return render(request, 'content/category.html', {'contents': contents, 'content_type': content_type})
+    CONTENT_TYPES = [
+        ('short_film', 'Short Film'),
+        ('podcast', 'Podcast'),
+        ('documentary', 'Documentary'),
+        ('entertainment', 'Entertainment Project'),
+        ('animation', 'Animation'),
+        ('interviews', 'Interviews'),
+        ('education', 'Education'),
+        ('music', 'Music'),
+        ('web_series', 'Web Series'),
+    ]
 
+    for i in range(0, len(CONTENT_TYPES)):
+        if (CONTENT_TYPES[i][0]== content_type):
+            content_type = CONTENT_TYPES[i][1]
+            num = i+1
+    
+
+
+    return render(request, 'content/category.html', {'contents': contents, 'content_type': content_type, "num": str(num)})
+
+def genre(request, genre_type):
+    contents = Content.objects.filter(genre=genre_type).order_by('-uploaded_at')
+    GENRE_TYPE = [
+        ('Comedy', 'Comedy'),
+        ('Action', 'Action'),
+        ('Romantic', 'Romantic'),
+        ('Thriller', 'Thriller'),
+        ('Horror', 'Horror'),
+    ]
+
+    for i in range(0, len(GENRE_TYPE)):
+        if (GENRE_TYPE[i][0]== genre_type):
+            genre_type = GENRE_TYPE[i][1]
+            num = i+1
+    
+    
+    return render(request, 'content/category.html', {'contents': contents, 'genre_type': genre_type, "num": str(num)})
+
+def language(request, language_type):
+    contents = Content.objects.filter(language=language_type).order_by('-uploaded_at')
+
+    LANGUAGE_TYPE = [
+        ('English', 'English'),
+        ('Hindi', 'Hindi'),
+        ('French', 'French'),
+        ('Russian', 'Russian'),
+        ('German', 'German'),
+        ('Spanish', 'Spanish'),
+    ]
+
+    for i in range(0, len(LANGUAGE_TYPE)):
+        if (LANGUAGE_TYPE[i][0] == language_type):
+            language_type = LANGUAGE_TYPE[i][1]
+            num = i+1
+
+    return render(request, 'content/category.html', {'contents': contents, 'language_type': language_type, "num": str(num)})
 
 @login_required
 def upload_content(request):
@@ -77,6 +132,32 @@ def upload_content(request):
         form = ContentUploadForm()
 
     return render(request, 'content/upload_content.html', {'form': form})
+
+@login_required
+def edit_content(request, pk):
+    content = get_object_or_404(Content, pk=pk)
+
+    # Ensure only the owner can edit
+    if str(content.uploaded_by) != str(request.user):
+
+        messages.error(request, "You do not have permission to edit this content.")
+        return redirect('dashboard')
+
+    if request.method == "POST":
+        content.title = request.POST.get("title")
+        content.description = request.POST.get("description")
+        content.genre = request.POST.get("genre")
+        content.age_rating = request.POST.get("age_rating")
+        content.duration = request.POST.get("duration")
+        content.cast = request.POST.get("cast")
+        content.country = request.POST.get("country")
+        content.language = request.POST.get("language")
+        content.save()
+        messages.success(request, "Content updated successfully!")
+        return redirect('dashboard')
+
+    return render(request, "content/edit_content.html", {"content": content})
+
 
 @login_required
 def rate_content(request, content_id):
@@ -189,38 +270,24 @@ def collaborate(request):
     return render(request, 'content/collaborate.html', {'form': form})
 
 
-@login_required
-def edit_content(request, pk):
-    content = get_object_or_404(Content, pk=pk)
-
-    # Ensure only the owner can edit
-    if str(content.uploaded_by) != str(request.user):
-
-        messages.error(request, "You do not have permission to edit this content.")
-        return redirect('dashboard')
-
-    if request.method == "POST":
-        content.title = request.POST.get("title")
-        content.description = request.POST.get("description")
-        content.save()
-        messages.success(request, "Content updated successfully!")
-        return redirect('dashboard')
-
-    return render(request, "content/edit_content.html", {"content": content})
 
 
 @login_required
 def delete_content(request, pk):
     content = get_object_or_404(Content, pk=pk)
 
+    print(content)
     # Ensure only the owner can delete their content
     if str(content.uploaded_by) != str(request.user):
         messages.error(request, "You do not have permission to delete this content.")
         return redirect('dashboard')  # Redirect to dashboard
-
-    if request.method == "POST":
+    
+    print(content)
+    # if request.method == "POST":
+    if request.method == "GET":
+        print(content)
         content.delete()
         messages.success(request, "Content deleted successfully!")
         return redirect('dashboard')  # Redirect after deletion
-
+    print(content)
     return render(request, "content/delete_confirm.html", {"content": content})

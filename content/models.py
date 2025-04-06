@@ -21,6 +21,7 @@ class Content(models.Model):
     country = models.CharField(max_length=200,default="Not Mentioned")
     duration = models.CharField(max_length=200,default="Not Mentioned")
     genre = models.CharField(max_length=200,default="Not Mentioned")
+    language = models.CharField(max_length=200,default="Not Mentioned")
     age_rating = models.IntegerField(default="0")
     description = models.TextField()
     cast = models.TextField(default="Not Mentioned")
@@ -51,6 +52,11 @@ class Collaborate(models.Model):
         ('podcast', 'Podcast'),
         ('documentary', 'Documentary'),
         ('entertainment', 'Entertainment Project'),
+        ('music', 'Music'),
+        ('education', 'Education'),
+        ('interviews', 'Interviews'),
+        ('animation', 'Animation'),
+        ('web_series', 'Web Series'),
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="collaborations")

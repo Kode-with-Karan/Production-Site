@@ -2,15 +2,15 @@
 {% load static %}
 {% block content %}
 {% if form.errors %}
-    <div class="alert alert-danger">
-        <ul>
-            {% for field, errors in form.errors.items %}
-                {% for error in errors %}
-                    <li><strong>{{ field|title }}</strong>: {{ error }}</li>
-                {% endfor %}
-            {% endfor %}
-        </ul>
-    </div>
+<div class="alert alert-danger">
+    <ul>
+        {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+        <li><strong>{{ field|title }}</strong>: {{ error }}</li>
+        {% endfor %}
+        {% endfor %}
+    </ul>
+</div>
 {% endif %}
 
 
@@ -20,31 +20,103 @@
             <div class="col-lg-8">
                 <article class="post-info inset-1">
                     <h4 class="post-info-title">Edit The Content</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere metus et tortor pulvinar venenatis. Aliquam erat volutpat. Nam ultrices semper felis, at laoreet metus</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere metus et tortor pulvinar
+                        venenatis. Aliquam erat volutpat. Nam ultrices semper felis, at laoreet metus</p>
 
-                        <form method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                        
-                    
+                    <!-- <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+
                         <table class="post-info-table">
-                          <tr>
-                            <td>Title</td>
-                            <td><input class="form-input form-control-has-validation" type="text" name="title" value="{{ content.title }}">
-                            </td>
-                    
-                                <!-- <td>Сountry</td>
-                            <td>USA</td> -->
-                        </tr>
-                        <tr>
-                            <td>Description</td>
-                            <td><textarea class="form-input form-control-has-validation" name="description" data-constraints="@Required">{{ content.description }}</textarea>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>Title</td>
+                                <td><input class="form-input form-control-has-validation" type="text" name="title"
+                                        value="{{ content.title }}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td><textarea class="form-input form-control-has-validation" name="description"
+                                        data-constraints="@Required">{{ content.description }}</textarea>
+                                </td>
+                            </tr>
 
-                    </table>
-                    <button class="button button-lg button-primary" type="submit" >Upload</button>
-                </form>
+                        </table>
+                        <button class="button button-lg button-primary" type="submit">Upload</button>
+                    </form> -->
+
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
                     
+                
+                    <table class="post-info-table">
+                    <tr>
+                        <td>Title</td>
+                        <td><input class="form-input form-control-has-validation" id="id_title" type="text" name="title" data-constraints="@Required" fdprocessedid="w2q0tf" value="{{ content.title }}">
+                        </td>
+                
+                            <!-- <td>Сountry</td>
+                        <td>USA</td> -->
+                    </tr>
+                    <tr>
+                        <td>Country</td>
+                        <td><input class="form-input form-control-has-validation" id="id_country" type="text" name="country"  fdprocessedid="w2q0tf" value="{{ content.country }}">
+                        </td>
+                
+                            <!-- <td>Сountry</td>
+                        <td>USA</td> -->
+                    </tr>
+                    <tr>
+                        <td>Genre</td>
+                        <td><input class="form-input form-control-has-validation" id="id_genre" type="text" name="genre"  fdprocessedid="w2q0tf" value="{{ content.genre }}">
+                        </td>
+                
+                            <!-- <td>Сountry</td>
+                        <td>USA</td> -->
+                    </tr>
+                    <tr>
+                        <td>Language</td>
+                        <td><input class="form-input form-control-has-validation" id="id_language" type="text" name="language"  fdprocessedid="w2q0tf" value="{{ content.language }}">
+                        </td>
+                
+                            <!-- <td>Сountry</td>
+                        <td>USA</td> -->
+                    </tr>
+                    <tr>
+                        <td>Age Rating</td>
+                        <td><input class="form-input form-control-has-validation" id="id_age_rating" type="number" name="age_rating"  fdprocessedid="w2q0tf" value="{{ content.age_rating }}">
+                        </td>
+                
+                            <!-- <td>Сountry</td>
+                        <td>USA</td> -->
+                    </tr>
+                    <tr>
+                        <td>Duration</td>
+                        <td><input class="form-input form-control-has-validation" id="id_duration" type="text" name="duration"  fdprocessedid="w2q0tf" value="{{ content.duration }}">
+                        </td>
+                
+                            <!-- <td>Сountry</td>
+                        <td>USA</td> -->
+                    </tr>
+                    <tr>
+                        <td>Cast</td>
+                        <td><textarea class="form-input form-control-has-validation" id="id_cast" name="cast">{{ content.cast }}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td><textarea class="form-input form-control-has-validation" id="id_description" name="description" data-constraints="@Required" >{{ content.description }}</textarea>
+                        </td>
+                    </tr>
+                    
+                </table>
+                
+            
+                
+
+                <button class="button button-lg button-primary" type="submit" >Upload</button>
+            </form>
+
                 </article>
             </div>
             <div class="col-lg-4 text-center text-lg-left">

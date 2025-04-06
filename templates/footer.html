@@ -44,11 +44,12 @@
                     <p class="footer-modern-title">Language</p>
                     <div class="footer-modern-item-block">
                         <ul class="list list-1">
-                            <li><a href="{% url 'about' %}">Hindi</a></li>
-                            <li><a href="{% url 'blog_list' %}">English</a></li>
-                            <li><a href="{% url 'faq' %}">French</a></li>
-                            <li><a href="{% url 'collaborate' %}">Russian</a></li>
-                            <li><a href="{% url 'support-team' %}">German</a></li>
+                            <li><a href="{% url 'language' 'English' %}">English</a></li>
+                            <li><a href="{% url 'language' 'Hindi' %}">Hindi</a></li>
+                            <li><a href="{% url 'language' 'French' %}">French</a></li>
+                            <li><a href="{% url 'language' 'Russian' %}">Russian</a></li>
+                            <li><a href="{% url 'language' 'German' %}">German</a></li>
+                            <li><a href="{% url 'language' 'Spanish' %}">Spanish</a></li>
                         </ul>
                     </div>
                 </div>
@@ -56,11 +57,11 @@
                     <p class="footer-modern-title">Genre</p>
                     <div class="footer-modern-item-block">
                         <ul class="list list-1">
-                            <li><a href="{% url 'about' %}">Comedy</a></li>
-                            <li><a href="{% url 'blog_list' %}">Action</a></li>
-                            <li><a href="{% url 'faq' %}">Love</a></li>
-                            <li><a href="{% url 'collaborate' %}">Thriller</a></li>
-                            <li><a href="{% url 'support-team' %}">Horror</a></li>
+                            <li><a href="{% url 'genre' 'Comedy' %}">Comedy</a></li>
+                            <li><a href="{% url 'genre' 'Action' %}">Action</a></li>
+                            <li><a href="{% url 'genre' 'Romantic' %}">Romantic</a></li>
+                            <li><a href="{% url 'genre' 'Thriller' %}">Thriller</a></li>
+                            <li><a href="{% url 'genre' 'Horror' %}">Horror</a></li>
                         </ul>
                     </div>
                 </div>

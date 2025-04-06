@@ -29,6 +29,22 @@
         border-radius: 10px; /* Optional: Rounded corners */
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: Add shadow */
     }
+    .rating{
+        width: fit-content;
+        padding: 20px;
+        border-radius: 9px;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    }
+    .stars{
+        cursor: pointer;
+    }
+    
+    .star.filled {
+        color: #f7cf00; /* Highlighted color */
+    }
 </style>
 
 <div class="rating">
@@ -42,6 +58,49 @@
 </div>
 
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function updateStarColors(rating) {
+            document.querySelectorAll(".star").forEach(star => {
+                let value = parseInt(star.getAttribute("data-value"));
+                if (value <= rating) {
+                    star.classList.add("filled"); // Add filled class
+                } else {
+                    star.classList.remove("filled"); // Remove filled class if rating is lower
+                }
+            });
+        }
+    
+        // Get the initial average rating and color the stars accordingly
+        let initialAverageRating = parseFloat(document.getElementById("average-rating").innerText);
+        updateStarColors(initialAverageRating);
+    
+        // Add event listeners for rating clicks
+        document.querySelectorAll(".star").forEach(star => {
+            star.addEventListener("click", function() {
+                const rating = this.getAttribute("data-value");
+    
+                fetch("{% url 'rate_content' content.id %}", {
+                    method: "POST",
+                    headers: {
+                        "X-CSRFToken": "{{ csrf_token }}",
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: "rating=" + rating
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.average_rating) {
+                        document.getElementById("average-rating").innerText = data.average_rating.toFixed(1);
+                        updateStarColors(data.average_rating); // Update star colors dynamically
+                    }
+                });
+            });
+        });
+    });
+    </script>
+    
+
+<!-- <script>
 document.querySelectorAll(".star").forEach(star => {
     star.addEventListener("click", function() {
         const rating = this.getAttribute("data-value");
@@ -62,7 +121,8 @@ document.querySelectorAll(".star").forEach(star => {
         });
     });
 });
-</script>
+</script> -->
+
 <!-- 
 
 <div class="container">

@@ -52,17 +52,7 @@
     <div class="figure-classic-pattern v-3"></div>
 </section>
 
-{% if promoted %}
-<h2>🔥 Featured Content</h2>
-<div class="promoted-section">
-    {% for promo in promoted %}
-        <div class="promoted-item">
-            <h3>{{ promo.content.title }}</h3>
-            <img src="{{ promo.content.thumbnail.url }}" alt="{{ promo.content.title }}">
-        </div>
-    {% endfor %}
-</div>
-{% endif %}
+
 <!-- FScreen-->
 <!-- <section class="section bg-custom-1 position-relative">
     <div class="swiper-container swiper-slider swiper-slider-1" data-loop="true" data-autoplay="50000"
@@ -112,6 +102,48 @@
     <div class="figure-classic-pattern v-2"></div>
     <div class="figure-classic-pattern v-3"></div>
 </section> -->
+<!-- {% if promoted %}
+<h2>🔥 Featured Content</h2>
+<div class="promoted-section">
+    {% for promo in promoted %}
+        <div class="promoted-item">
+            <h3>{{ promo.content.title }}</h3>
+            <img src="{{ promo.content.thumbnail.url }}" alt="{{ promo.content.title }}">
+        </div>
+    {% endfor %}
+</div>
+{% endif %} -->
+
+<!--Popular Movies-->
+{% if promoted %}
+<section class="section section-lg bg-default">
+    <div class="container">
+        <div class="text-center wow fadeIn" data-wow-delay="100">
+            <h2>Pomoted Content</h2>
+            <p>Here are some of the most popular content that our users & viewers enjoy.</p>
+        </div>
+        <div class="owl-carousel owl-theme-1 wow fadeIn" data-items="1" data-sm-items="2" data-md-items="3"
+            data-lg-items="3" data-xl-items="3" data-xxl-items="3" data-margin="15px" data-xxl-margin="40px"
+            data-nav="true" data-dots="false" data-autoplay="true" data-wow-delay="100">
+
+
+            {% for item in promoted %}
+            <div class="item">
+                <div class="box-nina">
+                    <div class="box-nina-media"><img src="{{ item.content.thumbnail.url }}" alt="" width="356"
+                            height="412" />
+                    </div>
+                    <div class="box-nina-text">
+                        <h4><a class="link-white" href="{% url 'content_detail' pk=item.pk %}">{{ item.content.title }}</a></h4>
+                        <div class="box-nina-info"><span class="icon mdi mdi-calendar-today"></span><span>2019,
+                                Adventures</span></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 <!--Popular Movies-->
 <section class="section section-lg bg-default">
     <div class="container">
@@ -141,6 +173,7 @@
         </div>
     </div>
 </section>
+{% endif %}
 <!--Trending TV Shows-->
 <section class="section section-lg bg-default">
     <div class="container">

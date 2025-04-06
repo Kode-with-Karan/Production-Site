@@ -1,33 +1,36 @@
 {% extends 'base_black.html' %}
 {% load static %}
 {% block nav_bg %}
-<div class="page-header-1-figure m-parallax">
 
-    {% if content_type == 'short_film'%}
+<div class="page-header-1-figure m-parallax">
+    {% if num == '1'%}
     <div class="page-header-1-image m-parallax-image"
         style="background-image: url({% static 'content/images/destinations-1-363x260.png' %});"></div>
-    {% elif content_type == 'podcast'%}
+    {% elif num == '2'%}
     <div class="page-header-1-image m-parallax-image"
         style="background-image: url({% static 'content/images/destinations-2-363x260.png' %});"></div>
-    {% elif content_type == 'documentary'%}
+    {% elif num == '3'%}
     <div class="page-header-1-image m-parallax-image"
         style="background-image: url({% static 'content/images/destinations-3-363x260.png' %});"></div>
-    {% elif content_type == 'entertainment'%}
+    {% elif num == '4'%}
     <div class="page-header-1-image m-parallax-image"
         style="background-image: url({% static 'content/images/destinations-4-363x260.png' %});"></div>
-    {% elif content_type == 'animation'%}
+    {% elif num == '5'%}
     <div class="page-header-1-image m-parallax-image"
         style="background-image: url({% static 'content/images/destinations-5-363x260.png' %});"></div>
-    {% elif content_type == 'interviews'%}
+    {% elif num == '6'%}
     <div class="page-header-1-image m-parallax-image"
         style="background-image: url({% static 'content/images/destinations-6-363x260.png' %});"></div>
-    {% elif content_type == 'education'%}
+    {% elif num == '7'%}
     <div class="page-header-1-image m-parallax-image"
         style="background-image: url({% static 'content/images/destinations-7-363x260.png' %});"></div>
-    {% elif content_type == 'music'%}
+    {% elif num == '8'%}
     <div class="page-header-1-image m-parallax-image"
         style="background-image: url({% static 'content/images/destinations-8-363x260.png' %});"></div>
-    {% elif content_type == 'web_series'%}
+    {% elif num == '9'%}
+    <div class="page-header-1-image m-parallax-image"
+        style="background-image: url({% static 'content/images/destinations-9-363x260.png' %});"></div>
+    {% else %}
     <div class="page-header-1-image m-parallax-image"
         style="background-image: url({% static 'content/images/destinations-9-363x260.png' %});"></div>
     {% endif %}
@@ -40,44 +43,30 @@
         <div class="container">
             <div class="breadcrumbs-custom-main m-parallax-content">
                 <h2 class="breadcrumbs-custom-title">
-                    {% if content_type == 'short_film'%}
-                    Short Film
-                    {% elif content_type == 'podcast'%}
-                    Podcast
-                    {% elif content_type == 'documentary'%}
-                    Documentary
-                    {% elif content_type == 'entertainment'%}
-                    Entertainment Project
-                    {% elif content_type == 'animation'%}
-                    Animation
-                    {% elif content_type == 'interviews'%}
-                    Interviews
-                    {% elif content_type == 'education'%}
-                    Education
-                    {% elif content_type == 'music'%}
-                    Music
-                    {% elif content_type == 'web_series'%}
-                    Web Series
-                    {% endif %}
+
+                    {{content_type}}
+                    {{genre_type}}
+                    {{language_type}}
+                    
                 </h2>
 
-                {% if content_type == 'short_film'%}
+                {% if content_type == 'Short Film'%}
                     <p>Experience compelling storytelling in a short yet powerful format. Our short films cover various genres, from drama and thriller to romance and sci-fi, delivering entertainment that leaves a lasting impact.</p>
-                    {% elif content_type == 'podcast'%}
+                    {% elif content_type == 'Podcast'%}
                     <p>Dive into thought-provoking discussions, insightful interviews, and captivating stories through our diverse range of podcasts. Whether it's personal growth, tech trends, or storytelling, there's something for everyone.</p>
-                    {% elif content_type == 'documentary'%}
+                    {% elif content_type == 'Documentary'%}
                     <p>Explore real-world issues, inspiring stories, and deep investigations through our documentaries. Gain knowledge, perspective, and awareness about important topics that shape our world.</p>
-                    {% elif content_type == 'entertainment'%}
+                    {% elif content_type == 'Entertainment Project'%}
                     <p>Laughter, fun, and excitement—our entertainment section is packed with engaging content, including comedy sketches, viral challenges, and feel-good moments that brighten your day.</p>
-                    {% elif content_type == 'animation'%}
+                    {% elif content_type == 'Animation'%}
                     <p>Immerse yourself in the world of animated creativity, where stunning visuals meet engaging narratives. From fun cartoons to deep artistic expressions, animation brings ideas to life in a unique way.</p>
-                    {% elif content_type == 'interviews'%}
+                    {% elif content_type == 'Interviews'%}
                     <p>Get up close and personal with creators, industry leaders, and influencers. Our interviews offer exclusive insights, expert opinions, and inspiring journeys that motivate and educate.</p>
-                    {% elif content_type == 'education'%}
+                    {% elif content_type == 'Education'%}
                     <p>Get up close and personal with creators, industry leaders, and influencers. Our interviews offer exclusive insights, expert opinions, and inspiring journeys that motivate and educate.</p>
-                    {% elif content_type == 'music'%}
+                    {% elif content_type == 'Music'%}
                     <p>Discover fresh beats, soulful melodies, and emerging artists in our music section. From independent musicians to trending hits, enjoy high-quality music that suits your vibe.</p>
-                    {% elif content_type == 'web_series'%}
+                    {% elif content_type == 'Web Series'%}
                     <p>Immerse yourself in captivating web series, from thrilling dramas to heartwarming stories. Watch, explore, and enjoy exclusive content on EchoesRipple!</p>
                     {% endif %}
             </div>

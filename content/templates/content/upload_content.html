@@ -56,6 +56,14 @@
                             <td>USA</td> -->
                         </tr>
                         <tr>
+                            <td>Language</td>
+                            <td><input class="form-input form-control-has-validation" id="id_language" type="text" name="Language"  fdprocessedid="w2q0tf">
+                            </td>
+                    
+                                <!-- <td>Сountry</td>
+                            <td>USA</td> -->
+                        </tr>
+                        <tr>
                             <td>Age Rating</td>
                             <td><input class="form-input form-control-has-validation" id="id_age_rating" type="number" name="age_rating"  fdprocessedid="w2q0tf">
                             </td>
@@ -95,6 +103,11 @@
                                 <option value="documentary">Documentary</option>
                               
                                 <option value="entertainment">Entertainment Project</option>
+                                <option value="music">Music</option>
+                                <option value="education">Education</option>
+                                <option value="interviews">Interviews</option>
+                                <option value="animation">Animation</option>
+                                <option value="web_series">Web Series</option>
                               
                               </select>
                             </td>
@@ -109,16 +122,25 @@
                             <td><input class="form-input form-control-has-validation" id="id_thumbnail" accept="image/*" type="file" name="thumbnail" data-constraints="@Required" fdprocessedid="w2q0tf">
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="checkbox" name="promote"> Promote this content?
+                                </label>
+                            </td>
+                            <td>
+                                <!-- <input class="form-input form-control-has-validation" id="id_thumbnail" accept="image/*" type="file" name="thumbnail" data-constraints="@Required" fdprocessedid="w2q0tf"> -->
+                                <select class="form-input form-control-has-validation" name="promotion_duration">
+                                    <option value="1">1 Day - $5</option>
+                                    <option value="3">3 Days - $12</option>
+                                    <option value="7">7 Days - $25</option>
+                                </select>
+                            </td>
+                        </tr>
                     </table>
-                    <label>
-                        <input type="checkbox" name="promote"> Promote this content?
-                    </label>
+                    
                 
-                    <select name="promotion_duration">
-                        <option value="1">1 Day - $5</option>
-                        <option value="3">3 Days - $12</option>
-                        <option value="7">7 Days - $25</option>
-                    </select>
+                    
 
                     <button class="button button-lg button-primary" type="submit" >Upload</button>
                 </form>
