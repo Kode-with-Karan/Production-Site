@@ -10,9 +10,30 @@
 </div>
 {% else %} -->
 <div class="video-container">
-    <video src="{{ content.file.url }}" controls preload="metadata"></video>
+    <video id="videoPlayer"  src="{{ content.file.url }}" controls preload="metadata"></video>
 </div>
-{% endif %}
+<div id="paywall" style="display: none; margin-top: 20px;">
+    <p>This content is premium. You can only view the first {{ content.preview_duration }} seconds.</p>
+    <a href="#" class="btn btn-primary">Subscribe to Continue</a>
+    <a href="#" class="btn btn-success">Pay-per-view Access</a>
+</div>
+
+<script>
+    const player = document.getElementById('videoPlayer');
+    const paywall = document.getElementById('paywall');
+    const isPremium = {{ content.is_premium|yesno:"true,false" }};
+    const previewDuration = {{ content.preview_duration }};
+
+    if (isPremium) {
+        player.addEventListener('timeupdate', function () {
+            if (player.currentTime >= previewDuration) {
+                player.pause();
+                paywall.style.display = 'block';
+            }
+        });
+    }
+</script>
+<!-- {% endif %} -->
 
 <style>
     .video-container {

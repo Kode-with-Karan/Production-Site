@@ -27,6 +27,10 @@ class Content(models.Model):
     cast = models.TextField(default="Not Mentioned")
     content_type = models.CharField(max_length=50, choices=CONTENT_TYPES)
     file = models.FileField(upload_to='content_files/')
+
+    is_premium = models.BooleanField(default=False)
+    preview_duration = models.PositiveIntegerField(default=60) 
+    
     thumbnail = models.ImageField(upload_to='content_thumbnails/', blank=True)
     uploaded_by = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="contents")
     uploaded_at = models.DateTimeField(auto_now_add=True)

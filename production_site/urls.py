@@ -45,4 +45,5 @@ urlpatterns += [
     path('faq/', TemplateView.as_view(template_name="pages/faq.html"), name='faq'),
     path('privacy/', TemplateView.as_view(template_name="pages/privacy.html"), name='privacy'),
     path('about/', TemplateView.as_view(template_name="pages/about.html"), name='about'),
+    path('pricing/', TemplateView.as_view(template_name="pages/pricing.html"), name='pricing'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

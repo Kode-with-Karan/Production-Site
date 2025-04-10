@@ -12857,7 +12857,7 @@ html.rd-navbar-fixed-linked .rd-navbar-wrap {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1170px;
+    /* max-width: 1170px; */
     margin-left: auto;
     margin-right: auto;
     min-height: 100px;

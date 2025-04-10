@@ -1,0 +1,106 @@
+{% extends 'base_black.html' %}
+{% load static %}
+{% block nav_bg %}
+<div class="page-header-1-figure m-parallax">
+    <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg.png' %});">
+    </div>
+</div>
+{% endblock nav_bg %}
+{% block link %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'css/pricing.css' %}">
+{% endblock link %}
+{% block nav_content %}
+<section class="breadcrumbs-custom">
+    <div class="breadcrumbs-custom-inner">
+        <div class="container">
+            <div class="breadcrumbs-custom-main m-parallax-content">
+                <h2 class="breadcrumbs-custom-title">Pricing</h2>
+                <p>Echoes a powerhouse for budding artists, right talent and showcasing your work...</p>
+                <p>EchoesRipple – Where Dreams Get Screen Time! 🎬</p>
+                <div class="group group-sm group-middle"><a
+                        class="button button-sm button-icon button-icon-left button-light" data-lightgallery="item"
+                        href="https://youtu.be/VML6rQWssSk"><span class="icon mdi mdi-play"></span>Watch Now</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock nav_content %}
+{% block content %}
+
+<!-- <!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Gradient Pricing Table</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="./style.css">
+
+</head>
+<body> -->
+<!-- partial:index.partial.html -->
+<div class="wrapper">
+    <div class="pricing-table gprice-single">
+        <div class="head">
+            <h4 class="title">Pay-per-view</h4>
+        </div>
+        <div class="content">
+            <div class="price">
+                <h1>$0.99</h1>
+            </div>
+            <ul>
+                <li>$0.99 – $2.99</li>
+                <li>One-time access per content</li>
+                <li>Great for casual viewers</li>
+                <li>HD Streaming</li>
+
+            </ul>
+            <div class="sign-up">
+                <a href="#" class="btn bordered radius">Signup Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="pricing-table gprice-single">
+        <div class="head">
+            <h4 class="title">Subscription</h4>
+        </div>
+        <div class="content">
+            <div class="price">
+                <h1>$3.99</h1>
+            </div>
+            <ul>
+                <li>$3.99 – $11.99/month</li>
+                <li>$3.99 – Basic Plan</li>
+                <li>$7.99 – Premium Plan</li>
+                <li>$11.99 – All Access</li>
+                <li>Unlimited streaming</li>
+
+            </ul>
+            <div class="sign-up">
+                <a href="#" class="btn bordered radius">Signup Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="pricing-table gprice-single">
+        <div class="head">
+            <h4 class="title">Promote Your Content</h4>
+        </div>
+        <div class="content">
+            <div class="price">
+                <h1>$4.99</h1>
+            </div>
+            <ul>
+                <li>$4.99/week or $14.99/month</li>
+                <li>Featured on homepage</li>
+                <li>Priority recommendations</li>
+                <li>Boost visibility & reach</li>
+            </ul>
+            <div class="sign-up">
+                <a href="#" class="btn bordered radius">Signup Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- partial -->
+
+{% endblock %}
