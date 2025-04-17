@@ -1,13 +1,14 @@
 from django.urls import path
-from .views import withdraw_funds, withdrawal_history,transactions,earnings,dashboard,request_withdrawal
-
+from django.shortcuts import render
+from . import views
 urlpatterns = [
-    # path("withdraw/", withdraw_funds, name="withdraw_funds"),
-    path("history/", withdrawal_history, name="withdrawal_history"),
-    # path('transactions/', transactions, name='transactions'),
-    path('withdraw/', request_withdrawal, name='withdraw_funds'),
-    # path('earnings/', earnings, name='earnings'),
-    path('earnings/', dashboard, name='earnings'),
+    path('start/', views.start_payment, name='start_payment'),
+    path('complete/', views.complete_payment, name='complete_payment'),
+    path('cancel/', lambda request: render(request, 'payments/cancel.html'), name='cancel_payment'),
+    path('success/', views.paypal_success, name='paypal_success'),
+    path('withdraw/', views.request_withdrawal, name='request_withdrawal'),
+    path('withdraw/success/', views.withdrawal_success, name='withdrawal_success'),  # ✅ Add this
+
 ]
 
 

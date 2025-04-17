@@ -1,230 +1,150 @@
-import stripe
+# payments/views.py
+
+from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
+from .paypal import create_order
+import requests
 from django.conf import settings
-from django.shortcuts import render, redirect
+from .paypal import get_access_token
+from .paypal_config import PayPalClient
+from django.shortcuts import render
+from django.http import HttpResponse
+from .forms import WithdrawalForm
+from .models import Withdrawal
+from users.models import Profile  # Update if stored elsewhere
+from payments.models import CreatorEarnings
+from django.contrib import messages
+from payments.models import CreatorEarnings, Withdrawal
+
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import UserEarnings, Withdrawal, WithdrawalRequest
-
-stripe.api_key = settings.STRIPE_SECRET_KEY
-
-@login_required
-def withdraw_funds(request):
-    user_earnings = UserEarnings.objects.get(user=request.user)
-    
-    if request.method == "POST":
-        amount = float(request.POST.get("amount"))
-        stripe_account = request.POST.get("stripe_account")  # User's Stripe account
-
-        if amount < 10:
-            messages.error(request, "Minimum withdrawal amount is $10.")
-            return redirect("withdraw_funds")
-
-        if amount > user_earnings.balance:
-            messages.error(request, "Insufficient balance.")
-            return redirect("withdraw_funds")
-
-        try:
-            # Create a Stripe Payout
-            payout = stripe.Payout.create(
-                amount=int(amount * 100),  # Convert to cents
-                currency="usd",
-                method="standard",
-                destination=stripe_account,
-            )
-
-            # Deduct balance and store withdrawal record
-            user_earnings.balance -= amount
-            user_earnings.save()
-
-            Withdrawal.objects.create(
-                user=request.user,
-                amount=amount,
-                stripe_payout_id=payout.id,
-                status="Completed",
-            )
-
-            messages.success(request, "Withdrawal successful. Funds will be processed shortly.")
-            return redirect("withdraw_funds")
-
-        except stripe.error.StripeError as e:
-            messages.error(request, f"Stripe Error: {str(e)}")
-
-    return render(request, "payments/withdraw.html", {"balance": user_earnings.balance})
-
-@login_required
-def withdrawal_history(request):
-    history = Withdrawal.objects.filter(user=request.user).order_by("-created_at")
-    return render(request, "payments/history.html", {"history": history})
-@login_required
-def transactions(request):
-    history = Withdrawal.objects.filter(user=request.user).order_by("-created_at")
-    return render(request, "payments/history.html", {"history": history})
-@login_required
-def earnings(request):
-    history = Withdrawal.objects.filter(user=request.user).order_by("-created_at")
-    return render(request, "payments/history.html", {"history": history})
-
-
-def process_withdrawal(user, amount, destination_account):
-    if amount < 10:
-        return {"error": "Minimum withdrawal is $10"}
-
-    earnings = UserEarnings.objects.get(user=user)
-
-    if earnings.balance < amount:
-        return {"error": "Insufficient balance"}
-
-    try:
-        transfer = stripe.Transfer.create(
-            amount=int(amount * 100),  # Convert to cents
-            currency="usd",
-            destination=destination_account,  # The creator's Stripe account ID
-        )
-
-        # Deduct from the creator's balance
-        earnings.balance -= amount
-        earnings.save()
-
-        # Mark withdrawal as completed
-        WithdrawalRequest.objects.create(creator=user, amount=amount, status="Completed")
-        
-        return {"success": "Withdrawal processed successfully"}
-
-    except stripe.error.StripeError as e:
-        return {"error": str(e)}
-    
+from django.shortcuts import render, redirect
+from .models import CreatorEarnings, Withdrawal
 
 @login_required
 def request_withdrawal(request):
-    earnings = UserEarnings.objects.get(user=request.user)
-    print("Aaa gaya")
-    if request.method == "POST":
-        amount = float(request.POST.get("amount"))
-        destination_account = request.POST.get("stripe_account")
+    earnings, created = CreatorEarnings.objects.get_or_create(user=request.user)
 
-        response = process_withdrawal(request.user, amount, destination_account)
-        print(response)
-        if "error" in response:
-            print(response["error"])
-            return render(request, "payments/withdraw.html", {"error": response["error"], "earnings": earnings})
+    if request.method == 'POST':
+        try:
+            amount = float(request.POST.get('amount'))
+        except (TypeError, ValueError):
+            messages.error(request, "Invalid amount.")
+            return redirect('request_withdrawal')
 
-        return redirect("withdrawal_success")
+        if earnings.available_balance >= 10 and amount <= earnings.available_balance:
+            Withdrawal.objects.create(user=request.user, amount=amount)
+            earnings.available_balance -= amount
+            earnings.save()
+            messages.success(request, "Withdrawal request submitted.")
+        else:
+            messages.error(request, "Minimum withdrawal is $10 or insufficient balance.")
+            
+        return redirect('request_withdrawal')
 
-    return render(request, "payments/withdraw.html", {"earnings": earnings})
+    return render(request, 'payments/request_withdrawal.html', {'earnings': earnings})
 
-@login_required
-def dashboard(request):
-    earnings = UserEarnings.objects.get(user=request.user)
-    return render(request, "payments/earning.html", {"earnings": earnings})
+def add_view(content, viewer):
+    creator = content.uploaded_by.user
+    earning = 0.01  # example: $0.01 per view
+    content.earnings += earning
+    content.save()
 
-# from django.shortcuts import render
-# from .models import Transaction, Withdrawal, Earnings
-# from notifications.models import Notification
-# from django.contrib.auth.decorators import login_required
-# import stripe
-# from django.conf import settings
-# from django.shortcuts import render, redirect
-# from django.contrib import messages
+    ce, created = CreatorEarnings.objects.get_or_create(user=creator)
+    ce.total_earned += earning
+    ce.available_balance += earning
+    ce.save()
 
 # @login_required
-# def transactions(request):
-#     transactions = Transaction.objects.filter(user=request.user.profile)
-#     return render(request, 'payments/transactions.html', {'transactions': transactions})
+# def request_withdrawal(request):
+#     profile = request.user.profile
 
-
-
-
-
-# stripe.api_key = settings.STRIPE_SECRET_KEY
-# @login_required
-# def earnings(request):
-
-    
-
-
-#     user = request.user
-
-#     # Create a Stripe Express account for the user
-#     account = stripe.Account.create(
-#         type="express",
-#         email="l.ilym.a.nde.rs.on81.3@gmail.com",
-#         capabilities={
-#         "transfers": {"requested": True}  # Enable Transfers Capability
-#     }
-#     )
-
-#     # Store the account ID in the user's profile
-#     user.profile.stripe_account_id = account.id
-#     user.profile.save()
-#     account = stripe.Account.retrieve(user.profile.stripe_account_id)
-#     if account.capabilities.get("transfers") == "active":
-#         print("Transfers are enabled ✅")
+#     if request.method == 'POST':
+#         form = WithdrawalForm(request.POST)
+#         if form.is_valid():
+#             amount = form.cleaned_data['amount']
+#             if amount <= profile.balance:
+#                 Withdrawal.objects.create(user=request.user, amount=amount)
+#                 profile.withdrawn_amount += amount
+#                 profile.save()
+#                 return redirect('withdrawal_success')  # Add this page
+#             else:
+#                 form.add_error('amount', 'Insufficient balance')
 #     else:
-#         print("Transfers are NOT enabled ❌, please complete onboarding.")
+#         form = WithdrawalForm()
 
-#     # Generate an account link for onboarding
-#     account_link = stripe.AccountLink.create(
-#         account=account.id,
-#         refresh_url="https://yourwebsite.com/stripe/refresh/",
-#         return_url="https://yourwebsite.com/dashboard/",
-#         type="account_onboarding",
-#     )
+#     return render(request, 'payments/request_withdrawal.html', {'form': form, 'balance': profile.balance})
+
+def paypal_success(request):
+    order_id = request.GET.get('token')  # PayPal sends ?token=ORDER_ID in return URL
+    if not order_id:
+        return HttpResponse("Order ID not found.", status=400)
+
+    client = PayPalClient()
+    response = client.post(f"/v2/checkout/orders/{order_id}/capture", json={})
+    capture_data = response.json()
+
+    # Optional: Save capture_data to database for record
+    # You can extract payment details like amount, payer email, etc.
+    amount = capture_data['purchase_units'][0]['payments']['captures'][0]['amount']['value']
+    currency = capture_data['purchase_units'][0]['payments']['captures'][0]['amount']['currency_code']
+    payer_email = capture_data['payer']['email_address']
+
+    context = {
+        "amount": amount,
+        "currency": currency,
+        "payer_email": payer_email,
+        "capture_data": capture_data
+    }
+
+    return render(request, 'payments/success.html', context)
 
 
-#     if request.method == "POST":
-#         amount = float(request.POST.get("amount"))
-#         user = request.user
 
-#         # Check if user has enough balance
-#         if user.profile.total_earnings >= amount:
-#             if not user.profile.stripe_account_id:  
-#                 # If user has no Stripe account ID, show a message
-#                 Notification.objects.create(user=user, message="Withdrawal failed: No Stripe account connected.")
-#                 messages.error(request, "You need to connect a Stripe account before withdrawing funds.")
-#                 return redirect("withdrawal_page")
+def create_paypal_order(request):
+    client = PayPalClient()
+    body = {
+        "intent": "CAPTURE",
+        "purchase_units": [
+            {
+                "amount": {
+                    "currency_code": "USD",
+                    "value": "2.99"
+                }
+            }
+        ],
+        "application_context": {
+            "return_url": "http://localhost:8000/payments/success/",
+            "cancel_url": "http://localhost:8000/payments/cancel/"
+        }
+    }
 
-#             try:
-#                 # Transfer money to user's Stripe account
-#                 transfer = stripe.Transfer.create(
-#                     amount=int(amount * 100),  # Convert to cents
-#                     currency="usd",
-#                     destination=user.profile.stripe_account_id,
-#                     # destination="hello",
-#                     description="Withdrawal Request"
-#                 )
+    response = client.post("/v2/checkout/orders", json=body)
+    data = response.json()
 
-#                 # Deduct amount from user's total_earnings
-#                 user.profile.total_earnings -= amount
-#                 user.profile.save()
+    for link in data["links"]:
+        if link["rel"] == "approve":
+            return JsonResponse({"redirect_url": link["href"]})
 
-#                 # Save withdrawal record
-#                 Withdrawal.objects.create(user=user, amount=amount, status="Completed")
+def start_payment(request):
+    order = create_order(amount=9.99)  # Set your amount dynamically
+    for link in order['links']:
+        if link['rel'] == 'approve':
+            return redirect(link['href'])
+    return render(request, 'payments/error.html', {'error': 'Could not initiate payment.'})
 
-#                 # Save success notification
-#                 Notification.objects.create(user=user, message=f"Your withdrawal of ${amount} was successful.")
+def complete_payment(request):
+    token = request.GET.get('token')
+    url = f"{settings.PAYPAL_BASE_URL}/v2/checkout/orders/{token}/capture"
+    access_token = get_access_token()
+    headers = {"Authorization": f"Bearer {access_token}"}
 
-#                 messages.success(request, "Withdrawal successful!")
-#             except stripe.error.StripeError as e:
-#                 Notification.objects.create(user=user, message="Withdrawal failed due to payment gateway error.")
-#                 messages.error(request, f"Error: {e.user_message}")
-#         else:
-#             Notification.objects.create(user=user, message="Withdrawal failed due to insufficient balance.")
-#             messages.error(request, "Insufficient funds for withdrawal.")
+    response = requests.post(url, headers=headers)
+    payment_result = response.json()
 
-#         return redirect("home")
+    # You can update the database, mark order as paid, etc.
+    return render(request, 'payments/success.html', {'payment': payment_result})
 
-#     return render(request, "payments/earnings.html")
 
-# # @login_required
-# # def earnings(request):
-# #     user = request.user
-# #     earnings = Earnings.objects.filter(user=user)
-# #     withdrawals = WithdrawalRequest.objects.filter(user=user)
-
-# #     if request.method == "POST":
-# #         amount = request.POST.get("amount")
-# #         method = request.POST.get("method")
-# #         if float(amount) > 0:
-# #             WithdrawalRequest.objects.create(user=user, amount=amount, method=method, status="Pending")
-    
-# #     return render(request, "payments/earnings.html", {"earnings": earnings, "withdrawals": withdrawals})
+def withdrawal_success(request):
+    return render(request, 'payments/withdrawal_success.html')

@@ -1,12 +1,12 @@
 from django.contrib import admin
-from .models import Withdrawal, UserEarnings, WithdrawalRequest
+# from .models import Withdrawal, UserEarnings, WithdrawalRequest
+from .models import PayPalTransaction, Withdrawal, CreatorEarnings
 
 # Register your models here.
 
+admin.site.register(PayPalTransaction)
 admin.site.register(Withdrawal)
-admin.site.register(UserEarnings)
-admin.site.register(WithdrawalRequest)
-
+admin.site.register(CreatorEarnings)
 
 # from .models import Transaction, Earnings, WithdrawalRequest
 

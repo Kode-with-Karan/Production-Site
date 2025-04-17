@@ -195,24 +195,3 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 DATA_UPLOAD_MAX_MEMORY_SIZE = 524288000  # 500MB
 FILE_UPLOAD_MAX_MEMORY_SIZE = 524288000  # 500MB
 
-
-
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.hostinger.com"  # Hostinger's SMTP server
-EMAIL_PORT = 465  # Use 587 for TLS, 465 for SSL
-EMAIL_USE_TLS = False  # Use True if using port 587
-EMAIL_USE_SSL = True  # Use True if using port 465
-EMAIL_HOST_USER = "businesscollab@echoesripple.com"  # Your Hostinger business email
-EMAIL_HOST_PASSWORD = "Echoes@accmbusiness#collab1"  # Your Hostinger email password
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-# Secondary Email for Other Purposes
-SECONDARY_EMAIL_CONFIG = {
-    "EMAIL_HOST": "smtp.hostinger.com",
-    "EMAIL_PORT": 465,  # Use 465 for SSL
-    "EMAIL_USE_TLS": False,  # ❌ DISABLE TLS
-    "EMAIL_USE_SSL": True,  
-    "EMAIL_HOST_USER": "support@echoesripple.com",  # Your secondary email
-    "EMAIL_HOST_PASSWORD": "Echoes@accmbusiness#support1",
-}
-
