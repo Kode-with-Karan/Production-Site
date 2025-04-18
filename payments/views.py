@@ -2,6 +2,7 @@
 
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse, HttpResponse
 from .paypal import create_order
 import requests
 from django.conf import settings
@@ -20,10 +21,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from .models import CreatorEarnings, Withdrawal
+from .paypal_client import paypalrestsdk
 
 @login_required
 def request_withdrawal(request):
     earnings, created = CreatorEarnings.objects.get_or_create(user=request.user)
+    # user_email = request.user.profile.paypal_email  # <-- must exist
+    # user_email = request.user.email  # <-- must exist
+    user_email = "sb-6vuue40001621@personal.example.com"  # <-- must exist
 
     if request.method == 'POST':
         try:
@@ -33,16 +38,64 @@ def request_withdrawal(request):
             return redirect('request_withdrawal')
 
         if earnings.available_balance >= 10 and amount <= earnings.available_balance:
-            Withdrawal.objects.create(user=request.user, amount=amount)
-            earnings.available_balance -= amount
-            earnings.save()
-            messages.success(request, "Withdrawal request submitted.")
+            # 🟡 Send payout via PayPal
+            payout = paypalrestsdk.Payout({
+                "sender_batch_header": {
+                    "sender_batch_id": str(request.user.id) + str(amount),
+                    "email_subject": "You have a payout from EchoesRipple!"
+                },
+                "items": [{
+                    "recipient_type": "EMAIL",
+                    "amount": {
+                        "value": str(amount),
+                        "currency": "USD"
+                    },
+                    "receiver": user_email,
+                    "note": "Thanks for using EchoesRipple!",
+                    "sender_item_id": "item_1"
+                }]
+            })
+
+            if payout.create():
+                # Save record locally
+                Withdrawal.objects.create(user=request.user, amount=amount, status="Paid")
+                earnings.available_balance -= amount
+                earnings.save()
+                messages.success(request, f"Payout of ${amount} sent to your PayPal.")
+                return redirect('withdrawal_success')
+            else:
+                print(payout.error)
+                messages.error(request, "PayPal payout failed. Please try again.")
+                return redirect('request_withdrawal')
         else:
             messages.error(request, "Minimum withdrawal is $10 or insufficient balance.")
-            
-        return redirect('request_withdrawal')
+            return redirect('request_withdrawal')
 
     return render(request, 'payments/request_withdrawal.html', {'earnings': earnings})
+
+# @login_required
+# def request_withdrawal(request):
+#     earnings, created = CreatorEarnings.objects.get_or_create(user=request.user)
+
+#     if request.method == 'POST':
+#         try:
+#             amount = float(request.POST.get('amount'))
+#         except (TypeError, ValueError):
+#             messages.error(request, "Invalid amount.")
+#             return redirect('request_withdrawal')
+
+#         if earnings.available_balance >= 10 and amount <= earnings.available_balance:
+#             Withdrawal.objects.create(user=request.user, amount=amount)
+#             earnings.available_balance -= amount
+#             earnings.save()
+#             messages.success(request, "Withdrawal request submitted.")
+#             return redirect('withdrawal_success')
+#         else:
+#             messages.error(request, "Minimum withdrawal is $10 or insufficient balance.")
+            
+#         return redirect('request_withdrawal')
+
+#     return render(request, 'payments/request_withdrawal.html', {'earnings': earnings})
 
 def add_view(content, viewer):
     creator = content.uploaded_by.user
@@ -133,16 +186,26 @@ def start_payment(request):
             return redirect(link['href'])
     return render(request, 'payments/error.html', {'error': 'Could not initiate payment.'})
 
+
 def complete_payment(request):
     token = request.GET.get('token')
+    if not token:
+        return render(request, 'payments/error.html', {'message': 'Token is missing.'})
+
     url = f"{settings.PAYPAL_BASE_URL}/v2/checkout/orders/{token}/capture"
     access_token = get_access_token()
-    headers = {"Authorization": f"Bearer {access_token}"}
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {access_token}"
+    }
 
     response = requests.post(url, headers=headers)
     payment_result = response.json()
 
-    # You can update the database, mark order as paid, etc.
+    if response.status_code != 201:
+        return render(request, 'payments/error.html', {'message': payment_result})
+
+    # Optionally save to DB, update user's purchase history, etc.
     return render(request, 'payments/success.html', {'payment': payment_result})
 
 

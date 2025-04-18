@@ -3,16 +3,25 @@ import requests
 from django.conf import settings
 
 
+# def get_access_token():
+#     print(settings.PAYPAL_API_BASE)
+#     url = f"{settings.PAYPAL_API_BASE}/v1/oauth2/token"
+#     auth = (settings.PAYPAL_CLIENT_ID, settings.PAYPAL_SECRET)
+#     headers = {'Accept': 'application/json', 'Accept-Language': 'en_US'}
+#     data = {'grant_type': 'client_credentials'}
+
+#     response = requests.post(url, headers=headers, data=data, auth=auth)
+#     return response.json().get('access_token')
+
+
 def get_access_token():
-    print(settings.PAYPAL_API_BASE)
-    url = f"{settings.PAYPAL_API_BASE}/v1/oauth2/token"
+    url = f"{settings.PAYPAL_BASE_URL}/v1/oauth2/token"
     auth = (settings.PAYPAL_CLIENT_ID, settings.PAYPAL_SECRET)
-    headers = {'Accept': 'application/json', 'Accept-Language': 'en_US'}
-    data = {'grant_type': 'client_credentials'}
+    headers = {"Accept": "application/json", "Accept-Language": "en_US"}
+    data = {"grant_type": "client_credentials"}
 
     response = requests.post(url, headers=headers, data=data, auth=auth)
-    return response.json().get('access_token')
-
+    return response.json().get("access_token")
 
 def create_order(amount, currency='USD'):
     access_token = get_access_token()
