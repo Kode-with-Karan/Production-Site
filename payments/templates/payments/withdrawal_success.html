@@ -1,4 +1,82 @@
-<h2>Withdrawal Request Submitted!</h2>
-<p>Your withdrawal request has been received and is being processed.</p>
+{% extends 'base_black.html' %}
+{% load static %}
+{% block nav_bg %}
+<div class="page-header-1-figure m-parallax">
+  <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg.png' %});"></div>
+</div>
 
-<a href="/">Return to Home</a>
+{% endblock nav_bg %}
+{% block nav_content %}
+<section class="breadcrumbs-custom">
+  <div class="breadcrumbs-custom-inner">
+    <div class="container">
+      <div class="breadcrumbs-custom-main m-parallax-content">
+        <h2 class="breadcrumbs-custom-title">Withdrawal Request Submitted!</h2>
+        <p>Your withdrawal request has been received and is being processed.</p>
+        <div ><a class="button button-sm button-icon button-icon-left button-light"
+           href="/"><span class="icon mdi mdi-home"></span>Return to Home</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock nav_content %}
+{% block content %}
+
+<style>
+    .message-float {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      min-width: 300px;
+      padding: 16px 24px 16px 16px;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: slideDown 0.4s ease-out;
+    }
+  
+    .message-float.success { background-color: #28a745; }
+    .message-float.error { background-color: #dc3545; }
+    .message-float.warning { background-color: #ffc107; color: #000; }
+    .message-float.info { background-color: #17a2b8; }
+  
+    .message-float .close-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: #fff;
+      cursor: pointer;
+      padding-left: 16px;
+    }
+  
+    @keyframes slideDown {
+      from { opacity: 0; top: 0; }
+      to { opacity: 1; top: 20px; }
+    }
+  </style>
+  
+  {% if messages %}
+    {% for message in messages %}
+      <div class="message-float {{ message.tags }}">
+        <span>{{ message }}</span>
+        <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+      </div>
+    {% endfor %}
+  {% endif %}
+  
+  <script>
+    setTimeout(() => {
+      document.querySelectorAll('.message-float').forEach(el => {
+        el.style.display = 'none';
+      });
+    }, 5000);
+  </script>
+
+{% endblock %}
+

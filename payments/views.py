@@ -28,11 +28,12 @@ def request_withdrawal(request):
     earnings, created = CreatorEarnings.objects.get_or_create(user=request.user)
     # user_email = request.user.profile.paypal_email  # <-- must exist
     # user_email = request.user.email  # <-- must exist
-    user_email = "sb-6vuue40001621@personal.example.com"  # <-- must exist
+    # user_email = "sb-6vuue40001621@personal.example.com"  # <-- must exist
 
     if request.method == 'POST':
         try:
             amount = float(request.POST.get('amount'))
+            user_email = request.POST.get('email')
         except (TypeError, ValueError):
             messages.error(request, "Invalid amount.")
             return redirect('request_withdrawal')
@@ -179,8 +180,8 @@ def create_paypal_order(request):
         if link["rel"] == "approve":
             return JsonResponse({"redirect_url": link["href"]})
 
-def start_payment(request):
-    order = create_order(amount=9.99)  # Set your amount dynamically
+def start_payment(request, amount):
+    order = create_order(amount = float(amount))  # Set your amount dynamically
     for link in order['links']:
         if link['rel'] == 'approve':
             return redirect(link['href'])

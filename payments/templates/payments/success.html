@@ -1,12 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    success
-    <p>ye raha {{payment}}</p>
-</body>
-</html>
+{% extends 'base_black.html' %}
+{% load static %}
+{% block nav_bg %}
+<div class="page-header-1-figure m-parallax">
+    <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg.png' %});">
+    </div>
+</div>
+
+{% endblock nav_bg %}
+{% block nav_content %}
+<section class="breadcrumbs-custom">
+    <div class="breadcrumbs-custom-inner">
+        <div class="container">
+            <div class="breadcrumbs-custom-main m-parallax-content">
+                <h2 class="breadcrumbs-custom-title">Payment Success</h2>
+                <p>Echoes a powerhouse for budding artists, right talent and showcasing your work...</p>
+                <p>EchoesRipple – Where Dreams Get Screen Time! 🎬</p>
+                <div ><a class="button button-sm button-icon button-icon-left button-light"
+                    href="/"><span class="icon mdi mdi-home"></span>Return to Home</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock nav_content %}
+{% block content %}
+
+<style>
+    /* body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+    } */
+
+    .container_summry {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        max-width: 800px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .section_summry {
+        margin-bottom: 25px;
+    }
+
+    .section_summry h3 {
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .section_summry p {
+        margin: 5px 0;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+</style>
+<div class="container_summry">
+    <h2>PayPal Payment Summary</h2>
+
+    <div class="section_summry"">
+      <h3>Transaction Info</h3>
+      <p><span class="bold">Order ID:</span> {{ payment.id }}</p>
+      <p><span class="bold">Status:</span> {{ payment.status }}</p>
+      <p><span class="bold">Created At:</span> {{ payment.purchase_units.0.payments.captures.0.create_time }}</p>
+    </div>
+
+    <div class="section">
+      <h3>Payer Info</h3>
+      <p><span class="bold">Name:</span> {{ payment.payer.name.given_name }} {{ payment.payer.name.surname }}</p>
+      <p><span class="bold">Email:</span> {{ payment.payer.email_address }}</p>
+      <p><span class="bold">Country:</span> {{ payment.payer.address.country_code }}</p>
+    </div>
+
+    <div class="section">
+      <h3>Amount</h3>
+      <p><span class="bold">Total Paid (USD):</span> {{ payment.purchase_units.0.payments.captures.0.amount.value }}</p>
+      <p><span class="bold">PayPal Fee (USD):</span> {{ payment.purchase_units.0.payments.captures.0.seller_receivable_breakdown.paypal_fee.value }}</p>
+      <p><span class="bold">Net Amount (USD):</span> {{ payment.purchase_units.0.payments.captures.0.seller_receivable_breakdown.net_amount.value }}</p>
+      <p><span class="bold">Converted Amount (GBP):</span> {{ payment.purchase_units.0.payments.captures.0.seller_receivable_breakdown.receivable_amount.value }}</p>
+      <p><span class="bold">Exchange Rate:</span> {{ payment.purchase_units.0.payments.captures.0.seller_receivable_breakdown.exchange_rate.value }}</p>
+    </div>
+
+    <div class="section">
+      <h3>Shipping Address</h3>
+      <p>{{ payment.purchase_units.0.shipping.name.full_name }}</p>
+      <p>{{ payment.purchase_units.0.shipping.address.address_line_1 }}</p>
+      <p>{{ payment.purchase_units.0.shipping.address.address_line_2 }}</p>
+      <p>{{ payment.purchase_units.0.shipping.address.admin_area_2 }}, {{ payment.purchase_units.0.shipping.address.admin_area_1 }}</p>
+      <p>{{ payment.purchase_units.0.shipping.address.postal_code }}, {{ payment.purchase_units.0.shipping.address.country_code }}</p>
+    </div>
+  </div>
+
+
+{% endblock %}

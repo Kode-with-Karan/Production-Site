@@ -193,8 +193,8 @@
                     </div>
                     <div class="box-nina-text">
                         <h4><a class="link-white" href="{% url 'content_detail' pk=item.pk %}">{{ item.title }}</a></h4>
-                        <div class="box-nina-info"><span class="icon mdi mdi-calendar-today"></span><span>2019,
-                                Adventures</span></div>
+                        <div class="box-nina-info"><span class="icon mdi mdi-calendar-today"></span><span>{{ item.uploaded_at|date:"Y" }},
+                            {{ item.content_type }}</span></div>
                     </div>
                 </div>
             </div>
@@ -211,7 +211,7 @@
                 <div class="block-7">
                     <h2 class="wow fadeIn">Popular <br> Categories</h2>
                     <p class="text-2 block-10 mt-md-20 mt-xxl-35 wow fadeIn" data-wow-delay=".025s">All content
-                        at EMovies is divided into several categories that helps you to easily navigate between
+                        at EchoesRipple is divided into several categories that helps you to easily navigate between
                         them and find what you like.</p><a
                         class="button button-lg button-primary mt-md-20 mt-xxl-44 wow fadeIn" href="{% url 'home' %}"
                         data-wow-delay=".05s">view all</a>
@@ -452,4 +452,96 @@
         document.getElementById("cookie-popup").style.display = "none";
     }
 </script>
+
+
+
+<!-- Popup Modal -->
+<div id="fundingPopup" class="popup-overlay" style="display: none;">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <h2>Looking for funding for your next project?</h2>
+      <p>EchoesRipple is your solution! 🚀<br>Get support and financial help for your creative vision today.</p>
+      <a href="{% url 'about' %}" class="popup-button">Learn More</a>
+    </div>
+  </div>
+  
+  <style>
+    .popup-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+  
+    .popup-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      position: relative;
+      animation: popin 0.4s ease-in-out;
+    }
+  
+    .popup-content h2 {
+      margin-bottom: 15px;
+      font-size: 22px;
+      color: #333;
+    }
+  
+    .popup-content p {
+      font-size: 16px;
+      color: #555;
+    }
+  
+    .popup-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #f8b400;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+  
+    .popup-button:hover {
+      background: #ffe142;
+    }
+  
+    .close-btn {
+      position: absolute;
+      top: 10px; right: 15px;
+      font-size: 22px;
+      cursor: pointer;
+      color: #888;
+    }
+  
+    @keyframes popin {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+  
+  <script>
+    function showPopup() {
+      document.getElementById("fundingPopup").style.display = "flex";
+    }
+  
+    function closePopup() {
+      document.getElementById("fundingPopup").style.display = "none";
+    }
+  
+    // Show the popup after 10 seconds
+    window.onload = function() {
+      setTimeout(showPopup, 10000);
+    }
+  </script>
+  
 {% endblock %}

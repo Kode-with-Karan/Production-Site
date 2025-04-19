@@ -1,4 +1,128 @@
-<h2>Request Withdrawal</h2>
+{% extends 'base_black.html' %}
+{% load static %}
+{% block nav_bg %}
+<div class="page-header-1-figure m-parallax">
+  <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg.png' %});"></div>
+</div>
+
+{% endblock nav_bg %}
+{% block nav_content %}
+<section class="breadcrumbs-custom">
+  <div class="breadcrumbs-custom-inner">
+    <div class="container">
+      <div class="breadcrumbs-custom-main m-parallax-content">
+        <h2 class="breadcrumbs-custom-title">Withdrawal Your money</h2>
+        <p>Echoes a powerhouse for budding artists, right talent and showcasing your work...</p>
+        <p>EchoesRipple – Where Dreams Get Screen Time! 🎬</p>
+        <div ><a class="button button-sm button-icon button-icon-left button-light"
+          href="/"><span class="icon mdi mdi-home"></span>Return to Home</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock nav_content %}
+{% block content %}
+
+<style>
+  .message-float {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    min-width: 300px;
+    padding: 16px 24px 16px 16px;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideDown 0.4s ease-out;
+  }
+
+  .message-float.success { background-color: #28a745; }
+  .message-float.error { background-color: #dc3545; }
+  .message-float.warning { background-color: #ffc107; color: #000; }
+  .message-float.info { background-color: #17a2b8; }
+
+  .message-float .close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+    padding-left: 16px;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; top: 0; }
+    to { opacity: 1; top: 20px; }
+  }
+</style>
+
+{% if messages %}
+  {% for message in messages %}
+    <div class="message-float {{ message.tags }}">
+      <span>{{ message }}</span>
+      <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+    </div>
+  {% endfor %}
+{% endif %}
+
+<script>
+  setTimeout(() => {
+    document.querySelectorAll('.message-float').forEach(el => {
+      el.style.display = 'none';
+    });
+  }, 5000);
+</script>
+
+<section class="section section-lg bg-gray-100">
+  <div class="container">
+    <div class="row row-50 justify-content-center">
+
+      <div class="col-md-10 col-lg-5 col-xl-6">
+        <!-- Box 2-->
+        <article class="box-2">
+          <div class="box-2-inner">
+            <h4>Request Withdrawal</h4>
+            <!-- RD Mailform-->
+            <form class="rd-form rd-mailform form-lg" method="post">
+              {% csrf_token %}
+              <!-- <div class="form-wrap form-wrap-icon">
+                  <input class="form-input" id="contact-name" type="text" name="name" data-constraints="@Required">
+                  <label class="form-label" for="contact-name">Full Name</label>
+                  <div class="icon form-icon mdi mdi-account-outline"></div>
+              </div> -->
+              <div>
+                <p>Total Earned: ${{ earnings.total_earned }}</p>
+                <p>Available Balance: ${{ earnings.available_balance }}</p>
+              </div>
+              <div class="form-wrap form-wrap-icon">
+                <input class="form-input" id="contact-email" type="email" name="email"
+                  data-constraints="@Email @Required">
+                <label class="form-label" for="contact-email">PayPal registered Email</label>
+                <div class="icon form-icon mdi mdi-email-outline"></div>
+              </div>
+              <div class="form-wrap form-wrap-icon">
+                <input class="form-input" id="amount" type="number" name="amount" step="0.01" data-constraints="@Number">
+                <label class="form-label" for="amount">Amount to withdraw</label>
+                <div class="icon form-icon mdi mdi-coin"></div>
+              </div>
+              <div class="form-wrap form-wrap-button text-center">
+                <button class="button button-lg button-primary" type="submit">Send</button>
+              </div>
+            </form>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 
+<h2></h2>
 <p>Total Earned: ${{ earnings.total_earned }}</p>
 <p>Available Balance: ${{ earnings.available_balance }}</p>
 
@@ -6,4 +130,8 @@
   {% csrf_token %}
   <input type="number" name="amount" step="0.01" placeholder="Amount to withdraw" required>
   <button type="submit">Withdraw</button>
-</form>
+</form> -->
+
+
+
+{% endblock %}
