@@ -168,7 +168,7 @@ sup {
 }
 
 a {
-    color: #FFE142;
+    color: #f6dc16;
     text-decoration: none;
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
@@ -461,7 +461,7 @@ small,
 mark,
 .mark {
     padding: 5px 10px;
-    background-color: #FFE142;
+    background-color: #f6dc16;
 }
 
 .list-unstyled {
@@ -2357,7 +2357,7 @@ fieldset:disabled a.btn {
 
 .btn-link {
     font-weight: 400;
-    color: #FFE142;
+    color: #f6dc16;
     background-color: transparent;
 }
 
@@ -4158,8 +4158,8 @@ input[type="button"].btn-block {
     z-index: 2;
     color: #ffffff;
     text-decoration: none;
-    background-color: #FFE142;
-    border-color: #FFE142;
+    background-color: #f6dc16;
+    border-color: #f6dc16;
 }
 
 .page-link:focus {
@@ -4186,8 +4186,8 @@ input[type="button"].btn-block {
 .page-item.active .page-link {
     z-index: 1;
     color: #ffffff;
-    background-color: #FFE142;
-    border-color: #FFE142;
+    background-color: #f6dc16;
+    border-color: #f6dc16;
 }
 
 .page-item.disabled .page-link {
@@ -4683,7 +4683,7 @@ button.close {
 .bs-tooltip-auto[x-placement^="top"] .arrow::before {
     top: 0;
     border-width: 6px 3px 0;
-    border-top-color: #FFE142;
+    border-top-color: #f6dc16;
 }
 
 .bs-tooltip-right,
@@ -4702,7 +4702,7 @@ button.close {
 .bs-tooltip-auto[x-placement^="right"] .arrow::before {
     right: 0;
     border-width: 3px 6px 3px 0;
-    border-right-color: #FFE142;
+    border-right-color: #f6dc16;
 }
 
 .bs-tooltip-bottom,
@@ -4719,7 +4719,7 @@ button.close {
 .bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
     bottom: 0;
     border-width: 0 3px 6px;
-    border-bottom-color: #FFE142;
+    border-bottom-color: #f6dc16;
 }
 
 .bs-tooltip-left,
@@ -4738,7 +4738,7 @@ button.close {
 .bs-tooltip-auto[x-placement^="left"] .arrow::before {
     left: 0;
     border-width: 3px 0 3px 6px;
-    border-left-color: #FFE142;
+    border-left-color: #f6dc16;
 }
 
 .tooltip-inner {
@@ -4746,7 +4746,7 @@ button.close {
     padding: 6px 10px;
     color: #ffffff;
     text-align: center;
-    background-color: #FFE142;
+    background-color: #f6dc16;
     border-radius: 0.25rem;
 }
 
