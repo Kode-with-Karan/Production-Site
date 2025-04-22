@@ -182,6 +182,7 @@ def create_paypal_order(request):
 
 def start_payment(request, amount):
     order = create_order(amount = float(amount))  # Set your amount dynamically
+    print(order)
     for link in order['links']:
         if link['rel'] == 'approve':
             return redirect(link['href'])

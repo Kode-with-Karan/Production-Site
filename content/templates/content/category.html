@@ -100,13 +100,13 @@
                     </div>
                     <div class="box-nina-text">
                         <h4><a class="link-white" href="{% url 'content_detail' pk=item.pk %}">{{ item.title }}</a></h4>
-                        <div class="box-nina-info"><span class="icon mdi mdi-calendar-today"></span><span>2019,
-                                Adventures</span></div>
+                        <div class="box-nina-info"><span class="icon mdi mdi-calendar-today"></span><span>{{ item.uploaded_at|date:"Y" }},
+                            {{ item.content_type }}</span></div>
                     </div>
                 </div>
             </div>
             {% empty %}
-            <p>No blogs available.</p>
+            <p>No Content Available.</p>
             {% endfor %}    
         
         </div>

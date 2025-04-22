@@ -14,8 +14,7 @@
 </div>
 <div id="paywall" style="display: none; margin-top: 20px;">
     <p>This content is premium. You can only view the first {{ content.preview_duration }} seconds.</p>
-    <a href="#" class="btn btn-primary">Subscribe to Continue</a>
-    <a href="#" class="btn btn-success">Pay-per-view Access</a>
+    <a href="{% url 'pricing' %}" class="btn btn-primary">Subscribe to Continue</a>
 </div>
 
 <script>

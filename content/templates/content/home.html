@@ -135,8 +135,8 @@
                     </div>
                     <div class="box-nina-text">
                         <h4><a class="link-white" href="{% url 'content_detail' pk=item.pk %}">{{ item.content.title }}</a></h4>
-                        <div class="box-nina-info"><span class="icon mdi mdi-calendar-today"></span><span>2019,
-                                Adventures</span></div>
+                        <div class="box-nina-info"><span class="icon mdi mdi-calendar-today"></span><span>{{ item.uploaded_at|date:"Y" }},
+                            {{ item.content_type }}</span></div>
                     </div>
                 </div>
             </div>
@@ -164,8 +164,8 @@
                     </div>
                     <div class="box-nina-text">
                         <h4><a class="link-white" href="{% url 'content_detail' pk=item.pk %}">{{ item.title }}</a></h4>
-                        <div class="box-nina-info"><span class="icon mdi mdi-calendar-today"></span><span>2019,
-                                Adventures</span></div>
+                        <div class="box-nina-info"><span class="icon mdi mdi-calendar-today"></span><span>{{ item.uploaded_at|date:"Y" }},
+                            {{ item.content_type }}</span></div>
                     </div>
                 </div>
             </div>
@@ -383,7 +383,7 @@
                         style="background-image: url({{ blog.main_image.url }});"></a>
                     <div class="post-creative-main">
                         <p class="post-creative-title"><a href="blog-post.html">{{ blog.title }}</a></p>
-                        <time class="post-creative-time" datetime="2020">By {{ blog.author }} | {{ blog.created_at|date:"F j, Y" }}</time>
+                        <time class="post-creative-time" datetime="2020">{{ blog.created_at|date:"F j, Y" }}</time>
                     </div>
                 </article>
             </div>
@@ -459,7 +459,7 @@
 <div id="fundingPopup" class="popup-overlay" style="display: none;">
     <div class="popup-content">
       <span class="close-btn" onclick="closePopup()">&times;</span>
-      <h2>Looking for funding for your next project?</h2>
+      <h2>Looking to funding for your next project?</h2>
       <p>EchoesRipple is your solution! 🚀<br>Get support and financial help for your creative vision today.</p>
       <a href="{% url 'about' %}" class="popup-button">Learn More</a>
     </div>

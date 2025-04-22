@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div style="margin: 100px;"></div>
+
+<div class="video-container">
+    <video id="videoPlayer"  src="{% static 'content/Video/coonch Explainer (ok).mp4' %}" controls preload="metadata"></video>
+</div>
+
+<style>
+    .video-container {
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        height: 100vh; /* Full viewport height */
+        width: 100%;
+    }
+
+    video {
+        max-width: 80%; /* Adjust width as needed */
+        max-height: 80vh; /* Prevent overflow */
+        border-radius: 10px; /* Optional: Rounded corners */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: Add shadow */
+    }
+</style>
+{% endblock %}
