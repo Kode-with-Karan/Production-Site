@@ -2,6 +2,58 @@
 {% load static %}
 
 {% block content %}
+
+<style>
+    #paywall-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+  
+    #paywall {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      position: relative;
+      animation: popin 0.4s ease-in-out;
+      transform: translate(150%, 150%);
+    }
+  
+    #paywall h2 {
+      margin-bottom: 15px;
+      font-size: 22px;
+      color: #333;
+    }
+  
+    #paywall p {
+      font-size: 16px;
+      color: #555;
+    }
+  
+    #paywall > a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #f6dc16;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+  
+    #paywall > a:hover {
+      background: #f6dc16;
+    }
+</style>
 <div style="margin: 100px;"></div>
 <!-- {{content.content_type}}
 {% if content.content_type == "podcast" %}
@@ -12,13 +64,17 @@
 <div class="video-container">
     <video id="videoPlayer"  src="{{ content.file.url }}" controls preload="metadata"></video>
 </div>
+{% if not payment %}
+<div id="paywall-overlay" style="display: none;">
 <div id="paywall" style="display: none; margin-top: 20px;">
     <p>This content is premium. You can only view the first {{ content.preview_duration }} seconds.</p>
     <a href="{% url 'pricing' %}" class="btn btn-primary">Subscribe to Continue</a>
 </div>
+</div>
 
 <script>
     const player = document.getElementById('videoPlayer');
+    const paywalloverlay = document.getElementById('paywall-overlay');
     const paywall = document.getElementById('paywall');
     const isPremium = {{ content.is_premium|yesno:"true,false" }};
     const previewDuration = {{ content.preview_duration }};
@@ -28,11 +84,15 @@
             if (player.currentTime >= previewDuration) {
                 player.pause();
                 paywall.style.display = 'block';
+                paywalloverlay.style.display = 'block';
             }
         });
     }
 </script>
 <!-- {% endif %} -->
+{% endif %}
+
+
 
 <style>
     .video-container {

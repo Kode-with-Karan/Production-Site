@@ -16,4 +16,5 @@ urlpatterns = [
     path('delete/<int:pk>/', views.delete_content, name='delete_content'), 
     path("promote/<int:content_id>/", views.promote_content, name="promote_content"),
     path("rate/<int:content_id>/", views.rate_content, name="rate_content"),
+    path('free-content/<str:content_type>/<str:show>', views.free_content_list, name='free_content_list'),
 ]

@@ -6,9 +6,12 @@ from users.models import Profile
 
 class PayPalTransaction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    payment_for = models.TextField()
     paypal_order_id = models.CharField(max_length=255)
+    active_duration = models.DateTimeField()
     amount = models.FloatField(default=0)
-    status = models.CharField(max_length=100)
+    is_status_active = models.BooleanField(default=True)
+    used = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     # In models.py of payments app

@@ -10,6 +10,9 @@ from blog.models import Blog
 from utils.email_utils import send_email
 from .models import PromotedContent
 from django.utils import timezone
+from django.core.paginator import Paginator
+from payments.models import PayPalTransaction
+
 
 from payments.utils import process_payment 
 
@@ -47,6 +50,7 @@ def home(request):
     return render(request, 'content/home.html', {'contents': contents, 'blogs': blogs, "promoted": promoted, "promoted_all_content": all_content})
 
 def category(request, content_type):
+    type = content_type
     contents = Content.objects.filter(content_type=content_type).order_by('-uploaded_at')
     CONTENT_TYPES = [
         ('short_film', 'Short Film'),
@@ -67,7 +71,7 @@ def category(request, content_type):
     
 
 
-    return render(request, 'content/category.html', {'contents': contents, 'content_type': content_type, "num": str(num)})
+    return render(request, 'content/category.html', {'contents': contents, 'content_type': content_type, "num": str(num), 'type': type})
 
 def genre(request, genre_type):
     contents = Content.objects.filter(genre=genre_type).order_by('-uploaded_at')
@@ -232,9 +236,25 @@ def content_detail(request, pk):
     content.earnings += 1
     content.save()
     return render(request, 'content/content_detail.html', {'content': content})
+
 def content_display(request, pk):
     content = get_object_or_404(Content, pk=pk)
-    return render(request, 'content/content_display.html', {'content': content})
+    payments = PayPalTransaction.objects.filter(user=request.user, is_status_active=True)
+
+    if payments:
+        for payment in payments:
+            if payment.payment_for == 'pay-per-view':
+                if payment.used == True:
+                    PayPalTransaction.objects.filter(user=request.user, paypal_order_id=payment.paypal_order_id, is_status_active=True).update(is_status_active=False)
+                PayPalTransaction.objects.filter(user=request.user, paypal_order_id=payment.paypal_order_id, used=False).update(used=True)
+            else:
+                if payment.active_duration <= timezone.now():
+                    PayPalTransaction.objects.filter(user=request.user, paypal_order_id=payment.paypal_order_id, is_status_active=True).update(is_status_active=False)
+                    PayPalTransaction.objects.filter(user=request.user, paypal_order_id=payment.paypal_order_id, used=False).update(used=True)
+
+                print(payment.active_duration , timezone.now(), payment.active_duration <= timezone.now())
+    print(payments)
+    return render(request, 'content/content_display.html', {'content': content, 'payment': payments})
 
 @login_required
 def collaborate(request):
@@ -291,3 +311,21 @@ def delete_content(request, pk):
         return redirect('dashboard')  # Redirect after deletion
     print(content)
     return render(request, "content/delete_confirm.html", {"content": content})
+
+
+
+def free_content_list(request, content_type, show):
+    if show == 'all':
+        free_contents = Content.objects.filter(content_type = content_type).order_by('-uploaded_at')  # or use your free criteria
+        paginator = Paginator(free_contents, 12)  # 10 items per page
+
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+    else:
+        free_contents = Content.objects.filter(is_premium=show, content_type = content_type).order_by('-uploaded_at')  # or use your free criteria
+        paginator = Paginator(free_contents, 12)  # 10 items per page
+
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        
+    return render(request, 'content/free_content_list.html', {'page_obj': page_obj})

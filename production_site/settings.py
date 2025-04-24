@@ -218,4 +218,9 @@ PAYPAL_SECRET = '#'
 PAYPAL_API_BASE = 'https://api-m.sandbox.paypal.com' 
 PAYPAL_BASE_URL = 'https://api-m.sandbox.paypal.com'
 # PAYPAL_BASE_URL = 'https://api-m.paypal.com'
-PAYPAL_MODE = 'sandbox'
+PAYPAL_MODE = 'sendbox'
+
+
+
+
+

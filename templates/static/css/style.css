@@ -1637,6 +1637,8 @@ a.box-3-play:hover::after {
 
 .box-nina-media img {
     border-radius: 4px;
+    width: 356px;
+    height: 356px;
 }
 
 .box-nina-text {

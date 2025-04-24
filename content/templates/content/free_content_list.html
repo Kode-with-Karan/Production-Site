@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    h2{
+        text-align: center;
+        margin-top: 100px;
+    }
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+
+    .pagination {
+        text-align: center;
+        margin: 20px;
+    }
+
+    .step-links>a {
+        background: #f6dc16;
+        padding: 5px 10px;
+        border-radius: 5px;
+        color: white;
+    } 
+
+</style>
+
+<h2>Free Content</h2>
+<div class="content">
+    {% for item in page_obj %}
+    <!-- <div class="content-item">
+    <h3>{{ item.title }}</h3>
+    <p>{{ item.description|truncatewords:25 }}</p>
+    <a href="{% url 'content_detail' item.id %}">View</a>  
+  </div> -->
+    <div class="item">
+        <div class="box-nina">
+            <div class="box-nina-media">
+                {% if item.is_premium %}
+                <span>
+                    <i class="fa fa-star" style="position: absolute; top: 10px; right: 10px; color: #f6dc16;"></i>
+                </span>
+                {% endif %}
+                <img src="{{ item.thumbnail.url }}" alt="" width="356" height="412" />
+            </div>
+            <div class="box-nina-text">
+                <h4><a class="link-white" href="{% url 'content_detail' pk=item.pk %}">{{ item.title }}</a></h4>
+                <div class="box-nina-info"><span class="icon mdi mdi-calendar-today"></span><span>{{item.uploaded_at|date:"Y" }},
+                        {{ item.content_type }}</span></div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No free content found.</p>
+    {% endfor %}
+
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock %}
