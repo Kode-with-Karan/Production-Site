@@ -64,6 +64,7 @@ SITE_ID = 1
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
+    'social_core.backends.twitter.TwitterOAuth'
 )
 
 
@@ -219,6 +220,23 @@ PAYPAL_API_BASE = 'https://api-m.sandbox.paypal.com'
 PAYPAL_BASE_URL = 'https://api-m.sandbox.paypal.com'
 # PAYPAL_BASE_URL = 'https://api-m.paypal.com'
 PAYPAL_MODE = 'sendbox'
+
+
+
+
+
+# PAYPAL_CLIENT_ID = 'AQjkRsl2VepjTTJbLJLubVW6gYUa8bcZ6zVqT0FUMWDa0Di8gkvlO20KdAUIooRyYchPxb7VU6nKzgga'
+
+# PAYPAL_SECRET = 'EAhxujj6kPWJ1mg4KGby_RLdCbzSwTBQzxmu51ZNbugo6nNwfx3OcqdRyYLmUrSY3P-qQpTMA8psnKsG'
+
+# PAYPAL_API_BASE = 'https://api-m.sandbox.paypal.com' 
+
+# PAYPAL_BASE_URL = 'https://api-m.sandbox.paypal.com'
+
+# # PAYPAL_BASE_URL = 'https://api-m.paypal.com'
+
+# PAYPAL_MODE = 'sandbox'
+
 
 
 

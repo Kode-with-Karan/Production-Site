@@ -39,8 +39,10 @@ def create_order(amount, currency='USD'):
             }
         }],
         "application_context": {
-            "return_url": "http://localhost:8000/payments/complete/",
-            "cancel_url": "http://localhost:8000/payments/cancel/"
+            "return_url": "https://echoesripple.com/payments/complete/",
+            "cancel_url": "https://echoesripple.com/payments/cancel/"
+            # "return_url": "http://localhost:8000/payments/complete/",
+            # "cancel_url": "http://localhost:8000/payments/cancel/"
         }
     }
     response = requests.post(url, json=data, headers=headers)

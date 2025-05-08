@@ -3,88 +3,94 @@
 {% block content %}
 
 <div id="particles-container"></div>
-      <section class="section-lg section-one-screen">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <form class="panel" method="post">
-                {% csrf_token %}
-                <div class="panel-header">
-                  <div class="row row-10 align-items-end">
-                    <div class="col-6 col-sm-7"><a href="index.html"><img src="images/logo-default-155x43.png" alt=""></a></div>
-                    <div class="col-6 col-sm-5 text-right"><a href="{% url 'login' %}">Sign In</a><span class="px-2">|</span><a class="font-weight-bold" href="{% url 'register' %}">Register</a></div>
-                  </div>
-                </div>
-                <div class="panel-body">
-                  <div class="row row-10">
-                    <!-- <div class="col-lg-4">
+<section class="section-lg section-one-screen">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <form class="panel" method="post">
+          {% csrf_token %}
+          <div class="panel-header">
+            <div class="row row-10 align-items-end">
+              <div class="col-6 col-sm-7"><a href="index.html"><img src="images/logo-default-155x43.png" alt=""></a>
+              </div>
+              <div class="col-6 col-sm-5 text-right"><a href="{% url 'login' %}">Sign In</a><span
+                  class="px-2">|</span><a class="font-weight-bold" href="{% url 'register' %}">Register</a></div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="row row-10">
+              <!-- <div class="col-lg-4">
                       <button class="btn btn-primary btn-block"><span class="fa fa-facebook-f"></span> Facebook</button>
                     </div> -->
-                    <div class="col-md-4">
+              <!-- <div class="col-md-4">
                       <a href="{% provider_login_url 'twitter' %}"><button class="btn btn-info btn-block"><span class="fa fa-twitter"></span>
                           Twitter</button></a>
                   </div>
                   <div class="col-md-4">
                       <a href="{% provider_login_url 'google' %}"><button class="btn btn-danger btn-block"><span class="fa fa-google"></span> Google</button></a>
-                  </div>
-                  </div>
-                  <p class="text-center text-primary">Set up your account</p>
-                  <div class="row row-30">
-                    <div class="col-12">
-                        <div class="input-group">
-                          <div class="input-group-prepend"><span class="input-group-text fa fa-user"></span></div>
-                          <input class="form-control" type="text" name="username" placeholder="Login" id="id_username">
-                        </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text fa fa-envelope"></span></div>
-                        <input class="form-control" type="text" name="email" placeholder="Email address" id="id_email">
-                      </div>
-                    </div>
-                    
-                    <div class="col-12">
-                      <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text fa fa-unlock"></span></div>
-                        <input class="form-control" type="password" name="password" placeholder="Create a password" id="id_password1">
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text fa fa-lock"></span></div>
-                        <input class="form-control" type="password" name="password" placeholder="Retype your password" id="id_password2">
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <p class="text-center text-primary">Review the Terms</p>
-                    </div>
-                    <div class="col-12">
-                      <div class="group-10">
-                        <div class="custom-control custom-checkbox custom-checkbox-primary">
-                          <input class="custom-control-input" type="checkbox" id="uanybkda" required/>
-                          <label class="custom-control-label" for="uanybkda">I agree to <a href="{% url 'terms' %}">Terms and Conditions </a>
-                          </label>
-                        </div>
-                      </div>
-                      <div class="group-10">
-                        <div class="custom-control custom-checkbox custom-checkbox-primary">
-                          <input class="custom-control-input" type="checkbox" id="uanybkda" required/>
-                          <label class="custom-control-label" for="uanybkda">I agree to <a href="{% url 'privacy' %}">Privacy-policy </a>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <hr class="my-4">
-                  <div class="text-sm-right">
-                    <button class="btn btn-primary" type="submit">Create Account</button>
+                  </div> -->
+            </div>
+            <p class="text-center text-primary">Set up your account</p>
+            <div class="row row-30">
+              <div class="col-12">
+                <div class="input-group">
+                  <div class="input-group-prepend"><span class="input-group-text fa fa-user"></span></div>
+                  <input class="form-control" type="text" name="username" placeholder="Login" id="id_username">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="input-group">
+                  <div class="input-group-prepend"><span class="input-group-text fa fa-envelope"></span></div>
+                  <input class="form-control" type="text" name="email" placeholder="Email address" id="id_email">
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="input-group">
+                  <div class="input-group-prepend"><span class="input-group-text fa fa-unlock"></span></div>
+                  <input class="form-control" type="password" name="password" placeholder="Create a password"
+                    id="id_password1">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="input-group">
+                  <div class="input-group-prepend"><span class="input-group-text fa fa-lock"></span></div>
+                  <input class="form-control" type="password" name="password" placeholder="Retype your password"
+                    id="id_password2">
+                </div>
+              </div>
+              <div class="col-12">
+                <p class="text-center text-primary">Review the Terms</p>
+              </div>
+              <div class="col-12">
+                <div class="group-10">
+                  <div class="custom-control custom-checkbox custom-checkbox-primary">
+                    <input class="custom-control-input" type="checkbox" id="uanybkda" required />
+                    <label class="custom-control-label" for="uanybkda">I agree to <a href="{% url 'terms' %}">Terms and
+                        Conditions </a>
+                    </label>
                   </div>
                 </div>
-              </form>
+                <div class="group-10">
+                  <div class="custom-control custom-checkbox custom-checkbox-primary">
+                    <input class="custom-control-input" type="checkbox" id="uanybkda" required />
+                    <label class="custom-control-label" for="uanybkda">I agree to <a
+                        href="{% url 'privacy' %}">Privacy-policy </a>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-sm-right">
+              <button class="btn btn-primary" type="submit">Create Account</button>
             </div>
           </div>
-        </div>
-      </section>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- 
 <h2>Register</h2>
 <form method="post">
