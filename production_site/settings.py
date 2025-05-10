@@ -64,6 +64,7 @@ SITE_ID = 1
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
+    'social_core.backends.twitter.TwitterOAuth'
 )
 
 
@@ -192,33 +193,40 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 524288000  # 500MB
 
 
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.hostinger.com"  # Hostinger's SMTP server
-EMAIL_PORT = 465  # Use 587 for TLS, 465 for SSL
-EMAIL_USE_TLS = False  # Use True if using port 587
-EMAIL_USE_SSL = True  # Use True if using port 465
-EMAIL_HOST_USER = "#"  # Your Hostinger business email
-EMAIL_HOST_PASSWORD = "#"  # Your Hostinger email password
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_HOST = "smtp.hostinger.com"  # Hostinger's SMTP server
+# EMAIL_PORT = 465  # Use 587 for TLS, 465 for SSL
+# EMAIL_USE_TLS = False  # Use True if using port 587
+# EMAIL_USE_SSL = True  # Use True if using port 465
+# EMAIL_HOST_USER = "#"  # Your Hostinger business email
+# EMAIL_HOST_PASSWORD = "#"  # Your Hostinger email password
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-# Secondary Email for Other Purposes
-SECONDARY_EMAIL_CONFIG = {
-    "EMAIL_HOST": "smtp.hostinger.com",
-    "EMAIL_PORT": 465,  # Use 465 for SSL
-    "EMAIL_USE_TLS": False,  # ❌ DISABLE TLS
-    "EMAIL_USE_SSL": True,  
-    "EMAIL_HOST_USER": "#",  # Your secondary email
-    "EMAIL_HOST_PASSWORD": "#",
-}
+# # Secondary Email for Other Purposes
+# SECONDARY_EMAIL_CONFIG = {
+#     "EMAIL_HOST": "smtp.hostinger.com",
+#     "EMAIL_PORT": 465,  # Use 465 for SSL
+#     "EMAIL_USE_TLS": False,  # ❌ DISABLE TLS
+#     "EMAIL_USE_SSL": True,  
+#     "EMAIL_HOST_USER": "#",  # Your secondary email
+#     "EMAIL_HOST_PASSWORD": "#",
+# }
 
 
 
-PAYPAL_CLIENT_ID = '#'
-PAYPAL_SECRET = '#'
-PAYPAL_API_BASE = 'https://api-m.sandbox.paypal.com' 
-PAYPAL_BASE_URL = 'https://api-m.sandbox.paypal.com'
-# PAYPAL_BASE_URL = 'https://api-m.paypal.com'
-PAYPAL_MODE = 'sendbox'
+# PAYPAL_CLIENT_ID = '#'
+# PAYPAL_SECRET = '#'
+# PAYPAL_API_BASE = 'https://api-m.sandbox.paypal.com' 
+# PAYPAL_BASE_URL = 'https://api-m.sandbox.paypal.com'
+# # PAYPAL_BASE_URL = 'https://api-m.paypal.com'
+# PAYPAL_MODE = 'sendbox'
+
+
+
+
+
+
+
 
 
 

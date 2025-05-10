@@ -27,6 +27,9 @@
                                     <li><a href="{% url 'category' 'podcast' %}">Podcast</a></li>
                                     <li><a href="{% url 'category' 'documentary' %}">Documentary</a></li>
                                     <li><a href="{% url 'category' 'entertainment' %}">Entertainment Project</a></li>
+                                    <li><a href="{% url 'category' 'documentary' %}">Short Series</a></li>
+                                    <li><a href="{% url 'category' 'documentary' %}">Drama</a></li>
+                                    <li><a href="{% url 'category' 'documentary' %}">Shorts</a></li>
                                 </ul>
                             </div>
                             <div class="col-6">
@@ -35,6 +38,9 @@
                                     <li><a href="{% url 'category' 'education' %}">Education</a></li>
                                     <li><a href="{% url 'category' 'interviews' %}">Interviews</a></li>
                                     <li><a href="{% url 'category' 'animation' %}">Animation</a></li>
+                                    <li><a href="{% url 'category' 'documentary' %}">Web Series</a></li>
+                                    <li><a href="{% url 'category' 'documentary' %}">Web Shorts</a></li>
+                                    <li><a href="{% url 'category' 'documentary' %}">Feature Series</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -50,19 +56,39 @@
                             <li><a href="{% url 'language' 'Russian' %}">Russian</a></li>
                             <li><a href="{% url 'language' 'German' %}">German</a></li>
                             <li><a href="{% url 'language' 'Spanish' %}">Spanish</a></li>
+                            <li><a href="{% url 'language' 'Spanish' %}">Japanese</a></li>
+                            <li><a href="{% url 'language' 'Spanish' %}">Italian</a></li>
+                            <li><a href="{% url 'language' 'Spanish' %}">Regional Language</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-3 col-lg-2">
                     <p class="footer-modern-title">Genre</p>
                     <div class="footer-modern-item-block">
-                        <ul class="list list-1">
-                            <li><a href="{% url 'genre' 'Comedy' %}">Comedy</a></li>
-                            <li><a href="{% url 'genre' 'Action' %}">Action</a></li>
-                            <li><a href="{% url 'genre' 'Romantic' %}">Romantic</a></li>
-                            <li><a href="{% url 'genre' 'Thriller' %}">Thriller</a></li>
-                            <li><a href="{% url 'genre' 'Horror' %}">Horror</a></li>
-                        </ul>
+                        <div class="row row-13">
+                            <div class="col-6">
+                                <ul class="list list-1">
+                                    <li><a href="{% url 'genre' 'Comedy' %}">Comedy</a></li>
+                                    <li><a href="{% url 'genre' 'Action' %}">Action</a></li>
+                                    <li><a href="{% url 'genre' 'Romantic' %}">Romantic</a></li>
+                                    <li><a href="{% url 'genre' 'Thriller' %}">Thriller</a></li>
+                                    <li><a href="{% url 'genre' 'Horror' %}">Horror</a></li>
+                                    <li><a href="{% url 'genre' 'Horror' %}">Mystory</a></li>
+                                    <li><a href="{% url 'genre' 'Horror' %}">Friction</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-6">
+                                <ul class="list list-1">
+                                    <li><a href="{% url 'genre' 'Horror' %}">Fantacy</a></li>
+                                    <li><a href="{% url 'genre' 'Horror' %}">Health</a></li>
+                                    <li><a href="{% url 'genre' 'Horror' %}">Epic</a></li>
+                                    <li><a href="{% url 'genre' 'Horror' %}">History</a></li>
+                                    <li><a href="{% url 'genre' 'Horror' %}">Poem</a></li>
+                                    <li><a href="{% url 'genre' 'Horror' %}">Stories</a></li>
+                                    <li><a href="{% url 'genre' 'Horror' %}">Magic</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 col-lg-3">
@@ -80,17 +106,19 @@
     </div>
     <div class="footer-modern-aside">
         <div class="container">
-            <div class="footer-modern-aside-layout"><a class="brand" href="index.html"><img
-                        class="brand-logo-dark" src="{% static 'images/logo-default-133x19.png' %}" alt="" width="133"
-                        height="19" srcset="{% static 'images/logo-default-266x37.png' %} 2x" /><img class="brand-logo-light"
+            <div class="footer-modern-aside-layout"><a class="brand" href="index.html"><img class="brand-logo-dark"
+                        src="{% static 'images/logo-default-133x19.png' %}" alt="" width="133" height="19"
+                        srcset="{% static 'images/logo-default-266x37.png' %} 2x" /><img class="brand-logo-light"
                         src="{% static 'images/logo-inverse-133x19.png' %}" alt="" width="133" height="19"
                         srcset="{% static 'images/logo-inverse-266x37.png' %} 2x" /></a>
                 <p class="rights"><span>&copy;&nbsp; </span><span
                         class="copyright-year"></span><span>&nbsp;</span><span>. All rights
                         reserved.&nbsp;</span><a href="{% url 'privacy' %}">Privacy Policy</a></p>
                 <div>
-                    <div class="group group-sm"><a class="link-1 icon mdi mdi-instagram" href="https://www.instagram.com/echoes.productions/"></a><a
-                            class="link-1 icon mdi mdi-facebook" href="https://www.facebook.com/profile.php?id=61573848801968"></a><a
+                    <div class="group group-sm"><a class="link-1 icon mdi mdi-instagram"
+                            href="https://www.instagram.com/echoes.productions/"></a><a
+                            class="link-1 icon mdi mdi-facebook"
+                            href="https://www.facebook.com/profile.php?id=61573848801968"></a><a
                             class="link-1 icon mdi mdi-twitter" href="https://x.com/Echoes429476"></a></div>
                 </div>
             </div>

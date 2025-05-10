@@ -168,8 +168,10 @@ def create_paypal_order(request):
             }
         ],
         "application_context": {
-            "return_url": "http://localhost:8000/payments/success/",
-            "cancel_url": "http://localhost:8000/payments/cancel/"
+            "return_url": "https://echoesripple.com/payments/success/",
+            "cancel_url": "https://echoesripple.com/payments/cancel/"
+            # "return_url": "http://localhost:8000/payments/success/",
+            # "cancel_url": "http://localhost:8000/payments/cancel/"
         }
     }
 
