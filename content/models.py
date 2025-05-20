@@ -2,7 +2,7 @@ from django.db import models
 from users.models import Profile
 from django.contrib.auth.models import User
 from django.utils import timezone
-
+from django.conf import settings
 
 class Content(models.Model):
     CONTENT_TYPES = [
@@ -15,6 +15,12 @@ class Content(models.Model):
         ('interviews', 'Interviews'),
         ('animation', 'Animation'),
         ('web_series', 'Web Series'),
+        ('short_series', 'Short Series'),
+        ('drama', 'Drama'),
+        ('shorts', 'Shorts'),
+        ('web_shorts', 'Web Shorts'),
+        ('feature_series', 'Feature Series'),
+
     ]
     
     title = models.CharField(max_length=200)
@@ -61,6 +67,12 @@ class Collaborate(models.Model):
         ('interviews', 'Interviews'),
         ('animation', 'Animation'),
         ('web_series', 'Web Series'),
+        ('short_series', 'Short Series'),
+        ('drama', 'Drama'),
+        ('shorts', 'Shorts'),
+        ('web_shorts', 'Web Shorts'),
+        ('feature_series', 'Feature Series'),
+
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="collaborations")
@@ -96,6 +108,25 @@ class PromotedContent(models.Model):
 
     def __str__(self):
         return f"{self.content.title} promoted by {self.creator.username}"
+    
+
+class Ad(models.Model):
+    category = models.CharField(max_length=100)
+    video_url = models.FileField(upload_to='ads/')
+    title = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.title} ({self.category})"
+
+class AdView(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    content = models.ForeignKey('content.Content', on_delete=models.CASCADE)
+    ad = models.ForeignKey(Ad, on_delete=models.CASCADE)
+    watched_full = models.BooleanField(default=False)
+    watched_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user} watched Ad {self.ad.title} (Full: {self.watched_full})"
     
 # class Project(models.Model):
 #     name = models.CharField(max_length=255)

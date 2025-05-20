@@ -27,9 +27,9 @@
                                     <li><a href="{% url 'category' 'podcast' %}">Podcast</a></li>
                                     <li><a href="{% url 'category' 'documentary' %}">Documentary</a></li>
                                     <li><a href="{% url 'category' 'entertainment' %}">Entertainment Project</a></li>
-                                    <li><a href="{% url 'category' 'documentary' %}">Short Series</a></li>
-                                    <li><a href="{% url 'category' 'documentary' %}">Drama</a></li>
-                                    <li><a href="{% url 'category' 'documentary' %}">Shorts</a></li>
+                                    <li><a href="{% url 'category' 'short_series' %}">Short Series</a></li>
+                                    <li><a href="{% url 'category' 'drama' %}">Drama</a></li>
+                                    <li><a href="{% url 'category' 'shorts' %}">Shorts</a></li>
                                 </ul>
                             </div>
                             <div class="col-6">
@@ -38,9 +38,9 @@
                                     <li><a href="{% url 'category' 'education' %}">Education</a></li>
                                     <li><a href="{% url 'category' 'interviews' %}">Interviews</a></li>
                                     <li><a href="{% url 'category' 'animation' %}">Animation</a></li>
-                                    <li><a href="{% url 'category' 'documentary' %}">Web Series</a></li>
-                                    <li><a href="{% url 'category' 'documentary' %}">Web Shorts</a></li>
-                                    <li><a href="{% url 'category' 'documentary' %}">Feature Series</a></li>
+                                    <li><a href="{% url 'category' 'web_series' %}">Web Series</a></li>
+                                    <li><a href="{% url 'category' 'web_shorts' %}">Web Shorts</a></li>
+                                    <li><a href="{% url 'category' 'feature_series' %}">Feature Series</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -56,9 +56,9 @@
                             <li><a href="{% url 'language' 'Russian' %}">Russian</a></li>
                             <li><a href="{% url 'language' 'German' %}">German</a></li>
                             <li><a href="{% url 'language' 'Spanish' %}">Spanish</a></li>
-                            <li><a href="{% url 'language' 'Spanish' %}">Japanese</a></li>
-                            <li><a href="{% url 'language' 'Spanish' %}">Italian</a></li>
-                            <li><a href="{% url 'language' 'Spanish' %}">Regional Language</a></li>
+                            <li><a href="{% url 'language' 'Japanese' %}">Japanese</a></li>
+                            <li><a href="{% url 'language' 'Italian' %}">Italian</a></li>
+                            <li><a href="{% url 'language' 'Regional_language' %}">Regional Language</a></li>
                         </ul>
                     </div>
                 </div>
@@ -73,19 +73,19 @@
                                     <li><a href="{% url 'genre' 'Romantic' %}">Romantic</a></li>
                                     <li><a href="{% url 'genre' 'Thriller' %}">Thriller</a></li>
                                     <li><a href="{% url 'genre' 'Horror' %}">Horror</a></li>
-                                    <li><a href="{% url 'genre' 'Horror' %}">Mystory</a></li>
-                                    <li><a href="{% url 'genre' 'Horror' %}">Friction</a></li>
+                                    <li><a href="{% url 'genre' 'Mystery' %}">Mystery</a></li>
+                                    <li><a href="{% url 'genre' 'Friction' %}">Friction</a></li>
                                 </ul>
                             </div>
                             <div class="col-6">
                                 <ul class="list list-1">
-                                    <li><a href="{% url 'genre' 'Horror' %}">Fantacy</a></li>
-                                    <li><a href="{% url 'genre' 'Horror' %}">Health</a></li>
-                                    <li><a href="{% url 'genre' 'Horror' %}">Epic</a></li>
-                                    <li><a href="{% url 'genre' 'Horror' %}">History</a></li>
-                                    <li><a href="{% url 'genre' 'Horror' %}">Poem</a></li>
-                                    <li><a href="{% url 'genre' 'Horror' %}">Stories</a></li>
-                                    <li><a href="{% url 'genre' 'Horror' %}">Magic</a></li>
+                                    <li><a href="{% url 'genre' 'Fantasy' %}">Fantasy</a></li>
+                                    <li><a href="{% url 'genre' 'Health' %}">Health</a></li>
+                                    <li><a href="{% url 'genre' 'Epic' %}">Epic</a></li>
+                                    <li><a href="{% url 'genre' 'History' %}">History</a></li>
+                                    <li><a href="{% url 'genre' 'Poem' %}">Poem</a></li>
+                                    <li><a href="{% url 'genre' 'Stories' %}">Stories</a></li>
+                                    <li><a href="{% url 'genre' 'Magic' %}">Magic</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -107,19 +107,24 @@
     <div class="footer-modern-aside">
         <div class="container">
             <div class="footer-modern-aside-layout"><a class="brand" href="index.html"><img class="brand-logo-dark"
-                        src="{% static 'images/logo-default-133x19.png' %}" alt="" width="133" height="19"
+                        src="{% static 'images/logo-default-133x19.png' %}" alt="logo" width="133" height="19"
                         srcset="{% static 'images/logo-default-266x37.png' %} 2x" /><img class="brand-logo-light"
-                        src="{% static 'images/logo-inverse-133x19.png' %}" alt="" width="133" height="19"
+                        src="{% static 'images/logo-inverse-133x19.png' %}" alt="logo" width="133" height="19"
                         srcset="{% static 'images/logo-inverse-266x37.png' %} 2x" /></a>
                 <p class="rights"><span>&copy;&nbsp; </span><span
                         class="copyright-year"></span><span>&nbsp;</span><span>. All rights
                         reserved.&nbsp;</span><a href="{% url 'privacy' %}">Privacy Policy</a></p>
                 <div>
-                    <div class="group group-sm"><a class="link-1 icon mdi mdi-instagram"
-                            href="https://www.instagram.com/echoes.productions/"></a><a
-                            class="link-1 icon mdi mdi-facebook"
-                            href="https://www.facebook.com/profile.php?id=61573848801968"></a><a
-                            class="link-1 icon mdi mdi-twitter" href="https://x.com/Echoes429476"></a></div>
+                    <div class="group group-sm">
+                        <a class="link-1 icon mdi mdi-instagram"
+                            href="https://www.instagram.com/echoesripple.productions/"></a>
+                        <a class="link-1 icon mdi mdi-facebook"
+                            href="https://www.facebook.com/profile.php?id=61573848801968"></a>
+                        <a class="link-1 icon mdi mdi-twitter" 
+                        href="https://x.com/Echoes429476"></a>
+                        <a class="link-1 icon mdi mdi-linkedin" 
+                        href="https://www.linkedin.com/in/echoesripple-productions-7a7809353"></a>
+                    </div>
                 </div>
             </div>
         </div>

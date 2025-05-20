@@ -1,5 +1,39 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %} 
+
+EchoesRipple | Empowering Creators to Share & Earn
+
+{% endblock title %}
+
+{% block link %}
+    <meta name="description" content="EchoesRipple helps creators publish films, podcasts, and documentaries, earn money, and connect with a creative community.">
+    <meta name="keywords" content="EchoesRipple, content creators, short films, podcasts, documentaries, monetize content, creator platform, earn from content, film funding">
+    <meta property="og:title" content="EchoesRipple | Empowering Creators to Share & Earn">
+    <meta property="og:description" content="EchoesRipple is a platform for creators to showcase their work, earn revenue, and grow with a global audience.">
+    <meta property="og:image" content="https://echoesripple.com/static/images/preview.jpg">
+    <meta property="og:url" content="https://echoesripple.com">
+    <meta property="og:type" content="website">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "EchoesRipple",
+  "url": "https://echoesripple.com",
+  "logo": "https://echoesripple.com/static/images/logo.png",
+  "sameAs": [
+    "https://www.facebook.com/echoesripple",
+    "https://www.instagram.com/echoesripple",
+    "https://www.linkedin.com/company/echoesripple",
+    "https://twitter.com/echoesripple"
+  ],
+  "description": "EchoesRipple helps creators share films, podcasts, and documentaries and earn revenue from their work."
+}
+</script>
+
+{% endblock link %}
+
 {% block content %}
 
 
@@ -31,7 +65,7 @@
                             </div>
                             <div class="col-md-6 col-lg-7 col-xl-5 onset-1">
                                 <div class="slider-image onset-left-2"><img src="{% static 'images/home_bgg.jpg' %}"
-                                        alt="" width="422" height="522" />
+                                        alt="image..." width="422" height="522" />
                                     <!-- <div class="slider-image-title"><span>Animation</span></div> -->
                                 </div>
                             </div>
@@ -81,7 +115,7 @@
                             </div>
                             <div class="col-md-6 col-lg-7 col-xl-5 onset-1">
                                 <div class="slider-image onset-left-2"><img src="{{ item.thumbnail.url }}"
-                                        alt="" width="422" height="522" /> -->
+                                        alt="image..." width="422" height="522" /> -->
                                     <!-- <div class="slider-image-title"><span>Animation</span></div> -->
                                 <!-- </div>
                             </div>
@@ -130,7 +164,7 @@
             {% for item in promoted %}
             <div class="item">
                 <div class="box-nina">
-                    <div class="box-nina-media"><img src="{{ item.content.thumbnail.url }}" alt="" width="356"
+                    <div class="box-nina-media"><img src="{{ item.content.thumbnail.url }}" alt="image..." width="356"
                             height="412" />
                     </div>
                     <div class="box-nina-text">
@@ -159,7 +193,7 @@
             {% for item in contents %}
             <div class="item">
                 <div class="box-nina">
-                    <div class="box-nina-media"><img src="{{ item.thumbnail.url }}" alt="" width="356"
+                    <div class="box-nina-media"><img src="{{ item.thumbnail.url }}" alt="image..." width="356"
                             height="412" />
                     </div>
                     <div class="box-nina-text">
@@ -188,7 +222,7 @@
             {% for item in contents %}
             <div class="item">
                 <div class="box-nina">
-                    <div class="box-nina-media"><img src="{{ item.thumbnail.url }}" alt="" width="356"
+                    <div class="box-nina-media"><img src="{{ item.thumbnail.url }}" alt="image..." width="356"
                             height="412" />
                     </div>
                     <div class="box-nina-text">
@@ -346,11 +380,11 @@
                     
                     
                 <!-- <div class="button-wrap wow fadeInUp" data-wow-delay="1s"><a href="#"><img
-                            src="{% static 'content/images/button-img-01-151x49.png' %}" alt="" width="151" height="49" /></a><a href="#"><img
-                            src="{% static 'content/images/button-img-02-153x49.png' %}" alt="" width="153" height="49" /></a></div> -->
+                            src="{% static 'content/images/button-img-01-151x49.png' %}" alt="image..." width="151" height="49" /></a><a href="#"><img
+                            src="{% static 'content/images/button-img-02-153x49.png' %}" alt="image..." width="153" height="49" /></a></div> -->
             </div>
             <div class="col-lg-7 parallax-scene-js">
-                <div class="section-image-1"><img src="{% static 'content/images/section-image-1-546x33.png' %}" alt="" width="546"
+                <div class="section-image-1"><img src="{% static 'content/images/section-image-1-546x33.png' %}" alt="image..." width="546"
                         height="33" />
                     <div class="section-image-decorative-1">
                         <div class="layer" data-depth="-.25">

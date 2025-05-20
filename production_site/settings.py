@@ -185,7 +185,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://www.echoesripple.com"
 ]
 
-
+SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE = True  # required when using 'None'
 
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 524288000  # 500MB
@@ -249,3 +250,46 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 524288000  # 500MB
 
 
 
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+EMAIL_HOST = "smtp.hostinger.com"  # Hostinger's SMTP server
+
+EMAIL_PORT = 465  # Use 587 for TLS, 465 for SSL
+
+EMAIL_USE_TLS = False  # Use True if using port 587
+
+EMAIL_USE_SSL = True  # Use True if using port 465
+
+EMAIL_HOST_USER = "businesscollab@echoesripple.com"  # Your Hostinger business email
+
+EMAIL_HOST_PASSWORD = "Echoes@accmbusiness#collab1"  # Your Hostinger email password
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+
+# Secondary Email for Other Purposes
+
+SECONDARY_EMAIL_CONFIG = {
+
+    "EMAIL_HOST": "smtp.hostinger.com",
+
+    "EMAIL_PORT": 465,  # Use 465 for SSL
+
+    "EMAIL_USE_TLS": False,  # ❌ DISABLE TLS
+
+    "EMAIL_USE_SSL": True,  
+
+    "EMAIL_HOST_USER": "support@echoesripple.com",  # Your secondary email
+
+    "EMAIL_HOST_PASSWORD": "Echoes@accmbusiness#support1",
+
+}
+
+PAYPAL_CLIENT_ID = 'AWXBNwaOfoq1xV1TXuUsb_ZtN7yVQG6Q4Vq2VUT9DksUZXWOAO0Sbf8N5YWrz3vhh5w6J6I4sJiaGw0m'
+PAYPAL_SECRET = 'EBtok7ON-dgObK7zin80iQSbxJfW4Vo_0TPC4Or8w_aV0UKoxnAd5rdC0Q7CIxljghEYyIoedz03cZRr'
+# PAYPAL_API_BASE = 'https://api-m.sandbox.paypal.com' 
+# PAYPAL_BASE_URL = 'https://api-m.sandbox.paypal.com'
+PAYPAL_BASE_URL = 'https://api-m.paypal.com'
+PAYPAL_API_BASE = 'https://api-m.paypal.com'
+PAYPAL_MODE = 'live'

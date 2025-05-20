@@ -1,157 +1,188 @@
 {% extends 'base_black.html' %}
 {% load static %}
+{% block title %} 
+
+FAQ | EchoesRipple | Empowering Creators to Share & Earn
+
+{% endblock title %}
 {% block nav_bg %}
 <div class="page-header-1-figure m-parallax">
     <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg.png' %});"></div>
 </div>
 {% endblock nav_bg %}
+
 {% block nav_content %}
 <section class="breadcrumbs-custom">
     <div class="breadcrumbs-custom-inner">
         <div class="container">
             <div class="breadcrumbs-custom-main m-parallax-content">
                 <h2 class="breadcrumbs-custom-title">Got questions?</h2>
-                <p> Find quick answers to the most common queries about EchoesRipple here! Need more help? Feel free to contact us anytime! 🚀</p>
+                <p>Find quick answers to the most common queries about EchoesRipple here! Need more help? Feel free to contact us anytime! 🚀</p>
             </div>
         </div>
     </div>
 </section>
 {% endblock nav_content %}
+
 {% block content %}
 <section class="section section-lg bg-default">
     <div class="container">
         <h3 class="text-center">FAQ</h3>
-        <!-- Bootstrap collapse-->
-        <div class="card-group-custom card-group-corporate" id="accordion1" role="tablist" aria-multiselectable="false">
-            <!-- Bootstrap card-->
+        <div class="card-group-custom card-group-corporate" id="accordion1" role="tablist" aria-multiselectable="true">
+
+            {% comment %} FAQ Item 1 {% endcomment %}
             <article class="card card-custom card-corporate">
-                <div class="card-header" role="tab">
-                    <div class="card-title"><a class="card-link" id="accordion1-card-head-00" data-toggle="collapse" data-parent="#accordion1" href="#accordion1-card-body-00" aria-controls="accordion1-card-body-00" aria-expanded="true" role="button">What is EchoesRipple?
-            <div class="card-arrow"></div></a></div>
+                <div class="card-header" role="tab" id="faq1-head">
+                    <div class="card-title">
+                        <a class="card-link" data-toggle="collapse" href="#faq1-body" aria-expanded="true" aria-controls="faq1-body">
+                            What is EchoesRipple?
+                            <div class="card-arrow"></div>
+                        </a>
+                    </div>
                 </div>
-                <div class="collapse show" id="accordion1-card-body-00" aria-labelledby="accordion1-card-head-00" data-parent="#accordion1" role="tabpanel">
+                <div class="collapse show" id="faq1-body" role="tabpanel" aria-labelledby="faq1-head" data-parent="#accordion1">
                     <div class="card-body">
-                        <p>Echoesripple is a platform that supports Budding Artists,  students and professionals filmmakers/ content creators to release & monetize their short film / web series / music album  / documentary and video content.</p>
+                        <p>EchoesRipple is a platform supporting budding artists, students, and professional filmmakers/content creators to release and monetize their short films, web series, music albums, documentaries, and other video content.</p>
                     </div>
                 </div>
             </article>
-            <!-- Bootstrap card-->
+
+            {% comment %} FAQ Item 2 {% endcomment %}
             <article class="card card-custom card-corporate">
-                <div class="card-header" role="tab">
-                    <div class="card-title"><a class="card-link" id="accordion1-card-head-9" data-toggle="collapse" data-parent="#accordion1" href="#accordion1-card-body-9" aria-controls="accordion1-card-body-9" aria-expanded="true" role="button">How long does my content stay on the site for?
-            <div class="card-arrow"></div></a></div>
+                <div class="card-header" role="tab" id="faq2-head">
+                    <div class="card-title">
+                        <a class="card-link collapsed" data-toggle="collapse" href="#faq2-body" aria-expanded="false" aria-controls="faq2-body">
+                            How long does my content stay on the site?
+                            <div class="card-arrow"></div>
+                        </a>
+                    </div>
                 </div>
-                <div class="collapse show" id="accordion1-card-body-9" aria-labelledby="accordion1-card-head-9" data-parent="#accordion1" role="tabpanel">
+                <div class="collapse" id="faq2-body" role="tabpanel" aria-labelledby="faq2-head" data-parent="#accordion1">
                     <div class="card-body">
-                        <p>It will always be available on the site for life long. Creators can ask for the content to be removed at any time. Featured picks will be seen on the homepage main banner for 1-2 days, where as Daily Picks will get between 1/2 – 1 day featured spot, and then trickle down the homepage as the days go by and new features come in.</p>
+                        <p>Content remains available on EchoesRipple indefinitely. Creators may request removal at any time. Featured Picks appear on the homepage for 1–2 days, while Daily Picks are featured for up to 1 day before rotating out.</p>
                     </div>
                 </div>
             </article>
-            <!-- Bootstrap card-->
+
+            {% comment %} FAQ Item 3 {% endcomment %}
             <article class="card card-custom card-corporate">
-                <div class="card-header" role="tab">
-                    <div class="card-title"><a class="card-link collapsed" id="accordion1-card-head-0" data-toggle="collapse" data-parent="#accordion1" href="#accordion1-card-body-0" aria-controls="accordion1-card-body-0" aria-expanded="false" role="button"> How can I earn money on EchoesRipple?
-            <div class="card-arrow"></div></a></div>
+                <div class="card-header" role="tab" id="faq3-head">
+                    <div class="card-title">
+                        <a class="card-link collapsed" data-toggle="collapse" href="#faq3-body" aria-expanded="false" aria-controls="faq3-body">
+                            How can I earn money on EchoesRipple?
+                            <div class="card-arrow"></div>
+                        </a>
+                    </div>
                 </div>
-                <div class="collapse" id="accordion1-card-body-0" aria-labelledby="accordion1-card-head-0" data-parent="#accordion1" role="tabpanel">
+                <div class="collapse" id="faq3-body" role="tabpanel" aria-labelledby="faq3-head" data-parent="#accordion1">
                     <div class="card-body">
-                        <p>You earn money through ad revenue, sponsorships, and user support. Once your earnings reach $10, you can request a withdrawal.</p>
+                        <p>You earn through ad revenue. Once your earnings reach $10, you can request a withdrawal.</p>
                     </div>
                 </div>
             </article>
-            <!-- Bootstrap card-->
+
+            {% comment %} FAQ Item 4 {% endcomment %}
             <article class="card card-custom card-corporate">
-                <div class="card-header" role="tab">
-                    <div class="card-title"><a class="card-link collapsed" id="accordion1-card-head-1" data-toggle="collapse" data-parent="#accordion1" href="#accordion1-card-body-1" aria-controls="accordion1-card-body-1" aria-expanded="false" role="button">Is it free to upload content?
-            <div class="card-arrow"></div></a></div>
+                <div class="card-header" role="tab" id="faq4-head">
+                    <div class="card-title">
+                        <a class="card-link collapsed" data-toggle="collapse" href="#faq4-body" aria-expanded="false" aria-controls="faq4-body">
+                            Is it free to upload content?
+                            <div class="card-arrow"></div>
+                        </a>
+                    </div>
                 </div>
-                <div class="collapse" id="accordion1-card-body-1" aria-labelledby="accordion1-card-head-1" data-parent="#accordion1" role="tabpanel">
+                <div class="collapse" id="faq4-body" role="tabpanel" aria-labelledby="faq4-head" data-parent="#accordion1">
                     <div class="card-body">
                         <p>Yes! Uploading your content on EchoesRipple is completely free.</p>
                     </div>
                 </div>
             </article>
-            <!-- Bootstrap card-->
-            <!-- <article class="card card-custom card-corporate">
-                <div class="card-header" role="tab">
-                    <div class="card-title"><a class="card-link collapsed" id="accordion1-card-head-2" data-toggle="collapse" data-parent="#accordion1" href="#accordion1-card-body-2" aria-controls="accordion1-card-body-2" aria-expanded="false" role="button">How long will my order take to be delivered?
-            <div class="card-arrow"></div></a></div>
-                </div>
-                <div class="collapse" id="accordion1-card-body-2" aria-labelledby="accordion1-card-head-2" data-parent="#accordion1" role="tabpanel">
-                    <div class="card-body">
-                        <p>Delivery times will depend on your location. Once payment is confirmed your order will be packaged. Delivery can be expected within a day.</p>
+
+            {% comment %} FAQ Item 5 {% endcomment %}
+            <article class="card card-custom card-corporate">
+                <div class="card-header" role="tab" id="faq5-head">
+                    <div class="card-title">
+                        <a class="card-link collapsed" data-toggle="collapse" href="#faq5-body" aria-expanded="false" aria-controls="faq5-body">
+                            What type of content can I upload?
+                            <div class="card-arrow"></div>
+                        </a>
                     </div>
                 </div>
-            </article> -->
-            <!-- Bootstrap card-->
-            <article class="card card-custom card-corporate">
-                <div class="card-header" role="tab">
-                    <div class="card-title"><a class="card-link collapsed" id="accordion1-card-head-3" data-toggle="collapse" data-parent="#accordion1" href="#accordion1-card-body-3" aria-controls="accordion1-card-body-3" aria-expanded="false" role="button">What type of content can I upload?
-            <div class="card-arrow"></div></a></div>
-                </div>
-                <div class="collapse" id="accordion1-card-body-3" aria-labelledby="accordion1-card-head-3" data-parent="#accordion1" role="tabpanel">
+                <div class="collapse" id="faq5-body" role="tabpanel" aria-labelledby="faq5-head" data-parent="#accordion1">
                     <div class="card-body">
                         <p>You can upload short films, podcasts, documentaries, web series, and other creative media, as long as it follows our content guidelines.</p>
                     </div>
                 </div>
             </article>
-            <!-- Bootstrap card-->
+
+            {% comment %} FAQ Item 6 {% endcomment %}
             <article class="card card-custom card-corporate">
-                <div class="card-header" role="tab">
-                    <div class="card-title"><a class="card-link collapsed" id="accordion1-card-head-4" data-toggle="collapse" data-parent="#accordion1" href="#accordion1-card-body-4" aria-controls="accordion1-card-body-4" aria-expanded="false" role="button">How do I withdraw my earnings?
-            <div class="card-arrow"></div></a></div>
+                <div class="card-header" role="tab" id="faq6-head">
+                    <div class="card-title">
+                        <a class="card-link collapsed" data-toggle="collapse" href="#faq6-body" aria-expanded="false" aria-controls="faq6-body">
+                            How do I withdraw my earnings?
+                            <div class="card-arrow"></div>
+                        </a>
+                    </div>
                 </div>
-                <div class="collapse" id="accordion1-card-body-4" aria-labelledby="accordion1-card-head-4" data-parent="#accordion1" role="tabpanel">
+                <div class="collapse" id="faq6-body" role="tabpanel" aria-labelledby="faq6-head" data-parent="#accordion1">
                     <div class="card-body">
-                        <p>Once you reach the minimum withdrawal amount of $10, you can request a payout via Stripe or Adyen from your dashboard.</p>
+                        <p>Once you reach the $10 threshold, you can request a payout via PayPal through your dashboard.</p>
                     </div>
                 </div>
             </article>
-            <!-- Bootstrap card-->
+
+            {% comment %} FAQ Item 7 {% endcomment %}
             <article class="card card-custom card-corporate">
-                <div class="card-header" role="tab">
-                    <div class="card-title"><a class="card-link collapsed" id="accordion1-card-head-5" data-toggle="collapse" data-parent="#accordion1" href="#accordion1-card-body-5" aria-controls="accordion1-card-body-5" aria-expanded="false" role="button">Can I collaborate with other creators?
-            <div class="card-arrow"></div></a></div>
+                <div class="card-header" role="tab" id="faq7-head">
+                    <div class="card-title">
+                        <a class="card-link collapsed" data-toggle="collapse" href="#faq7-body" aria-expanded="false" aria-controls="faq7-body">
+                            Can I collaborate with other creators?
+                            <div class="card-arrow"></div>
+                        </a>
+                    </div>
                 </div>
-                <div class="collapse" id="accordion1-card-body-5" aria-labelledby="accordion1-card-head-5" data-parent="#accordion1" role="tabpanel">
+                <div class="collapse" id="faq7-body" role="tabpanel" aria-labelledby="faq7-head" data-parent="#accordion1">
                     <div class="card-body">
-                        <p>Yes! EchoesRipple allows you to connect with other creators for collaborations and joint projects.</p>
+                        <p>Absolutely! EchoesRipple encourages creator collaboration and provides features to connect and work with others.</p>
                     </div>
                 </div>
             </article>
+
+            {% comment %} FAQ Item 8 {% endcomment %}
             <article class="card card-custom card-corporate">
-                <div class="card-header" role="tab">
-                    <div class="card-title"><a class="card-link collapsed" id="accordion1-card-head-6" data-toggle="collapse" data-parent="#accordion1" href="#accordion1-card-body-6" aria-controls="accordion1-card-body-6" aria-expanded="false" role="button">How do I contact support?
-            <div class="card-arrow"></div></a></div>
+                <div class="card-header" role="tab" id="faq8-head">
+                    <div class="card-title">
+                        <a class="card-link collapsed" data-toggle="collapse" href="#faq8-body" aria-expanded="false" aria-controls="faq8-body">
+                            How do I contact support?
+                            <div class="card-arrow"></div>
+                        </a>
+                    </div>
                 </div>
-                <div class="collapse" id="accordion1-card-body-6" aria-labelledby="accordion1-card-head-6" data-parent="#accordion1" role="tabpanel">
+                <div class="collapse" id="faq8-body" role="tabpanel" aria-labelledby="faq8-head" data-parent="#accordion1">
                     <div class="card-body">
-                        <p>You can reach out to our support team through the Contact Us page for any assistance.</p>
+                        <p>You can contact our support team via the <a href="{% url 'contact' %}">Contact Us</a> page for any help or questions.</p>
                     </div>
                 </div>
             </article>
-            <!-- <article class="card card-custom card-corporate">
-                <div class="card-header" role="tab">
-                    <div class="card-title"><a class="card-link collapsed" id="accordion1-card-head-7" data-toggle="collapse" data-parent="#accordion1" href="#accordion1-card-body-7" aria-controls="accordion1-card-body-7" aria-expanded="false" role="button">Can I collaborate with other creators?
-            <div class="card-arrow"></div></a></div>
-                </div>
-                <div class="collapse" id="accordion1-card-body-7" aria-labelledby="accordion1-card-head-7" data-parent="#accordion1" role="tabpanel">
-                    <div class="card-body">
-                        <p>Yes! EchoesRipple allows you to connect with other creators for collaborations and joint projects.</p>
+
+            {% comment %} FAQ Item 9 {% endcomment %}
+            <article class="card card-custom card-corporate">
+                <div class="card-header" role="tab" id="faq9-head">
+                    <div class="card-title">
+                        <a class="card-link collapsed" data-toggle="collapse" href="#faq9-body" aria-expanded="false" aria-controls="faq9-body">
+                            Is my content protected on EchoesRipple?
+                            <div class="card-arrow"></div>
+                        </a>
                     </div>
                 </div>
-            </article> -->
-            <article class="card card-custom card-corporate">
-                <div class="card-header" role="tab">
-                    <div class="card-title"><a class="card-link collapsed" id="accordion1-card-head-9" data-toggle="collapse" data-parent="#accordion1" href="#accordion1-card-body-9" aria-controls="accordion1-card-body-9" aria-expanded="false" role="button">Is my content protected on EchoesRipple?
-            <div class="card-arrow"></div></a></div>
-                </div>
-                <div class="collapse" id="accordion1-card-body-9" aria-labelledby="accordion1-card-head-9" data-parent="#accordion1" role="tabpanel">
+                <div class="collapse" id="faq9-body" role="tabpanel" aria-labelledby="faq9-head" data-parent="#accordion1">
                     <div class="card-body">
-                        <p>Yes, your content remains your intellectual property. We provide tools to help protect and manage your work.</p>
+                        <p>Yes, your content remains your intellectual property. EchoesRipple provides tools and support to help manage and protect your creations.</p>
                     </div>
                 </div>
             </article>
+
         </div>
     </div>
 </section>

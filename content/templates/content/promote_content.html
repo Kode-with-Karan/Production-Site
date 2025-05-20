@@ -5,6 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Promote Your Content</title>
     <style>
+        /* Your existing styles */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Boost Your Content Visibility</h2>
+        <p>Increase your reach by featuring your content on our homepage and recommendation sections.</p>
+        <p>Duration {{ promotion_duration }} day(s)</p>
+        <p><strong>Promotion Cost: ${{ promotion_amount }}</strong></p>
+
+        <button id="payNowButton">Pay Now</button>
+    </div>
+
+    <script>
+        // Store data in cookies before the payment process
+        document.getElementById('payNowButton').addEventListener('click', function() {
+            // localStorage.setItem('promotion_amount', "{{ promotion_amount }}");
+            // localStorage.setItem('promotion_duration', "{{ promotion_duration }}");
+            // localStorage.setItem('promotion_content_id', "{{ promotion_content_id }}");
+
+
+            // Redirect to PayPal or start the payment process
+            window.location.href = "{% url 'start_payment' promotion_amount %}";
+        });
+    </script>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promote Your Content</title>
+    <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -38,13 +75,16 @@
     <div class="container">
         <h2>Boost Your Content Visibility</h2>
         <p>Increase your reach by featuring your content on our homepage and recommendation sections.</p>
-        <p><strong>Promotion Cost: ${{ promotion_duration }}</strong></p>
+        <p>Duration {{promotion_duration}} day(s)</p>
+        <p><strong>Promotion Cost: ${{ promotion_amount }}</strong></p>
 
         <form method="post">
             {% csrf_token %}
             <button type="submit">Proceed to Payment</button>
         </form>
+
+        <a href="{% url 'start_payment' promotion_amount %}" class="btn bordered radius">Pay Now</a>
     </div>
 
 </body>
-</html>
+</html> -->

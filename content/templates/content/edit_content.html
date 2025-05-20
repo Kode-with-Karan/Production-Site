@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+{% block title %} 
+
+Edit Content | EchoesRipple | Empowering Creators to Share & Earn
+
+{% endblock title %}
 {% block content %}
 {% if form.errors %}
 <div class="alert alert-danger">
@@ -120,7 +125,7 @@
                 </article>
             </div>
             <div class="col-lg-4 text-center text-lg-left">
-                <div class="movie-page-imageg"><img src="{{ content.thumbnail.url }}" alt="" width="375" height="491" />
+                <div class="movie-page-imageg"><img src="{{ content.thumbnail.url }}" alt="image..." width="375" height="491" />
                 </div>
             </div>
         </div>

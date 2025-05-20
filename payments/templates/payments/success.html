@@ -66,7 +66,7 @@
 <div class="container_summry">
     <h2>PayPal Payment Summary</h2>
 
-    <div class="section_summry"">
+    <div class="section_summry">
       <h3>Transaction Info</h3>
       <p><span class="bold">Order ID:</span> {{ payment.id }}</p>
       <p><span class="bold">Status:</span> {{ payment.status }}</p>
@@ -98,6 +98,7 @@
       <p>{{ payment.purchase_units.0.shipping.address.postal_code }}, {{ payment.purchase_units.0.shipping.address.country_code }}</p>
     </div>
   </div>
+
 
 
 {% endblock %}

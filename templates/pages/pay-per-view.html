@@ -1,0 +1,35 @@
+{% extends 'base_black.html' %}
+{% load static %}
+{% block title %} 
+
+Pay-perr-view | EchoesRipple | Empowering Creators to Share & Earn
+
+{% endblock title %}
+{% block nav_bg %}
+<div class="page-header-1-figure m-parallax">
+    <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg.png' %});">
+    </div>
+</div>
+{% endblock nav_bg %}
+{% block link %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'css/pricing.css' %}">
+{% endblock link %}
+{% block nav_content %}
+<section class="breadcrumbs-custom">
+    <div class="breadcrumbs-custom-inner">
+        <div class="container">
+            <div class="breadcrumbs-custom-main m-parallax-content">
+                <h2 class="breadcrumbs-custom-title">Pricing</h2>
+                <p>Echoes a powerhouse for budding artists, right talent and showcasing your work...</p>
+                <p>EchoesRipple – Where Dreams Get Screen Time! 🎬</p>
+                <div class="group group-sm group-middle"><a class="button button-sm button-icon button-icon-left button-light" href="{% url 'Video_Explainer' %}"><span class="icon mdi mdi-play"></span>Watch Now</a></div>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock nav_content %}
+{% block content %}
+
+{% endblock %}

@@ -17,4 +17,7 @@ urlpatterns = [
     path("promote/<int:content_id>/", views.promote_content, name="promote_content"),
     path("rate/<int:content_id>/", views.rate_content, name="rate_content"),
     path('free-content/<str:content_type>/<str:show>', views.free_content_list, name='free_content_list'),
+    path('track-ad/<int:content_id>/', views.track_ad_view, name='track_ad_view'),
+    path("robots.txt", views.robots_txt),
+    # path('finalize-promotion/', views.finalize_promotion, name='finalize_promotion')
 ]

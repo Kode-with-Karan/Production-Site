@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %} 
+
+Upload Content | EchoesRipple | Empowering Creators to Share & Earn
+
+{% endblock title %}
 {% block content %}
 {% if form.errors %}
     <div class="alert alert-danger">
@@ -131,9 +136,8 @@
                             <td>
                                 <!-- <input class="form-input form-control-has-validation" id="id_thumbnail" accept="image/*" type="file" name="thumbnail" data-constraints="@Required" fdprocessedid="w2q0tf"> -->
                                 <select class="form-input form-control-has-validation" name="promotion_duration">
-                                    <option value="1">1 Day - $5</option>
-                                    <option value="3">3 Days - $12</option>
-                                    <option value="7">7 Days - $25</option>
+                                    <option value="1">1 Day - $4.99</option>
+                                    <option value="14">14 Days - $14.99</option>
                                 </select>
                             </td>
                         </tr>
@@ -148,7 +152,7 @@
                 </article>
             </div>
             <div class="col-lg-4 text-center text-lg-left">
-                <div class="movie-page-imageg"><img src="{% static 'content/images/movie-page-image-375x491.jpg' %}" alt="" width="375" height="491" />
+                <div class="movie-page-imageg"><img src="{% static 'content/images/movie-page-image-375x491.jpg' %}" alt="image..." width="375" height="491" />
                 </div>
             </div>
         </div>

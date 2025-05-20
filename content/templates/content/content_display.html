@@ -1,8 +1,417 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %} 
+
+Detail | EchoesRipple | Empowering Creators to Share & Earn
+
+{% endblock title %}
 
 {% block content %}
+<style>
+    #paywall-overlay {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
 
+    #paywall {
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        animation: popin 0.4s ease-in-out;
+        transform: translate(150%, 150%);
+    }
+
+    .video-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+    }
+
+    video {
+        max-width: 80%;
+        max-height: 80vh;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .rating {
+        width: fit-content;
+        padding: 20px;
+        border-radius: 9px;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+                    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    }
+
+    .stars {
+        cursor: pointer;
+    }
+
+    .star.filled {
+        color: #f7cf00;
+    }
+</style>
+
+<div style="margin: 100px;"></div>
+
+<!-- Main Content Video -->
+<div class="video-container" id="main-video">
+    <video id="videoPlayer" src="{{ content.file.url }}" controls preload="metadata"></video>
+</div>
+
+<!-- Ad Video (hidden initially) -->
+
+<!-- <div class="video-container" id="ad-container" style="display: none;">
+    <video id="adPlayer" src="{{ ad.video.url }}" autoplay playsinline></video>
+</div> -->
+<div id="ad-container" style="display: none; flex-direction: column; align-items: center;">
+    <video id="adPlayer" muted playsinline></video>
+    <div id="adCountdown" style="margin-top: 8px; font-weight: bold;"></div>
+    <button id="skipAdBtn" style="display: none; margin-top: 10px;">Skip Ad</button>
+</div>
+<!-- {% if not payment and ad %} -->
+<!-- {% endif %} -->
+
+<!-- Paywall for Premium Content -->
+{% if not payment %}
+<div id="paywall-overlay" style="display: none;">
+    <div id="paywall" style="display: none;">
+        <p>This content is premium. You can only view the first {{ content.preview_duration }} seconds.</p>
+        <a href="{% url 'pricing' %}" class="btn btn-primary">Subscribe to Continue</a>
+    </div>
+</div>
+{% endif %}
+
+<!-- Rating Section -->
+<div class="rating">
+    <p>Rate this content:</p>
+    <div class="stars">
+        {% for i in "12345" %}
+            <span class="star" data-value="{{ i }}">★</span>
+        {% endfor %}
+    </div>
+    <p>Average Rating: <span id="average-rating">{{ content.average_rating }}</span></p>
+</div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const player = document.getElementById('videoPlayer');
+    const adPlayer = document.getElementById('adPlayer');
+    const adContainer = document.getElementById('ad-container');
+    const mainVideo = document.getElementById('main-video');
+    const skipAdBtn = document.getElementById('skipAdBtn');
+    const adCountdown = document.getElementById('adCountdown');
+    const paywallOverlay = document.getElementById('paywall-overlay');
+    const paywall = document.getElementById('paywall');
+    const isPremium = {{ content.is_premium|yesno:"true,false" }};
+    const previewDuration = {{ content.preview_duration }};
+    const contentCategory = "{{ content.category }}";  // assuming you have a `category` field
+
+    const ads = JSON.parse('{{ ad_list_json|escapejs }}');  // list of ads passed from backend
+    let selectedAd = ads.find(ad => ad.category === contentCategory) || ads[0];
+    
+    let adShown = false;
+    let countdownInterval = null;
+
+    if (!isPremium && player && adPlayer && adContainer && mainVideo) {
+        player.addEventListener('timeupdate', function () {
+            if (player.currentTime >= 10 && !adShown) {
+                player.pause();
+                mainVideo.style.display = 'none';
+                adContainer.style.display = 'flex';
+                adShown = true;
+
+                adPlayer.src = "/media/"+selectedAd.video_url;
+                adPlayer.load();
+                adPlayer.play().catch(err => {
+                    console.error("Ad autoplay error:", err);
+                });
+
+                // Countdown timer
+                countdownInterval = setInterval(() => {
+                    const timeLeft = Math.ceil(adPlayer.duration - adPlayer.currentTime);
+                    if (!isNaN(timeLeft)) {
+                        adCountdown.innerText = `Ad ends in: ${timeLeft}s`;
+                    }
+                }, 500);
+
+                // Skip button appears after 5 seconds
+                setTimeout(() => {
+                    skipAdBtn.style.display = 'inline-block';
+                }, 5000);
+
+                adPlayer.addEventListener('ended', function () {
+                    sendAdView(true);
+                    finishAdPlayback();
+                });
+
+                skipAdBtn.addEventListener('click', function () {
+                    sendAdView(false);
+                    finishAdPlayback();
+                });
+
+                function finishAdPlayback() {
+                    clearInterval(countdownInterval);
+                    adContainer.style.display = 'none';
+                    mainVideo.style.display = 'flex';
+                    adPlayer.pause();
+                    adPlayer.src = '';
+                    skipAdBtn.style.display = 'none';
+                    adCountdown.innerText = '';
+                    player.play();
+                }
+
+                function sendAdView(watchedFull) {
+                    fetch("{% url 'track_ad_view' content.id %}", {
+                        method: "POST",
+                        headers: {
+                            "X-CSRFToken": "{{ csrf_token }}",
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            full: watchedFull,
+                            ad_id: selectedAd.id
+                        })
+                    });
+                }
+            }
+        });
+    }
+
+    if (isPremium && player && paywallOverlay && paywall) {
+        player.addEventListener('timeupdate', function () {
+            if (player.currentTime >= previewDuration) {
+                player.pause();
+                paywallOverlay.style.display = 'flex';
+                paywall.style.display = 'block';
+            }
+        });
+    }
+
+    // Rating Logic
+    function updateStarColors(rating) {
+        document.querySelectorAll(".star").forEach(star => {
+            let value = parseInt(star.getAttribute("data-value"));
+            if (value <= rating) {
+                star.classList.add("filled");
+            } else {
+                star.classList.remove("filled");
+            }
+        });
+    }
+
+    let initialAverageRating = parseFloat(document.getElementById("average-rating").innerText);
+    updateStarColors(initialAverageRating);
+
+    document.querySelectorAll(".star").forEach(star => {
+        star.addEventListener("click", function () {
+            const rating = this.getAttribute("data-value");
+            fetch("{% url 'rate_content' content.id %}", {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": "{{ csrf_token }}",
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "rating=" + rating
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.average_rating) {
+                    document.getElementById("average-rating").innerText = data.average_rating.toFixed(1);
+                    updateStarColors(data.average_rating);
+                }
+            });
+        });
+    });
+});
+</script>
+
+
+
+
+<!-- <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const player = document.getElementById('videoPlayer');
+    const adPlayer = document.getElementById('adPlayer');
+    const adContainer = document.getElementById('ad-container');
+    const mainVideo = document.getElementById('main-video');
+    const paywallOverlay = document.getElementById('paywall-overlay');
+    const paywall = document.getElementById('paywall');
+    const isPremium = {{ content.is_premium|yesno:"true,false" }};
+    const previewDuration = {{ content.preview_duration }};
+    let adShown = false;
+
+    if (!isPremium && player && adPlayer && adContainer && mainVideo) {
+        player.addEventListener('timeupdate', function () {
+            if (player.currentTime >= 10 && !adShown) {
+                player.pause();
+                mainVideo.style.display = 'none';
+                adContainer.style.display = 'flex';
+                adShown = true;
+
+                // Set autoplay properties
+                adPlayer.setAttribute('muted', true);
+                adPlayer.setAttribute('autoplay', true);
+                adPlayer.setAttribute('playsinline', true);
+
+                adPlayer.play().catch(err => {
+                    console.log("Ad autoplay failed:", err);
+                });
+
+                adPlayer.addEventListener('ended', function () {
+                    adContainer.style.display = 'none';
+                    mainVideo.style.display = 'flex';
+                    player.play();
+                });
+            }
+        });
+    }
+
+    if (isPremium && player && paywallOverlay && paywall) {
+        player.addEventListener('timeupdate', function () {
+            if (player.currentTime >= previewDuration) {
+                player.pause();
+                paywallOverlay.style.display = 'flex';
+                paywall.style.display = 'block';
+            }
+        });
+    }
+
+    // Rating logic
+    function updateStarColors(rating) {
+        document.querySelectorAll(".star").forEach(star => {
+            let value = parseInt(star.getAttribute("data-value"));
+            if (value <= rating) {
+                star.classList.add("filled");
+            } else {
+                star.classList.remove("filled");
+            }
+        });
+    }
+
+    let initialAverageRating = parseFloat(document.getElementById("average-rating").innerText);
+    updateStarColors(initialAverageRating);
+
+    document.querySelectorAll(".star").forEach(star => {
+        star.addEventListener("click", function () {
+            const rating = this.getAttribute("data-value");
+            fetch("{% url 'rate_content' content.id %}", {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": "{{ csrf_token }}",
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "rating=" + rating
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.average_rating) {
+                    document.getElementById("average-rating").innerText = data.average_rating.toFixed(1);
+                    updateStarColors(data.average_rating);
+                }
+            });
+        });
+    });
+});
+</script> -->
+
+
+
+<!-- <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const player = document.getElementById('videoPlayer');
+    const adPlayer = document.getElementById('adPlayer');
+    const adContainer = document.getElementById('ad-container');
+    const mainVideo = document.getElementById('main-video');
+    const paywallOverlay = document.getElementById('paywall-overlay');
+    const paywall = document.getElementById('paywall');
+    const isPremium = {{ content.is_premium|yesno:"true,false" }};
+    const previewDuration = {{ content.preview_duration }};
+    let adShown = false;
+
+    if (!isPremium) {
+        player.addEventListener('timeupdate', function () {
+            if (player.currentTime >= 10 && !adShown && adContainer) {
+                player.pause();
+                mainVideo.style.display = 'none';
+                adContainer.style.display = 'flex';
+                adShown = true;
+
+                adPlayer.addEventListener('ended', function () {
+                    adContainer.style.display = 'none';
+                    mainVideo.style.display = 'flex';
+                    player.play();
+                });
+            }
+        });
+    }
+
+    if (isPremium) {
+        player.addEventListener('timeupdate', function () {
+            if (player.currentTime >= previewDuration) {
+                player.pause();
+                paywallOverlay.style.display = 'flex';
+                paywall.style.display = 'block';
+            }
+        });
+    }
+
+    // Rating logic
+    function updateStarColors(rating) {
+        document.querySelectorAll(".star").forEach(star => {
+            let value = parseInt(star.getAttribute("data-value"));
+            if (value <= rating) {
+                star.classList.add("filled");
+            } else {
+                star.classList.remove("filled");
+            }
+        });
+    }
+
+    let initialAverageRating = parseFloat(document.getElementById("average-rating").innerText);
+    updateStarColors(initialAverageRating);
+
+    document.querySelectorAll(".star").forEach(star => {
+        star.addEventListener("click", function () {
+            const rating = this.getAttribute("data-value");
+            fetch("{% url 'rate_content' content.id %}", {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": "{{ csrf_token }}",
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "rating=" + rating
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.average_rating) {
+                    document.getElementById("average-rating").innerText = data.average_rating.toFixed(1);
+                    updateStarColors(data.average_rating);
+                }
+            });
+        });
+    });
+});
+</script> -->
+{% endblock %}
+
+
+<!-- 
 <style>
     #paywall-overlay {
       position: fixed;
@@ -180,49 +589,6 @@
     </script>
     
 
-<!-- <script>
-document.querySelectorAll(".star").forEach(star => {
-    star.addEventListener("click", function() {
-        const rating = this.getAttribute("data-value");
 
-        fetch("{% url 'rate_content' content.id %}", {
-            method: "POST",
-            headers: {
-                "X-CSRFToken": "{{ csrf_token }}",
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: "rating=" + rating
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.average_rating) {
-                document.getElementById("average-rating").innerText = data.average_rating.toFixed(1);
-            }
-        });
-    });
-});
-</script> -->
-
-<!-- 
-
-<div class="container">
-    <h2>{{ content.title }}</h2>
-    <p><strong>Type:</strong> {{ content.content_type }}</p>
-    <p><strong>Uploaded By:</strong> {{ content.uploaded_by.username }}</p>
-    <p><strong>Views:</strong> {{ content.views }}</p>
-    <p><strong>Likes:</strong> {{ content.likes }}</p>
-
-    {% if content.file.url %}
-        <video width="100%" controls>
-            <source src="{{ content.file.url }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    {% endif %}
-
-    <p>{{ content.description }}</p>
-
-    {% if content.earnings %}
-        <p><strong>Earnings:</strong> ${{ content.earnings }}</p>
-    {% endif %} -->
 </div>
-{% endblock %}
+ -->

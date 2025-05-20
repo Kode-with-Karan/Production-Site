@@ -11,7 +11,7 @@ class ContentUploadForm(forms.ModelForm):
     #     label="Promotion Duration"
     # )
     promotion_duration = forms.ChoiceField(
-        choices=[(1, "1 Day - $5"), (3, "3 Days - $12"), (7, "7 Days - $25")],
+        choices=[(1, "1 Day - $4.99"), (14, "14 Days - $14.99")],
         required=False,
         label="Promotion Duration"
     )

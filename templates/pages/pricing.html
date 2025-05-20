@@ -1,5 +1,10 @@
 {% extends 'base_black.html' %}
 {% load static %}
+{% block title %} 
+
+Pricing | EchoesRipple | Empowering Creators to Share & Earn
+
+{% endblock title %}
 {% block nav_bg %}
 <div class="page-header-1-figure m-parallax">
     <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg.png' %});">
@@ -48,13 +53,14 @@
                 <h1>$0.99</h1>
             </div>
             <ul>
-                <li>$0.99 – $2.99</li>
+                <li>$0.99</li>
                 <li>One-time access per content</li>
                 <li>Great for casual viewers</li>
                 <li>HD Streaming</li>
 
             </ul>
             <div class="sign-up">
+                <!-- <a href="{% url 'pay-per-view' %}" class="btn bordered radius">See More</a> -->
                 <a href="{% url 'start_payment' '0.99' %}" class="btn bordered radius">Pay Now </a>
             </div>
         </div>
@@ -76,7 +82,8 @@
 
             </ul>
             <div class="sign-up">
-                <a href="{% url 'start_payment' '3.99' %}" class="btn bordered radius">Pay Now</a>
+                <a href="{% url 'subscription' %}" class="btn bordered radius">See More</a>
+                <!-- <a href="{% url 'start_payment' '3.99' %}" class="btn bordered radius">Pay Now</a> -->
             </div>
         </div>
     </div>
@@ -95,7 +102,8 @@
                 <li>Boost visibility & reach</li>
             </ul>
             <div class="sign-up">
-                <a href="{% url 'start_payment' '4.99' %}" class="btn bordered radius">Pay Now</a>
+                <a href="{% url 'Promote-Your-Content' %}" class="btn bordered radius">See More</a>
+                <!-- <a href="{% url 'start_payment' '4.99' %}" class="btn bordered radius">Pay Now</a> -->
             </div>
         </div>
     </div>

@@ -1,0 +1,102 @@
+{% extends 'base_black.html' %}
+{% load static %}
+{% block title %} 
+
+Subscription | EchoesRipple | Empowering Creators to Share & Earn
+
+{% endblock title %}
+{% block nav_bg %}
+<div class="page-header-1-figure m-parallax">
+    <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg.png' %});">
+    </div>
+</div>
+{% endblock nav_bg %}
+{% block link %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'css/pricing.css' %}">
+{% endblock link %}
+{% block nav_content %}
+<section class="breadcrumbs-custom">
+    <div class="breadcrumbs-custom-inner">
+        <div class="container">
+            <div class="breadcrumbs-custom-main m-parallax-content">
+                <h2 class="breadcrumbs-custom-title">Subscription</h2>
+                <p>Choose the plan that fits your entertainment needs. Stream unlimited content anytime, anywhere.</p>
+                <div class="group group-sm group-middle"><a class="button button-sm button-icon button-icon-left button-light" href="{% url 'Video_Explainer' %}"><span class="icon mdi mdi-play"></span>Watch Now</a></div>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock nav_content %}
+{% block content %}
+
+
+<div class="wrapper">
+    <div class="pricing-table gprice-single">
+        <div class="head">
+            <h4 class="title"> Basic Plan – $3.99/month</h4>
+        </div>
+        <div class="content">
+            <div class="price">
+                <h1>$3.99</h1>
+            </div>
+            <ul>
+                <li>✅ Unlimited streaming access to general content</li>
+                <li>✅ Skip-able ads included            </li>
+                <li>🔒 Some premium and restricted content not available           </li>
+                <li>🎥 Great for casual viewers who don't mind a few ads</li>
+
+            </ul>
+            <div class="sign-up">
+                <a href="{% url 'start_payment' '3.99' %}" class="btn bordered radius">Pay Now </a>
+                <!-- <a href="{% url 'pay-per-view' %}" class="btn bordered radius">See More</a> -->
+            </div>
+        </div>
+    </div>
+    <div class="pricing-table gprice-single">
+        <div class="head">
+            <h4 class="title">Premium Plan – $7.99/month</h4>
+        </div>
+        <div class="content">
+            <div class="price">
+                <h1>$7.99</h1>
+            </div>
+            <ul>
+                <li>✅ Unlimited streaming with no ads</li>
+                <li>✅ Access to a wider range of exclusive and premium content</li>
+                <li>🔒 Restricted content still not available</li>
+                <li>🌟 Ideal for serious streamers who want an ad-free experience</li>
+
+            </ul>
+            <div class="sign-up">
+                <!-- <a href="{% url 'subscription' %}" class="btn bordered radius">See More</a> -->
+                <a href="{% url 'start_payment' '7.99' %}" class="btn bordered radius">Pay Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="pricing-table gprice-single">
+        <div class="head">
+            <h4 class="title">All Access Plan – $11.99/month</h4>
+        </div>
+        <div class="content">
+            <div class="price">
+                <h1>$4.99</h1>
+            </div>
+            <ul>
+                <li>✅ Everything included: All content unlocked</li>
+                <li>✅ No ads at all</li>
+                <li>✅ Full access to restricted and exclusive content</li>
+                <li>🏆 Perfect for power users who want it all—without interruption</li>
+            </ul>
+            <div class="sign-up">
+                <!-- <a href="{% url 'Promote-Your-Content' %}" class="btn bordered radius">See More</a> -->
+                <a href="{% url 'start_payment' '11.99' %}" class="btn bordered radius">Pay Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- partial -->
+
+
+{% endblock %}

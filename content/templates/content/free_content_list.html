@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% block title %} 
+
+FreeContent | EchoesRipple | Empowering Creators to Share & Earn
+
+{% endblock title %}
 {% block content %}
 
 <style>
@@ -43,7 +48,7 @@
                     <i class="fa fa-star" style="position: absolute; top: 10px; right: 10px; color: #f6dc16;"></i>
                 </span>
                 {% endif %}
-                <img src="{{ item.thumbnail.url }}" alt="" width="356" height="412" />
+                <img src="{{ item.thumbnail.url }}" alt="image..." width="356" height="412" />
             </div>
             <div class="box-nina-text">
                 <h4><a class="link-white" href="{% url 'content_detail' pk=item.pk %}">{{ item.title }}</a></h4>

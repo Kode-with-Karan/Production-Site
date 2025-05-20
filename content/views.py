@@ -12,9 +12,21 @@ from .models import PromotedContent
 from django.utils import timezone
 from django.core.paginator import Paginator
 from payments.models import PayPalTransaction
-
-
+from .models import Ad, AdView
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 from payments.utils import process_payment 
+from django.core.serializers.json import DjangoJSONEncoder
+from django.http import HttpResponse
+
+def robots_txt(request):
+    lines = [
+        "User-agent: *",
+        "Disallow:",
+        "Sitemap: https://echoesripple.com/sitemap.xml"
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")
 
 def custom_404_view(request, exception=None):
     return render(request, "content/404_page.html", status=404)
@@ -62,6 +74,11 @@ def category(request, content_type):
         ('education', 'Education'),
         ('music', 'Music'),
         ('web_series', 'Web Series'),
+        ('short_series', 'Short Series'),
+        ('drama', 'Drama'),
+        ('shorts', 'Shorts'),
+        ('web_shorts', 'Web Shorts'),
+        ('feature_series', 'Feature Series'),
     ]
 
     for i in range(0, len(CONTENT_TYPES)):
@@ -74,6 +91,7 @@ def category(request, content_type):
     return render(request, 'content/category.html', {'contents': contents, 'content_type': content_type, "num": str(num), 'type': type})
 
 def genre(request, genre_type):
+    type = genre_type
     contents = Content.objects.filter(genre=genre_type).order_by('-uploaded_at')
     GENRE_TYPE = [
         ('Comedy', 'Comedy'),
@@ -81,6 +99,13 @@ def genre(request, genre_type):
         ('Romantic', 'Romantic'),
         ('Thriller', 'Thriller'),
         ('Horror', 'Horror'),
+        ('Magic', 'Magic'),
+        ('Poem', 'Poem'),
+        ('History', 'History'),
+        ('Epic', 'Epic'),
+        ('Health', 'Health'),
+        ('Fantasy', 'Fantasy'),
+        ('Mystery', 'Mystery'),
     ]
 
     for i in range(0, len(GENRE_TYPE)):
@@ -89,9 +114,10 @@ def genre(request, genre_type):
             num = i+1
     
     
-    return render(request, 'content/category.html', {'contents': contents, 'genre_type': genre_type, "num": str(num)})
+    return render(request, 'content/category.html', {'contents': contents, 'genre_type': genre_type, "num": str(num), 'type': type  })
 
 def language(request, language_type):
+    type = language_type
     contents = Content.objects.filter(language=language_type).order_by('-uploaded_at')
 
     LANGUAGE_TYPE = [
@@ -101,6 +127,9 @@ def language(request, language_type):
         ('Russian', 'Russian'),
         ('German', 'German'),
         ('Spanish', 'Spanish'),
+        ('Japanese', 'Japanese'),
+        ('Italian', 'Italian'),
+        ('Regional_language', 'Regional_language'),
     ]
 
     for i in range(0, len(LANGUAGE_TYPE)):
@@ -108,7 +137,7 @@ def language(request, language_type):
             language_type = LANGUAGE_TYPE[i][1]
             num = i+1
 
-    return render(request, 'content/category.html', {'contents': contents, 'language_type': language_type, "num": str(num)})
+    return render(request, 'content/category.html', {'contents': contents, 'language_type': language_type, "num": str(num), 'type': type})
 
 @login_required
 def upload_content(request):
@@ -123,11 +152,17 @@ def upload_content(request):
             # Check if the user selected promotion
             if form.cleaned_data['promote']:
                 duration = form.cleaned_data['promotion_duration']
-                amount = 5 if duration == '7' else 15
-                print(amount)
+                
+                amount = 14.99 if duration == '14' else 4.99
+                
                 request.session['promotion_content_id'] = content.id
                 request.session['promotion_duration'] = duration
-                # request.session['promotion_amount'] = amount
+                request.session['promotion_amount'] = amount
+
+                print("Session content_id:", request.session.get('promotion_content_id'))
+                print("Session duration:", request.session.get('promotion_duration'))
+                print("Session amount:", request.session.get('promotion_amount'))
+
                 return redirect('promote_content', content_id=content.id)  # Redirect to payment page
 
             return redirect('home')
@@ -136,6 +171,87 @@ def upload_content(request):
         form = ContentUploadForm()
 
     return render(request, 'content/upload_content.html', {'form': form})
+
+
+# @csrf_exempt
+# @login_required
+# def finalize_promotion(request):
+#     if request.method == 'POST':
+#         # Parse JSON data from the request body
+#         data = json.loads(request.body)
+#         amount = data.get('promotion_amount')
+#         duration = data.get('promotion_duration')
+#         content_id = data.get('promotion_content_id')
+        
+        
+
+#         # Example of saving promotion details in a model (you can modify as per your requirements)
+#         # Assume you have a Promotion model for this purpose
+
+#         if content_id and duration and amount:
+#             content = Content.objects.get(id=content_id)
+#             promotion_end = timezone.now() + timezone.timedelta(days=int(duration))
+
+#             promotion = PromotedContent.objects.create(
+#                 creator=request.user,
+#                 content=content,
+#                 promotion_end=promotion_end,
+#                 amount_paid=amount,
+#             )
+
+#         # promotion = PromotedContent.objects.create(
+#         #     amount=promotion_amount,
+#         #     duration=promotion_duration,
+#         #     content_id=promotion_content_id,
+#         #     user=request.user
+
+
+#         #     creator=request.user,
+#         #     content=promotion_content_id,
+#         #     promotion_end=promotion_end,
+#         #     amount_paid=amount,
+#         # )
+
+#         # Return a success response
+#             return JsonResponse({"message": "Promotion finalized successfully", "promotion_id": promotion.id})
+
+#     return JsonResponse({"error": "Invalid request method"}, status=400)
+
+# @csrf_exempt  # or use AJAX with CSRF token
+# @login_required
+# def finalize_promotion(request):
+#     content_id = request.session.get('promotion_content_id')
+#     duration = request.session.get('promotion_duration')
+#     amount = request.session.get('promotion_amount')
+
+#     print("Session content_id:", request.session.get('promotion_content_id'))
+#     print("Session duration:", request.session.get('promotion_duration'))
+#     print("Session amount:", request.session.get('promotion_amount'))
+
+#     if not request.user.is_authenticated:
+#         return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=403)
+
+
+#     if content_id and duration and amount:
+#         content = Content.objects.get(id=content_id)
+#         promotion_end = timezone.now() + timezone.timedelta(days=int(duration))
+
+#         PromotedContent.objects.create(
+#             creator=request.user,
+#             content=content,
+#             promotion_end=promotion_end,
+#             amount_paid=amount,
+#         )
+
+#         # Clear session after saving
+#         del request.session['promotion_content_id']
+#         del request.session['promotion_duration']
+#         del request.session['promotion_amount']
+
+#         return JsonResponse({'status': 'saved'})
+
+#     return JsonResponse({'status': 'error', 'message': 'Missing session data'})
+
 
 @login_required
 def edit_content(request, pk):
@@ -185,19 +301,23 @@ def rate_content(request, content_id):
 
         return JsonResponse({"message": "Rating submitted", "average_rating": content.average_rating})
 
+
+
 @login_required
 def promote_content(request, content_id):
     content = Content.objects.get(id=content_id)
     print(content)
     promotion_duration = request.session.get('promotion_duration', None)
+    promotion_amount = request.session.get('promotion_amount', None)
     print(promotion_duration)
+
 
     if request.method == "POST":
         # duration = int(request.POST.get("promotion_amount"))  # Days
         
         duration = int(promotion_duration)  # Days
-        amount = duration * 5  # Example: $5 per day
-        # amount = promotion_amount
+        amount = promotion_amount # Example: $5 per day
+        amount = promotion_amount
 
         # Process payment
         payment_status = process_payment(request.user, amount)
@@ -212,7 +332,10 @@ def promote_content(request, content_id):
             )
             return redirect("home")  # Redirect to home after success
 
-    return render(request, "content/promote_content.html", {"promotion_duration": int(promotion_duration)*5})
+    return render(request, "content/promote_content.html", {"promotion_duration": int(promotion_duration), "promotion_amount":promotion_amount})
+
+
+
 
 # @login_required
 # def upload_content(request):
@@ -237,9 +360,14 @@ def content_detail(request, pk):
     content.save()
     return render(request, 'content/content_detail.html', {'content': content})
 
+@login_required
 def content_display(request, pk):
     content = get_object_or_404(Content, pk=pk)
     payments = PayPalTransaction.objects.filter(user=request.user, is_status_active=True)
+    # ad = Ad.objects.filter(active=True).order_by('?').first()
+    ad_list = list(Ad.objects.values("id", "category", "video_url"))
+
+    print(ad_list)
 
     if payments:
         for payment in payments:
@@ -254,7 +382,7 @@ def content_display(request, pk):
 
                 print(payment.active_duration , timezone.now(), payment.active_duration <= timezone.now())
     print(payments)
-    return render(request, 'content/content_display.html', {'content': content, 'payment': payments})
+    return render(request, 'content/content_display.html', {'content': content, 'payment': payments, 'ad_list_json': json.dumps(ad_list, cls=DjangoJSONEncoder),})
 
 @login_required
 def collaborate(request):
@@ -329,3 +457,35 @@ def free_content_list(request, content_type, show):
         page_obj = paginator.get_page(page_number)
         
     return render(request, 'content/free_content_list.html', {'page_obj': page_obj})
+
+
+
+@csrf_exempt
+@login_required
+def track_ad_view(request, content_id):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        ad_id = data.get("ad_id")
+        full = data.get("full", False)
+
+        # Save to DB
+        AdView.objects.create(
+            user=request.user,
+            content_id=content_id,
+            ad_id=ad_id,
+            watched_full=full
+        )
+
+        return JsonResponse({"status": "ok"})
+
+    return JsonResponse({"error": "Invalid request"}, status=400)
+
+# @csrf_exempt
+# def track_ad_view(request, content_id):
+#     if request.method == 'POST':
+#         data = json.loads(request.body)
+#         watched_full = data.get('full', False)
+#         # Save to DB (optional): e.g., AdView.objects.create(content_id=..., full=watched_full)
+#         return JsonResponse({'status': 'ok'})
+#     return JsonResponse({'error': 'Invalid request'}, status=400)
+

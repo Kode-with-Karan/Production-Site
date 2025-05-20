@@ -1,5 +1,10 @@
 {% extends 'base_black.html' %}
 {% load static %}
+{% block title %} 
+
+Content | EchoesRipple | Empowering Creators to Share & Earn
+
+{% endblock title %}
 {% block nav_bg %}
 <div class="page-header-1-figure m-parallax">
     <div class="page-header-1-image m-parallax-image" style="background-image: url({{content.thumbnail.url}});"></div>
@@ -55,14 +60,14 @@
                     <!-- <h3 class="mt-40 mt-md-50 mt-lg-50 mt-xl-80">Photos</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere metus et tortor pulvinar venenatis. Aliquam erat volutpat. Nam ultrices semper felis, at laoreet metus</p>
                     <div class="row row-6 row-x-6" data-lightgallery="group">
-                        <div class="col-4"><a class="thumbnail-light" href="{% static 'content/images/single-tour-1-original.jpg' %}" data-lightgallery="item"><img class="thumbnail-light-image" src="{% static 'content/images/single-tour-1-355x359.jpg' %}" alt="" width="355" height="359"/></a></div>
-                        <div class="col-4"><a class="thumbnail-light" href="{% static 'content/images/single-tour-2-original.jpg' %}" data-lightgallery="item"><img class="thumbnail-light-image" src="{% static 'content/images/single-tour-2-355x359.jpg' %}" alt="" width="355" height="359"/></a></div>
-                        <div class="col-4"><a class="thumbnail-light" href="{% static 'content/images/single-tour-3-original.jpg' %}" data-lightgallery="item"><img class="thumbnail-light-image" src="{% static 'content/images/single-tour-3-355x359.jpg' %}" alt="" width="355" height="359"/></a></div>
+                        <div class="col-4"><a class="thumbnail-light" href="{% static 'content/images/single-tour-1-original.jpg' %}" data-lightgallery="item"><img class="thumbnail-light-image" src="{% static 'content/images/single-tour-1-355x359.jpg' %}" alt="image..." width="355" height="359"/></a></div>
+                        <div class="col-4"><a class="thumbnail-light" href="{% static 'content/images/single-tour-2-original.jpg' %}" data-lightgallery="item"><img class="thumbnail-light-image" src="{% static 'content/images/single-tour-2-355x359.jpg' %}" alt="image..." width="355" height="359"/></a></div>
+                        <div class="col-4"><a class="thumbnail-light" href="{% static 'content/images/single-tour-3-original.jpg' %}" data-lightgallery="item"><img class="thumbnail-light-image" src="{% static 'content/images/single-tour-3-355x359.jpg' %}" alt="image..." width="355" height="359"/></a></div>
                     </div> -->
                 </article>
             </div>
             <div class="col-lg-4 text-center text-lg-left">
-                <div class="movie-page-imageg"><img src="{{content.thumbnail.url}}" alt="" width="375" height="491" />
+                <div class="movie-page-imageg"><img src="{{content.thumbnail.url}}" alt="image..." width="375" height="491" />
                 </div>
             </div>
         </div>

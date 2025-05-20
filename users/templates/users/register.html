@@ -2,6 +2,18 @@
 {% load socialaccount %}
 {% block content %}
 
+{% if form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                    <li><strong>{{ field|title }}</strong>: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
 <div id="particles-container"></div>
 <section class="section-lg section-one-screen">
   <div class="container">
@@ -35,7 +47,7 @@
               <div class="col-12">
                 <div class="input-group">
                   <div class="input-group-prepend"><span class="input-group-text fa fa-user"></span></div>
-                  <input class="form-control" type="text" name="username" placeholder="Login" id="id_username">
+                  <input class="form-control" type="text" name="username" placeholder="Username" id="id_username">
                 </div>
               </div>
               <div class="col-12">
@@ -48,14 +60,14 @@
               <div class="col-12">
                 <div class="input-group">
                   <div class="input-group-prepend"><span class="input-group-text fa fa-unlock"></span></div>
-                  <input class="form-control" type="password" name="password" placeholder="Create a password"
+                  <input class="form-control" type="password" name="password1" placeholder="Create a password"
                     id="id_password1">
                 </div>
               </div>
               <div class="col-12">
                 <div class="input-group">
                   <div class="input-group-prepend"><span class="input-group-text fa fa-lock"></span></div>
-                  <input class="form-control" type="password" name="password" placeholder="Retype your password"
+                  <input class="form-control" type="password" name="password2" placeholder="Retype your password"
                     id="id_password2">
                 </div>
               </div>
@@ -65,16 +77,16 @@
               <div class="col-12">
                 <div class="group-10">
                   <div class="custom-control custom-checkbox custom-checkbox-primary">
-                    <input class="custom-control-input" type="checkbox" id="uanybkda" required />
-                    <label class="custom-control-label" for="uanybkda">I agree to <a href="{% url 'terms' %}">Terms and
+                    <input class="custom-control-input" type="checkbox" id="register_term_1" required />
+                    <label class="custom-control-label" for="register_term_1">I agree to <a href="{% url 'terms' %}">Terms and
                         Conditions </a>
                     </label>
                   </div>
                 </div>
                 <div class="group-10">
                   <div class="custom-control custom-checkbox custom-checkbox-primary">
-                    <input class="custom-control-input" type="checkbox" id="uanybkda" required />
-                    <label class="custom-control-label" for="uanybkda">I agree to <a
+                    <input class="custom-control-input" type="checkbox" id="register_term_2" required />
+                    <label class="custom-control-label" for="register_term_2">I agree to <a
                         href="{% url 'privacy' %}">Privacy-policy </a>
                     </label>
                   </div>
