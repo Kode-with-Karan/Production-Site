@@ -20,18 +20,66 @@ class Content(models.Model):
         ('shorts', 'Shorts'),
         ('web_shorts', 'Web Shorts'),
         ('feature_series', 'Feature Series'),
+        ('Other', 'Other'),
+        
 
     ]
+
+    REGION_TYPE = [
+        ('English', 'English'),
+        ('Indian', 'Indian'),
+        ('French', 'French'),
+        ('Russian', 'Russian'),
+        ('German', 'German'),
+        ('Spanish', 'Spanish'),
+        ('Japanese', 'Japanese'),
+        ('Italian', 'Italian'),
+        ('Other', 'Other'),
+    ]
+
+    GENRE_TYPE = [
+        ('Comedy', 'Comedy'),
+        ('Action', 'Action'),
+        ('Romantic', 'Romantic'),
+        ('Thriller', 'Thriller'),
+        ('Horror', 'Horror'),
+        ('Magic', 'Magic'),
+        ('Poem', 'Poem'),
+        ('History', 'History'),
+        ('Epic', 'Epic'),
+        ('Health', 'Health'),
+        ('Fantasy', 'Fantasy'),
+        ('Mystery', 'Mystery'),
+        ( "Other" ,"Other"),
+    ]
+
+    LANGUAGE_TYPE = [
+        ('English', 'English'),
+        ('Hindi', 'Hindi'),
+        ('French', 'French'),
+        ('Russian', 'Russian'),
+        ('German', 'German'),
+        ('Spanish', 'Spanish'),
+        ('Japanese', 'Japanese'),
+        ('Italian', 'Italian'),
+        ('Regional_language', 'Regional_language'),
+        ( "Other" ,"Other"),
+    ]
+    
     
     title = models.CharField(max_length=200)
-    country = models.CharField(max_length=200,default="Not Mentioned")
+    # country = models.CharField(max_length=200,default="Not Mentioned")
+    country = models.CharField(max_length=50, choices=REGION_TYPE)
     duration = models.CharField(max_length=200,default="Not Mentioned")
-    genre = models.CharField(max_length=200,default="Not Mentioned")
-    language = models.CharField(max_length=200,default="Not Mentioned")
+    genre = models.CharField(max_length=50, choices=GENRE_TYPE)
+    language = models.CharField(max_length=50, choices=LANGUAGE_TYPE)
+    # genre = models.CharField(max_length=200,default="Not Mentioned")
+    # language = models.CharField(max_length=200,default="Not Mentioned")
     age_rating = models.IntegerField(default="0")
     description = models.TextField()
     cast = models.TextField(default="Not Mentioned")
     content_type = models.CharField(max_length=50, choices=CONTENT_TYPES)
+    # region_type = models.CharField(max_length=50, choices=REGION_TYPE)
     file = models.FileField(upload_to='content_files/')
 
     is_premium = models.BooleanField(default=False)

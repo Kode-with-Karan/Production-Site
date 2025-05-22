@@ -19,11 +19,12 @@ class ContentUploadForm(forms.ModelForm):
 
     class Meta:
         model = Content
-        fields = ['title', 'country', 'duration', 'genre','age_rating', 'cast', 'description', 'content_type', 'file', 'thumbnail', 'promote', 'promotion_duration']
+        fields = ['title', 'country', 'duration', 'genre','language','age_rating', 'cast', 'description', 'content_type', 'file', 'thumbnail', 'promote', 'promotion_duration']
     
-    country = forms.CharField(required=False) 
+    # country = forms.CharField(required=False) 
     duration = forms.CharField(required=False) 
-    genre = forms.CharField(required=False) 
+    # genre = forms.CharField(required=False) 
+    # language = forms.CharField(required=False) 
     cast = forms.CharField(widget=forms.Textarea, required=False)
 
     def save(self, commit=True, user=None):

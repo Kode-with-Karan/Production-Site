@@ -79,6 +79,7 @@ def category(request, content_type):
         ('shorts', 'Shorts'),
         ('web_shorts', 'Web Shorts'),
         ('feature_series', 'Feature Series'),
+        ('Other', 'Other'),
     ]
 
     for i in range(0, len(CONTENT_TYPES)):
@@ -106,6 +107,7 @@ def genre(request, genre_type):
         ('Health', 'Health'),
         ('Fantasy', 'Fantasy'),
         ('Mystery', 'Mystery'),
+        ('Other', 'Other'),
     ]
 
     for i in range(0, len(GENRE_TYPE)):
@@ -129,7 +131,7 @@ def language(request, language_type):
         ('Spanish', 'Spanish'),
         ('Japanese', 'Japanese'),
         ('Italian', 'Italian'),
-        ('Regional_language', 'Regional_language'),
+        ('Other', 'Other'),
     ]
 
     for i in range(0, len(LANGUAGE_TYPE)):
@@ -138,6 +140,29 @@ def language(request, language_type):
             num = i+1
 
     return render(request, 'content/category.html', {'contents': contents, 'language_type': language_type, "num": str(num), 'type': type})
+
+def regional(request, region_type):
+    type = region_type
+    contents = Content.objects.filter(language=region_type).order_by('-uploaded_at')
+
+    REGION_TYPE = [
+        ('English', 'English'),
+        ('Indian', 'Indian'),
+        ('French', 'French'),
+        ('Russian', 'Russian'),
+        ('German', 'German'),
+        ('Spanish', 'Spanish'),
+        ('Japanese', 'Japanese'),
+        ('Italian', 'Italian'),
+        ('Other', 'Other'),
+    ]
+
+    for i in range(0, len(REGION_TYPE)):
+        if (REGION_TYPE[i][0] == region_type):
+            region_type = REGION_TYPE[i][1]
+            num = i+1
+
+    return render(request, 'content/category.html', {'contents': contents, 'region_type': region_type, "num": str(num), 'type': type})
 
 @login_required
 def upload_content(request):
