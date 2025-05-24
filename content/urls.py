@@ -9,6 +9,7 @@ urlpatterns = [
     path('category/<str:content_type>/', views.category, name='category'),
     path('genre/<str:genre_type>/', views.genre, name='genre'),
     path('language/<str:language_type>/', views.language, name='language'),
+    path('regional/<str:region_type>/', views.regional, name='regional'),
     path('content/<int:pk>/', views.content_detail, name='content_detail'),
     path('content_display/<int:pk>/', views.content_display, name='content_display'),
     path('browse/', views.browse_content, name='browse_content'),
