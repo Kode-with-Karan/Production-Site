@@ -20,6 +20,7 @@ class Content(models.Model):
         ('shorts', 'Shorts'),
         ('web_shorts', 'Web Shorts'),
         ('feature_series', 'Feature Series'),
+        ('stand_up', 'Stand Up Comedy'),
         ('Other', 'Other'),
         
 
@@ -83,7 +84,7 @@ class Content(models.Model):
     file = models.FileField(upload_to='content_files/')
 
     is_premium = models.BooleanField(default=False)
-    preview_duration = models.PositiveIntegerField(default=60) 
+    preview_duration = models.PositiveIntegerField(default=20) 
     
     thumbnail = models.ImageField(upload_to='content_thumbnails/', blank=True)
     uploaded_by = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="contents")

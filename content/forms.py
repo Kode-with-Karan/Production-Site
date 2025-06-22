@@ -19,7 +19,7 @@ class ContentUploadForm(forms.ModelForm):
 
     class Meta:
         model = Content
-        fields = ['title', 'country', 'duration', 'genre','language','age_rating', 'cast', 'description', 'content_type', 'file', 'thumbnail', 'promote', 'promotion_duration']
+        fields = ['title', 'country', 'duration', 'genre','language','age_rating', 'cast', 'description', 'content_type', 'file', 'thumbnail', 'is_premium', 'promote', 'promotion_duration']
     
     # country = forms.CharField(required=False) 
     duration = forms.CharField(required=False) 

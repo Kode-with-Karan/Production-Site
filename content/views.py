@@ -19,6 +19,9 @@ import json
 from payments.utils import process_payment 
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse
+from decimal import Decimal
+from users.models import Profile
+from django.contrib.auth.models import User
 
 def robots_txt(request):
     lines = [
@@ -79,6 +82,7 @@ def category(request, content_type):
         ('shorts', 'Shorts'),
         ('web_shorts', 'Web Shorts'),
         ('feature_series', 'Feature Series'),
+        ('stand_up', 'Stand Up Comedy'),
         ('Other', 'Other'),
     ]
 
@@ -380,14 +384,19 @@ def promote_content(request, content_id):
 
 def content_detail(request, pk):
     content = get_object_or_404(Content, pk=pk)
-    content.views += 1
-    content.earnings += 1
-    content.save()
+
     return render(request, 'content/content_detail.html', {'content': content})
 
 @login_required
 def content_display(request, pk):
     content = get_object_or_404(Content, pk=pk)
+
+    content.views += 1
+    print("Updating...")
+    content.earnings += Decimal('0.01')
+    print(content.earnings)
+    content.save()
+
     payments = PayPalTransaction.objects.filter(user=request.user, is_status_active=True)
     # ad = Ad.objects.filter(active=True).order_by('?').first()
     ad_list = list(Ad.objects.values("id", "category", "video_url"))
@@ -514,3 +523,10 @@ def track_ad_view(request, content_id):
 #         return JsonResponse({'status': 'ok'})
 #     return JsonResponse({'error': 'Invalid request'}, status=400)
 
+
+
+def creator_profile(request, username):
+    creator = get_object_or_404(User, username=username)
+    creator = get_object_or_404(Profile, user=creator.id)
+    contents = Content.objects.filter(uploaded_by=creator).order_by('-uploaded_at')
+    return render(request, 'content/creator_profile.html', {'creator': creator, 'contents': contents})

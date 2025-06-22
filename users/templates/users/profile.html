@@ -1,8 +1,13 @@
 {% extends 'base_black.html' %}
 {% load static %}
+{% block title %} 
+
+Profile | EchoesRipple
+
+{% endblock title %}
 {% block nav_bg %}
 <div class="page-header-1-figure m-parallax">
-    <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg-image-4.jpg' %});"></div>
+    <div class="page-header-1-image m-parallax-image" style="background-image: url({{profile.background_picture.url}});"></div>
     <!-- <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg-image-1.jpg' %});"></div> -->
 </div>
 {% endblock nav_bg %}
@@ -10,10 +15,11 @@
 <section class="breadcrumbs-custom">
     <div class="breadcrumbs-custom-inner">
         <div class="container">
-            <div class="breadcrumbs-custom-main m-parallax-content">
-                <h2 class="breadcrumbs-custom-title">Movie Page</h2>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in reprehenderit.</p>
-            </div>
+            <div class="breadcrumbs-custom-main m-parallax-content"  style="background: #0303036b;padding: 10px;border-radius: 10px;">
+                <h2 class="breadcrumbs-custom-title">{{profile.user}}</h2>
+<p>
+    {{profile.bio}}
+</p>            </div>
         </div>
     </div>
 </section>
@@ -33,10 +39,10 @@
                             <td>Bio</td>
                             <td>{{ profile.bio }}</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td>Email</td>
                             <td>{{ profile.email }}</td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td>Website</td>
                             <td>{{ profile.website }}</td>

@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+{% block title %} 
+
+Edit Profile | EchoesRipple
+
+{% endblock title %}
 {% block content %}
 {% if form.errors %}
     <div class="alert alert-danger">
@@ -30,12 +35,12 @@
 
                         <tr>
                             <td>Bio</td>
-                            <td><textarea class="form-input form-control-has-validation" id="id_bio" name="bio" data-constraints="@Required"></textarea>
+                            <td><textarea class="form-input form-control-has-validation" id="id_bio" name="bio" data-constraints="@Required">{{form.bio.value}}</textarea>
                             </td>
                         </tr>
                         <tr>
                             <td>Website</td>
-                            <td><input class="form-input form-control-has-validation" id="id_website" type="url" name="website">
+                            <td><input class="form-input form-control-has-validation" id="id_website" type="url" name="website" value="{{form.website.value}}">
                             </td>
                     
                                 <!-- <td>Сountry</td>
@@ -43,7 +48,7 @@
                         </tr>
                         
                         <tr>
-                            <td>File</td>
+                            <td>Profile Picture:</td>
                             <td>
                                 
                                 <div class="profile-picture-upload">
@@ -65,6 +70,33 @@
                                     <div class="file-upload">
                                         <label for="id_profile_picture" class="file-label">Change Profile Picture</label>
                                         <input type="file" name="profile_picture" accept="image/*" id="id_profile_picture">
+                                    </div>
+                                </div>
+                            
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Background picture:</td>
+                            <td>
+                                
+                                <div class="profile-picture-upload">
+                                    
+                                    <!-- Display current image -->
+                                    <!-- <div class="current-image">
+                                        <p>Currently: <a href="/media/default.png" target="_blank">default.jpg</a></p>
+                                        <img src="/media/default.png" alt="Current Profile Picture">
+                                    </div> -->
+                                
+                                    <!-- Clear checkbox -->
+                                    <div class="clear-option">
+                                        <input type="checkbox" name="background_picture-clear" id="background_picture-clear_id">
+                                        <label for="background_picture-clear_id">Remove current picture</label>
+                                    </div>
+                                
+                                    <!-- File input -->
+                                    <div class="file-upload">
+                                        <label for="id_background_picture" class="file-label">Change Profile Picture</label>
+                                        <input type="file" name="background_picture" accept="image/*" id="id_background_picture">
                                     </div>
                                 </div>
                             

@@ -8,6 +8,7 @@ Content | EchoesRipple | Empowering Creators to Share & Earn
 {% block nav_bg %}
 <div class="page-header-1-figure m-parallax">
     <div class="page-header-1-image m-parallax-image" style="background-image: url({{content.thumbnail.url}});"></div>
+    <!-- hello -->
     <!-- <div class="page-header-1-image m-parallax-image" style="background-image: url({% static 'images/bg-image-1.jpg' %});"></div> -->
 </div>
 {% endblock nav_bg %}
@@ -15,9 +16,9 @@ Content | EchoesRipple | Empowering Creators to Share & Earn
 <section class="breadcrumbs-custom">
     <div class="breadcrumbs-custom-inner">
         <div class="container">
-            <div class="breadcrumbs-custom-main m-parallax-content">
-                <h2 class="breadcrumbs-custom-title">Movie Page</h2>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in reprehenderit.</p>
+            <div class="breadcrumbs-custom-main m-parallax-content" style="background: #0303036b;padding: 10px;border-radius: 10px;">
+                <h2 class="breadcrumbs-custom-title">{{content.title}}</h2>
+                <p>{{content.description}}</p>
                 <div class="group group-sm group-middle"><a class="button button-sm button-icon button-icon-left button-light" href="{% url 'content_display' pk=content.pk %}"><span class="icon mdi mdi-play"></span>Watch Now</a></div>
             </div>
         </div>
@@ -56,7 +57,18 @@ Content | EchoesRipple | Empowering Creators to Share & Earn
                             <td>Genre</td>
                             <td>{{ content.genre|default:"Not Mentioned" }}</td>
                         </tr>
+                        <tr>
+                            <td>Premium Content</td>
+                            {% if content.is_premium %}
+                            <td>Yes</td>
+                            {% else %}
+                            <td>No</td>
+                            {% endif %}
+                        </tr>
+
+
                     </table>
+                                                <a class="button button-lg button-primary mt-lg-40" href="{% url 'creator-profile' content.uploaded_by %}">View Profile</a>
                     <!-- <h3 class="mt-40 mt-md-50 mt-lg-50 mt-xl-80">Photos</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere metus et tortor pulvinar venenatis. Aliquam erat volutpat. Nam ultrices semper felis, at laoreet metus</p>
                     <div class="row row-6 row-x-6" data-lightgallery="group">

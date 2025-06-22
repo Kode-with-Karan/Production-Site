@@ -1,6 +1,6 @@
 {% extends 'base_black.html' %}
 {% load static %}
-{% block title %} 
+{% block title %}
 
 Category | EchoesRipple | Empowering Creators to Share & Earn
 
@@ -53,28 +53,40 @@ Category | EchoesRipple | Empowering Creators to Share & Earn
                     {{genre_type}}
                     {{language_type}}
                     {{region_type}}
-                    
+
                 </h2>
 
                 {% if content_type == 'Short Film'%}
-                    <p>Experience compelling storytelling in a short yet powerful format. Our short films cover various genres, from drama and thriller to romance and sci-fi, delivering entertainment that leaves a lasting impact.</p>
-                    {% elif content_type == 'Podcast'%}
-                    <p>Dive into thought-provoking discussions, insightful interviews, and captivating stories through our diverse range of podcasts. Whether it's personal growth, tech trends, or storytelling, there's something for everyone.</p>
-                    {% elif content_type == 'Documentary'%}
-                    <p>Explore real-world issues, inspiring stories, and deep investigations through our documentaries. Gain knowledge, perspective, and awareness about important topics that shape our world.</p>
-                    {% elif content_type == 'Entertainment Project'%}
-                    <p>Laughter, fun, and excitement—our entertainment section is packed with engaging content, including comedy sketches, viral challenges, and feel-good moments that brighten your day.</p>
-                    {% elif content_type == 'Animation'%}
-                    <p>Immerse yourself in the world of animated creativity, where stunning visuals meet engaging narratives. From fun cartoons to deep artistic expressions, animation brings ideas to life in a unique way.</p>
-                    {% elif content_type == 'Interviews'%}
-                    <p>Get up close and personal with creators, industry leaders, and influencers. Our interviews offer exclusive insights, expert opinions, and inspiring journeys that motivate and educate.</p>
-                    {% elif content_type == 'Education'%}
-                    <p>Get up close and personal with creators, industry leaders, and influencers. Our interviews offer exclusive insights, expert opinions, and inspiring journeys that motivate and educate.</p>
-                    {% elif content_type == 'Music'%}
-                    <p>Discover fresh beats, soulful melodies, and emerging artists in our music section. From independent musicians to trending hits, enjoy high-quality music that suits your vibe.</p>
-                    {% elif content_type == 'Web Series'%}
-                    <p>Immerse yourself in captivating web series, from thrilling dramas to heartwarming stories. Watch, explore, and enjoy exclusive content on EchoesRipple!</p>
-                    {% endif %}
+                <p>Experience compelling storytelling in a short yet powerful format. Our short films cover various
+                    genres, from drama and thriller to romance and sci-fi, delivering entertainment that leaves a
+                    lasting impact.</p>
+                {% elif content_type == 'Podcast'%}
+                <p>Dive into thought-provoking discussions, insightful interviews, and captivating stories through our
+                    diverse range of podcasts. Whether it's personal growth, tech trends, or storytelling, there's
+                    something for everyone.</p>
+                {% elif content_type == 'Documentary'%}
+                <p>Explore real-world issues, inspiring stories, and deep investigations through our documentaries. Gain
+                    knowledge, perspective, and awareness about important topics that shape our world.</p>
+                {% elif content_type == 'Entertainment Project'%}
+                <p>Laughter, fun, and excitement—our entertainment section is packed with engaging content, including
+                    comedy sketches, viral challenges, and feel-good moments that brighten your day.</p>
+                {% elif content_type == 'Animation'%}
+                <p>Immerse yourself in the world of animated creativity, where stunning visuals meet engaging
+                    narratives. From fun cartoons to deep artistic expressions, animation brings ideas to life in a
+                    unique way.</p>
+                {% elif content_type == 'Interviews'%}
+                <p>Get up close and personal with creators, industry leaders, and influencers. Our interviews offer
+                    exclusive insights, expert opinions, and inspiring journeys that motivate and educate.</p>
+                {% elif content_type == 'Education'%}
+                <p>Get up close and personal with creators, industry leaders, and influencers. Our interviews offer
+                    exclusive insights, expert opinions, and inspiring journeys that motivate and educate.</p>
+                {% elif content_type == 'Music'%}
+                <p>Discover fresh beats, soulful melodies, and emerging artists in our music section. From independent
+                    musicians to trending hits, enjoy high-quality music that suits your vibe.</p>
+                {% elif content_type == 'Web Series'%}
+                <p>Immerse yourself in captivating web series, from thrilling dramas to heartwarming stories. Watch,
+                    explore, and enjoy exclusive content on EchoesRipple!</p>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -83,7 +95,7 @@ Category | EchoesRipple | Empowering Creators to Share & Earn
 {% block content %}
 
 <section class="section section-lg bg-default">
-    
+
     <div class="container">
         <div class="text-center wow fadeIn" data-wow-delay="100">
             <h2>Popular {% if content_type == 'short_film'%}
@@ -101,26 +113,33 @@ Category | EchoesRipple | Empowering Creators to Share & Earn
             data-nav="true" data-dots="false" data-autoplay="true" data-wow-delay="100">
             {% for item in contents %}
             <div class="item">
+
                 <div class="box-nina">
+                    {% if item.is_premium %}
+                    <span>
+                        <i class="fa fa-star" style="position: absolute; top: 10px; right: 10px; color: #f6dc16;"></i>
+                    </span>
+                    {% endif %}
                     <div class="box-nina-media"><img src="{{ item.thumbnail.url }}" alt="image..." width="356"
                             height="412" />
                     </div>
                     <div class="box-nina-text">
                         <h4><a class="link-white" href="{% url 'content_detail' pk=item.pk %}">{{ item.title }}</a></h4>
                         <div class="box-nina-info"><span class="icon mdi mdi-calendar-today"></span><span>{{ item.uploaded_at|date:"Y" }},
-                            {{ item.content_type }}</span></div>
+                                {{ item.content_type }}</span></div>
                     </div>
                 </div>
             </div>
             {% empty %}
             <p>No Content Available.</p>
-            {% endfor %}    
-        
+            {% endfor %}
+
         </div>
 
     </div>
     <div style="text-align: center;">
-        <button class="btn m-4" style="background-color: #f6dc16;"><a style="color: white;" href="{% url 'free_content_list' content_type=type show='all' %}"> See More</a></button>
+        <button class="btn m-4" style="background-color: #f6dc16;"><a style="color: white;"
+                href="{% url 'free_content_list' content_type=type show='all' %}"> See More</a></button>
     </div>
 </section>
 

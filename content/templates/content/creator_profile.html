@@ -1,0 +1,322 @@
+{% extends 'base.html' %}
+{% block title %}
+
+Profile | EchoesRipple | Empowering Creators to Share & Earn
+
+{% endblock title %}
+{% block content %}
+
+<style>
+    h2 {
+        text-align: center;
+        margin-top: 100px;
+    }
+
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+
+    .pagination {
+        text-align: center;
+        margin: 20px;
+    }
+
+    .step-links>a {
+        background: #f6dc16;
+        padding: 5px 10px;
+        border-radius: 5px;
+        color: white;
+    }
+</style>
+
+
+<style>
+    .header-image {
+        position: absolute;
+        top: 100px;
+        left: 0;
+        width: 100%;
+        height: 300px;
+        z-index: -1;
+    }
+
+    .header-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Ensure the image covers the area without distortion */
+    }
+
+    .profile-header {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 1000px;
+        padding: 20px;
+        margin-top: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .profile-image {
+        width: 128px;
+        height: 128px;
+        overflow: hidden;
+        border-radius: 50%;
+        border: 4px solid white;
+    }
+
+    .profile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .profile-info h1 {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .pro-badge {
+        background: #dbeafe;
+        color: #1e40af;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 2px 6px;
+        border-radius: 5px;
+        margin-left: 10px;
+    }
+
+    .profile-info p {
+        color: #6b7280;
+        margin: 5px 0;
+    }
+
+    .profile-buttons button {
+        padding: 8px 16px;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    .follow-btn {
+        background: #000;
+        color: white;
+    }
+
+    .touch-btn {
+        background: white;
+        color: #000;
+        border: 1px solid #d1d5db;
+    }
+
+    .stats {
+        text-align: right;
+    }
+
+    .stats div {
+        margin-bottom: 10px;
+    }
+
+    .stats .number {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .stats .label {
+        color: #6b7280;
+    }
+
+    .nav-links {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-start;
+        gap: 20px;
+    }
+
+    .nav-links a {
+        color: #374151;
+        text-decoration: none;
+    }
+
+    .nav-links a:hover {
+        text-decoration: underline;
+    }
+
+    .work-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        width: 90%;
+        max-width: 1000px;
+        margin-top: 40px;
+        padding: 0 10px;
+    }
+
+    @media (min-width: 768px) {
+        .work-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    .work-item {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        position: relative;
+    }
+
+    .work-item img {
+        width: 100%;
+        height: 192px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .work-item h3 {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+
+    .work-stats {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .work-stats span {
+        font-size: 14px;
+    }
+
+    .tag {
+        background: #fee2e2;
+        color: #dc2626;
+        padding: 2px 6px;
+        border-radius: 10px;
+        font-size: 12px;
+    }
+
+    .heart {
+        color: #f59e0b;
+    }
+
+    .comments {
+        color: #6b7280;
+    }
+</style>
+<div class="header-image">
+    <span><img src="{{creator.background_picture.url}}" alt="Header Image"></span>
+</div>
+<div class="profile-header" style="margin: 300px auto 0 auto;">
+    <div style="display: flex; align-items: center; gap: 20px;">
+        <div class="profile-image">
+            <img src="{{creator.profile_picture.url}}" alt="Profile Picture">
+        </div>
+        <div class="profile-info">
+            <h1>{{creator.user}} <!--<span class="pro-badge">PRO</span>--> </h1>
+            <p>{{creator.bio}} <!--<span style="color: #9ca3af;">based in San Antonio</span>--> </p>
+            <!-- <div class="profile-buttons">
+                <button class="follow-btn">Follow</button>
+                <button class="touch-btn">Get in touch</button>
+            </div> -->
+        </div>
+    </div>
+    <div class="stats">
+        <div>
+            <p class="number" style="color: #f97316;">{{creator.website}}</p>
+            <p class="label">Website</p>
+        </div>
+        <!-- <div>
+            <p class="number" style="color: #9333ea;">132</p>
+            <p class="label">Following</p>
+        </div>
+        <div>
+            <p class="number">548</p>
+            <p class="label">Likes</p>
+        </div> -->
+    </div>
+</div>
+
+<div class="content">
+    {% for item in contents %}
+    <!-- <div class="content-item">
+    <h3>{{ item.title }}</h3>
+    <p>{{ item.description|truncatewords:25 }}</p>
+    <a href="{% url 'content_detail' item.id %}">View</a>  
+  </div> -->
+    <div class="item">
+        <div class="box-nina">
+            <div class="box-nina-media">
+                {% if item.is_premium %}
+                <span>
+                    <i class="fa fa-star" style="position: absolute; top: 10px; right: 10px; color: #f6dc16;"></i>
+                </span>
+                {% endif %}
+                <img src="{{ item.thumbnail.url }}" alt="image..." width="356" height="412" />
+            </div>
+            <div class="box-nina-text">
+                <h4><a class="link-white" href="{% url 'content_detail' pk=item.pk %}">{{ item.title }}</a></h4>
+                <div class="box-nina-info"><span
+                        class="icon mdi mdi-calendar-today"></span><span>{{item.uploaded_at|date:"Y" }},
+                        {{ item.content_type }}</span></div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No free content found.</p>
+    {% endfor %}
+
+</div>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+
+{% endblock %}
+<!-- <h1>{{ creator.username }}'s Profile</h1>
+
+{% if contents %}
+    <ul>
+        {% for content in contents %}
+            <li>
+                <h3>{{ content.title }}</h3>
+                <p>{{ content.description|truncatechars:150 }}</p>
+                <p><small>Uploaded: {{ content.created_at }}</small></p>
+                
+                    <video controls width="320">
+                        <source src="{{ content.media_file.url }}" type="video/mp4">
+                    </video>
+                
+                    <a href="{{ content.media_file.url }}">View Content</a>
+               
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No content uploaded yet.</p>
+{% endif %} -->

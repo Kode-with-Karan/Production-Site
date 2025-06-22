@@ -64,7 +64,7 @@ EchoesRipple | Empowering Creators to Share & Earn
                                         <span class="icon mdi mdi-read"></span>Read More</a></div>
                             </div>
                             <div class="col-md-6 col-lg-7 col-xl-5 onset-1">
-                                <div class="slider-image onset-left-2"><img src="{% static 'images/home_bgg.jpg' %}"
+                                <div class="slider-image onset-left-2"><img loading="lazy"  src="{% static 'images/home_bgg.jpg' %}"
                                         alt="image..." width="422" height="522" />
                                     <!-- <div class="slider-image-title"><span>Animation</span></div> -->
                                 </div>
@@ -86,7 +86,40 @@ EchoesRipple | Empowering Creators to Share & Earn
     <div class="figure-classic-pattern v-3"></div>
 </section>
 
-
+<section class="section section-lg bg-default">
+    <div class="container">
+        <div class="row row-50 justify-content-center align-items-center">
+            <div class="col-md-10 col-lg-7">
+                <h4 class="block-1 lh-1"> The Ultimate Playground for Filmmakers, Creators & Dreamers!</h4>
+                <div class="block-2 mt-20 mt-md-30 mt-lg-50" style="color: #f3c10c;">
+                    <p style="color: #f3c10c;" >Welcome to EchoesRipple, the platform where raw talent meets real opportunities! Whether you’re an indie filmmaker, content creator, actor, or investor, we provide the stage, audience, and backing up you need to turn your vision into reality.
+<br>
+                        🎥 <u>Create. Connect. Monetize. Repeat.</u></p>
+                </div><a class="button button-lg button-primary mt-lg-40" href="{% url 'about' %}">Read More</a>
+            </div>
+            <!-- <div class="col-md-10 col-lg-7">
+                <h4 class="block-1 lh-1"> A Few Words About Echoes</h4>
+                <div class="block-2 mt-20 mt-md-30 mt-lg-50">
+                    <p>Echoes productions is a media house involved in the production of short films, animation, documentary, feature films, and podcasts, under its own banner and also, servers as a platform for other producers, to publish their work on our site to gain momentum and earn through our site. We also, support with co-production cooperation with other production houses in various ventures.</p>
+                </div><a class="button button-lg button-primary mt-lg-40" href="#">Read More</a>
+            </div> -->
+            <div class="col-md-10 col-lg-5 parallax-scene-js">
+                <div class="section-image-1 v2"><img src="{% static 'images/section-image-1-546x33.png' %}" alt="image..." width="546" height="33" />
+                    <div class="section-image-decorative-1">
+                        <div class="layer" data-depth="-.25">
+                            <div class="item"></div>
+                        </div>
+                    </div>
+                    <div class="section-image-decorative-2">
+                        <div class="layer" data-depth="+.25">
+                            <div class="item"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- FScreen-->
 <!-- <section class="section bg-custom-1 position-relative">
     <div class="swiper-container swiper-slider swiper-slider-1" data-loop="true" data-autoplay="50000"
@@ -114,7 +147,7 @@ EchoesRipple | Empowering Creators to Share & Earn
                                         now</a></div>
                             </div>
                             <div class="col-md-6 col-lg-7 col-xl-5 onset-1">
-                                <div class="slider-image onset-left-2"><img src="{{ item.thumbnail.url }}"
+                                <div class="slider-image onset-left-2"><img loading="lazy"  src="{{ item.thumbnail.url }}"
                                         alt="image..." width="422" height="522" /> -->
                                     <!-- <div class="slider-image-title"><span>Animation</span></div> -->
                                 <!-- </div>
@@ -142,7 +175,7 @@ EchoesRipple | Empowering Creators to Share & Earn
     {% for promo in promoted %}
         <div class="promoted-item">
             <h3>{{ promo.content.title }}</h3>
-            <img src="{{ promo.content.thumbnail.url }}" alt="{{ promo.content.title }}">
+            <img loading="lazy"  src="{{ promo.content.thumbnail.url }}" alt="{{ promo.content.title }}">
         </div>
     {% endfor %}
 </div>
@@ -164,7 +197,7 @@ EchoesRipple | Empowering Creators to Share & Earn
             {% for item in promoted %}
             <div class="item">
                 <div class="box-nina">
-                    <div class="box-nina-media"><img src="{{ item.content.thumbnail.url }}" alt="image..." width="356"
+                    <div class="box-nina-media"><img loading="lazy"  src="{{ item.content.thumbnail.url }}" alt="image..." width="356"
                             height="412" />
                     </div>
                     <div class="box-nina-text">
@@ -193,7 +226,7 @@ EchoesRipple | Empowering Creators to Share & Earn
             {% for item in contents %}
             <div class="item">
                 <div class="box-nina">
-                    <div class="box-nina-media"><img src="{{ item.thumbnail.url }}" alt="image..." width="356"
+                    <div class="box-nina-media"><img loading="lazy"  src="{{ item.thumbnail.url }}" alt="image..." width="356"
                             height="412" />
                     </div>
                     <div class="box-nina-text">
@@ -222,7 +255,7 @@ EchoesRipple | Empowering Creators to Share & Earn
             {% for item in contents %}
             <div class="item">
                 <div class="box-nina">
-                    <div class="box-nina-media"><img src="{{ item.thumbnail.url }}" alt="image..." width="356"
+                    <div class="box-nina-media"><img loading="lazy"  src="{{ item.thumbnail.url }}" alt="image..." width="356"
                             height="412" />
                     </div>
                     <div class="box-nina-text">
@@ -379,12 +412,12 @@ EchoesRipple | Empowering Creators to Share & Earn
                     
                     
                     
-                <!-- <div class="button-wrap wow fadeInUp" data-wow-delay="1s"><a href="#"><img
-                            src="{% static 'content/images/button-img-01-151x49.png' %}" alt="image..." width="151" height="49" /></a><a href="#"><img
+                <!-- <div class="button-wrap wow fadeInUp" data-wow-delay="1s"><a href="#"><img loading="lazy" 
+                            src="{% static 'content/images/button-img-01-151x49.png' %}" alt="image..." width="151" height="49" /></a><a href="#"><img loading="lazy" 
                             src="{% static 'content/images/button-img-02-153x49.png' %}" alt="image..." width="153" height="49" /></a></div> -->
             </div>
             <div class="col-lg-7 parallax-scene-js">
-                <div class="section-image-1"><img src="{% static 'content/images/section-image-1-546x33.png' %}" alt="image..." width="546"
+                <div class="section-image-1"><img loading="lazy"  src="{% static 'content/images/section-image-1-546x33.png' %}" alt="image..." width="546"
                         height="33" />
                     <div class="section-image-decorative-1">
                         <div class="layer" data-depth="-.25">
