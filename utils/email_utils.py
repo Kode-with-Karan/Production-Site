@@ -18,6 +18,16 @@ def send_email(subject, message, recipient_list, use_secondary=False):
         backend = None  # Use default Django email backend
         from_email = settings.EMAIL_HOST_USER
 
+    host=settings.SECONDARY_EMAIL_CONFIG["EMAIL_HOST"],
+    port=settings.SECONDARY_EMAIL_CONFIG["EMAIL_PORT"],
+    username=settings.SECONDARY_EMAIL_CONFIG["EMAIL_HOST_USER"],
+    password=settings.SECONDARY_EMAIL_CONFIG["EMAIL_HOST_PASSWORD"],
+    use_tls=settings.SECONDARY_EMAIL_CONFIG["EMAIL_USE_TLS"],
+
+    print(host[0], port, username, password, use_tls)
+    
+    
+
     send_mail(
         subject,
         message,

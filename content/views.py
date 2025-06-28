@@ -202,86 +202,6 @@ def upload_content(request):
     return render(request, 'content/upload_content.html', {'form': form})
 
 
-# @csrf_exempt
-# @login_required
-# def finalize_promotion(request):
-#     if request.method == 'POST':
-#         # Parse JSON data from the request body
-#         data = json.loads(request.body)
-#         amount = data.get('promotion_amount')
-#         duration = data.get('promotion_duration')
-#         content_id = data.get('promotion_content_id')
-        
-        
-
-#         # Example of saving promotion details in a model (you can modify as per your requirements)
-#         # Assume you have a Promotion model for this purpose
-
-#         if content_id and duration and amount:
-#             content = Content.objects.get(id=content_id)
-#             promotion_end = timezone.now() + timezone.timedelta(days=int(duration))
-
-#             promotion = PromotedContent.objects.create(
-#                 creator=request.user,
-#                 content=content,
-#                 promotion_end=promotion_end,
-#                 amount_paid=amount,
-#             )
-
-#         # promotion = PromotedContent.objects.create(
-#         #     amount=promotion_amount,
-#         #     duration=promotion_duration,
-#         #     content_id=promotion_content_id,
-#         #     user=request.user
-
-
-#         #     creator=request.user,
-#         #     content=promotion_content_id,
-#         #     promotion_end=promotion_end,
-#         #     amount_paid=amount,
-#         # )
-
-#         # Return a success response
-#             return JsonResponse({"message": "Promotion finalized successfully", "promotion_id": promotion.id})
-
-#     return JsonResponse({"error": "Invalid request method"}, status=400)
-
-# @csrf_exempt  # or use AJAX with CSRF token
-# @login_required
-# def finalize_promotion(request):
-#     content_id = request.session.get('promotion_content_id')
-#     duration = request.session.get('promotion_duration')
-#     amount = request.session.get('promotion_amount')
-
-#     print("Session content_id:", request.session.get('promotion_content_id'))
-#     print("Session duration:", request.session.get('promotion_duration'))
-#     print("Session amount:", request.session.get('promotion_amount'))
-
-#     if not request.user.is_authenticated:
-#         return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=403)
-
-
-#     if content_id and duration and amount:
-#         content = Content.objects.get(id=content_id)
-#         promotion_end = timezone.now() + timezone.timedelta(days=int(duration))
-
-#         PromotedContent.objects.create(
-#             creator=request.user,
-#             content=content,
-#             promotion_end=promotion_end,
-#             amount_paid=amount,
-#         )
-
-#         # Clear session after saving
-#         del request.session['promotion_content_id']
-#         del request.session['promotion_duration']
-#         del request.session['promotion_amount']
-
-#         return JsonResponse({'status': 'saved'})
-
-#     return JsonResponse({'status': 'error', 'message': 'Missing session data'})
-
-
 @login_required
 def edit_content(request, pk):
     content = get_object_or_404(Content, pk=pk)
@@ -366,21 +286,6 @@ def promote_content(request, content_id):
 
 
 
-# @login_required
-# def upload_content(request):
-
-#     if request.method == 'POST':
-
-#         form = ContentUploadForm(request.POST, request.FILES)
-            
-#         if form.is_valid():
-#             content = form.save(commit=False)
-#             content.uploaded_by = request.user.profile
-#             content.save()
-#             return redirect('home')
-#     else:
-#         form = ContentUploadForm()
-#     return render(request, 'content/upload_content.html', {'form': form})
 
 def content_detail(request, pk):
     content = get_object_or_404(Content, pk=pk)
