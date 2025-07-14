@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} 
+{% block title %}
 
 Upload Content | EchoesRipple | Empowering Creators to Share & Earn
 
 {% endblock title %}
 {% block content %}
 {% if form.errors %}
-    <div class="alert alert-danger">
-        <ul>
-            {% for field, errors in form.errors.items %}
-                {% for error in errors %}
-                    <li><strong>{{ field|title }}</strong>: {{ error }}</li>
-                {% endfor %}
-            {% endfor %}
-        </ul>
-    </div>
+<div class="alert alert-danger">
+    <ul>
+        {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+        <li><strong>{{ field|title }}</strong>: {{ error }}</li>
+        {% endfor %}
+        {% endfor %}
+    </ul>
+</div>
 {% endif %}
 
 
@@ -27,192 +27,274 @@ Upload Content | EchoesRipple | Empowering Creators to Share & Earn
             <div class="col-lg-8">
                 <article class="post-info inset-1">
                     <h4 class="post-info-title">Upload Your Content</h4>
-                    <p>Share your creativity with the world! Upload your films, podcasts, and more for free on EchoesRipple.
+                    <p>Share your creativity with the world! Upload your films, podcasts, and more for free on
+                        EchoesRipple.
 
                         Start earning from your content today! 🚀</p>
 
-                        <form method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                        
-                    
-                        <table class="post-info-table">
-                        <tr>
-                            <td>Title</td>
-                            <td><input class="form-input form-control-has-validation" id="id_title" type="text" name="title" data-constraints="@Required" fdprocessedid="w2q0tf">
-                            </td>
-                    
-                                <!-- <td>Сountry</td>
-                            <td>USA</td> -->
-                        </tr>
-                        <tr>
-                            <td>Country</td>
-                            <!-- <td><input class="form-input form-control-has-validation" id="id_country" type="text" name="country"  fdprocessedid="w2q0tf"> -->
-                            <td>
-                                <select class="form-input form-control-has-validation" name="country" required="" id="id_country" >
-                                <option value="" selected="">---------</option>
-                              
-                                <option value="Italian">Italian</option>
-                                <option value="Japanese">Japanese</option>
-                                <option value="Spanish">Spanish</option>
-                                <option value="German">German</option>
-                                <option value="Russian">Russian</option>
-                                <option value="French">French</option>
-                                <option value="Indian">Indian</option>
-                                <option value="English">English</option>
-                                <option value="Other">Other</option>                  
-                            </td>
-                    
-                                <!-- <td>Сountry</td>
-                            <td>USA</td> -->
-                        </tr>
-                        <tr>
-                            <td>Genre</td>
-                            <!-- <td><input class="form-input form-control-has-validation" id="id_genre" type="text" name="genre"  fdprocessedid="w2q0tf"> -->
-                            <td>
-                                <select class="form-input form-control-has-validation" name="genre" required="" id="id_genre" >
-                                <option value="" selected="">---------</option>
-                              
-                                <option value="Mystery">Mystery</option>
-                                <option value="Fantasy">Fantasy</option>
-                                <option value="Health">Health</option>
-                                <option value="Epic">Epic</option>
-                                <option value="History">History</option>
-                                <option value="Poem">Poem</option>
-                                <option value="Horror">Horror</option>
-                                <option value="Thriller">Thriller</option>
-                                <option value="Romantic">Romantic</option>
-                                <option value="Action">Action</option>
-                                <option value="Comedy">Comedy</option>
-                                <option value="Magic">Magic</option>
-                                <option value="Other">Other</option>   
-                              </select>                            
-                            </td>
-                    
-                                <!-- <td>Сountry</td>
-                            <td>USA</td> -->
-                        </tr>
-                        <tr>
-                            <td>Language</td>
-                            <!-- <td><input class="form-input form-control-has-validation" id="id_language" type="text" name="Language"  fdprocessedid="w2q0tf"> -->
-                            <td>
-                                <select class="form-input form-control-has-validation" name="language" required="" id="id_language" >
-                                <option value="" selected="">---------</option>
-                              
-                                <option value="Italian">Italian</option>
-                                <option value="Japanese">Japanese</option>
-                                <option value="Spanish">Spanish</option>
-                                <option value="German">German</option>
-                                <option value="Russian">Russian</option>
-                                <option value="French">French</option>
-                                <option value="Hindi">Hindi</option>
-                                <option value="English">English</option>
-                                <option value="Other">Other</option>   
-                            </td>
-                    
-                                <!-- <td>Сountry</td>
-                            <td>USA</td> -->
-                        </tr>
-                        <tr>
-                            <td>Age Rating</td>
-                            <td><input class="form-input form-control-has-validation" id="id_age_rating" type="number" name="age_rating"  fdprocessedid="w2q0tf">
-                            </td>
-                    
-                                <!-- <td>Сountry</td>
-                            <td>USA</td> -->
-                        </tr>
-                        <tr>
-                            <td>Duration</td>
-                            <td><input class="form-input form-control-has-validation" id="id_duration" type="text" name="duration"  fdprocessedid="w2q0tf">
-                            </td>
-                    
-                                <!-- <td>Сountry</td>
-                            <td>USA</td> -->
-                        </tr>
-                        <tr>
-                            <td>Cast</td>
-                            <td><textarea class="form-input form-control-has-validation" id="id_cast" name="cast" ></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Description</td>
-                            <td><textarea class="form-input form-control-has-validation" id="id_description" name="description" data-constraints="@Required"></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Content Type</td>
-                            <!-- <td><input class="form-input form-control-has-validation" id="contact-name" type="text" name="name" data-constraints="@Required" fdprocessedid="w2q0tf"> -->
-                                <td>
-                                <select class="form-input form-control-has-validation" name="content_type" required="" id="id_content_type" fdprocessedid="gpvadp">
-                                <option value="" selected="">---------</option>
-                              
-                                <option value="short_film">Short Film</option>
-                                <option value="podcast">Podcast</option>
-                                <option value="documentary">Documentary</option>
-                                <option value="entertainment">Entertainment Project</option>
-                                <option value="music">Music</option>
-                                <option value="education">Education</option>
-                                <option value="interviews">Interviews</option>
-                                <option value="animation">Animation</option>
-                                <option value="web_series">Web Series</option>
-                                <option value="feature_series">Feature Series</option>   
-                                <option value="web_shorts">Web Shorts</option>   
-                                <option value="shorts">Shorts</option>   
-                                <option value="drama">Drama</option>   
-                                <option value="short_series">Short Series</option>   
-                                <option value="stand_up">Stand Up Comedy</option>
-                                <option value="Other">Other</option>   
-                              </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>File</td>
-                            <td><input class="form-input form-control-has-validation" id="id_file" type="file" name="file" data-constraints="@Required" fdprocessedid="w2q0tf">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Thumbnail</td>
-                            <td><input class="form-input form-control-has-validation" id="id_thumbnail" accept="image/*" type="file" name="thumbnail" data-constraints="@Required" fdprocessedid="w2q0tf">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><Label for="id_is_premium">Wants To Monetize : </Label></td>
-                            <td>
-                                <input class=" form-control-has-validation" type="checkbox" name="is_premium" id="id_is_premium" class="checkbox-custom">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="promote"> Promote this content?
-                                </label>
-                            </td>
-                            <td>
-                                <!-- <input class="form-input form-control-has-validation" id="id_thumbnail" accept="image/*" type="file" name="thumbnail" data-constraints="@Required" fdprocessedid="w2q0tf"> -->
-                                <select class="form-input form-control-has-validation" name="promotion_duration">
-                                    <option value="1">1 Day - $4.99</option>
-                                    <option value="14">14 Days - $14.99</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
-                    
-                
-                    
+                    <form method="post" enctype="multipart/form-data" id="uploadForm">
+                        {% csrf_token %}
 
-                    <button class="button button-lg button-primary" type="submit" >Upload</button>
-                </form>
-                    
+
+                        <table class="post-info-table">
+                            <tr>
+                                <td>Title</td>
+                                <td><input class="form-input form-control-has-validation" id="id_title" type="text"
+                                        name="title" data-constraints="@Required" fdprocessedid="w2q0tf">
+                                </td>
+
+                                <!-- <td>Сountry</td>
+                            <td>USA</td> -->
+                            </tr>
+                            <tr>
+                                <td>Country</td>
+                                <!-- <td><input class="form-input form-control-has-validation" id="id_country" type="text" name="country"  fdprocessedid="w2q0tf"> -->
+                                <td>
+                                    <select class="form-input form-control-has-validation" name="country" required=""
+                                        id="id_country">
+                                        <option value="" selected="">---------</option>
+
+                                        <option value="Italian">Italian</option>
+                                        <option value="Japanese">Japanese</option>
+                                        <option value="Spanish">Spanish</option>
+                                        <option value="German">German</option>
+                                        <option value="Russian">Russian</option>
+                                        <option value="French">French</option>
+                                        <option value="Indian">Indian</option>
+                                        <option value="English">English</option>
+                                        <option value="Other">Other</option>
+                                </td>
+
+                                <!-- <td>Сountry</td>
+                            <td>USA</td> -->
+                            </tr>
+                            <tr>
+                                <td>Genre</td>
+                                <!-- <td><input class="form-input form-control-has-validation" id="id_genre" type="text" name="genre"  fdprocessedid="w2q0tf"> -->
+                                <td>
+                                    <select class="form-input form-control-has-validation" name="genre" required=""
+                                        id="id_genre">
+                                        <option value="" selected="">---------</option>
+
+                                        <option value="Mystery">Mystery</option>
+                                        <option value="Fantasy">Fantasy</option>
+                                        <option value="Health">Health</option>
+                                        <option value="Epic">Epic</option>
+                                        <option value="History">History</option>
+                                        <option value="Poem">Poem</option>
+                                        <option value="Horror">Horror</option>
+                                        <option value="Thriller">Thriller</option>
+                                        <option value="Romantic">Romantic</option>
+                                        <option value="Action">Action</option>
+                                        <option value="Comedy">Comedy</option>
+                                        <option value="Magic">Magic</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </td>
+
+                                <!-- <td>Сountry</td>
+                            <td>USA</td> -->
+                            </tr>
+                            <tr>
+                                <td>Language</td>
+                                <!-- <td><input class="form-input form-control-has-validation" id="id_language" type="text" name="Language"  fdprocessedid="w2q0tf"> -->
+                                <td>
+                                    <select class="form-input form-control-has-validation" name="language" required=""
+                                        id="id_language">
+                                        <option value="" selected="">---------</option>
+
+                                        <option value="Italian">Italian</option>
+                                        <option value="Japanese">Japanese</option>
+                                        <option value="Spanish">Spanish</option>
+                                        <option value="German">German</option>
+                                        <option value="Russian">Russian</option>
+                                        <option value="French">French</option>
+                                        <option value="Hindi">Hindi</option>
+                                        <option value="English">English</option>
+                                        <option value="Other">Other</option>
+                                </td>
+
+                                <!-- <td>Сountry</td>
+                            <td>USA</td> -->
+                            </tr>
+                            <tr>
+                                <td>Age Rating</td>
+                                <td><input class="form-input form-control-has-validation" id="id_age_rating"
+                                        type="number" name="age_rating" fdprocessedid="w2q0tf">
+                                </td>
+
+                                <!-- <td>Сountry</td>
+                            <td>USA</td> -->
+                            </tr>
+                            <tr>
+                                <td>Duration</td>
+                                <td><input class="form-input form-control-has-validation" id="id_duration" type="text"
+                                        name="duration" fdprocessedid="w2q0tf">
+                                </td>
+
+                                <!-- <td>Сountry</td>
+                            <td>USA</td> -->
+                            </tr>
+                            <tr>
+                                <td>Cast</td>
+                                <td><textarea class="form-input form-control-has-validation" id="id_cast"
+                                        name="cast"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td><textarea class="form-input form-control-has-validation" id="id_description"
+                                        name="description" data-constraints="@Required"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Content Type</td>
+                                <!-- <td><input class="form-input form-control-has-validation" id="contact-name" type="text" name="name" data-constraints="@Required" fdprocessedid="w2q0tf"> -->
+                                <td>
+                                    <select class="form-input form-control-has-validation" name="content_type"
+                                        required="" id="id_content_type" fdprocessedid="gpvadp">
+                                        <option value="" selected="">---------</option>
+
+                                        <option value="short_film">Short Film</option>
+                                        <option value="podcast">Podcast</option>
+                                        <option value="documentary">Documentary</option>
+                                        <option value="entertainment">Entertainment Project</option>
+                                        <option value="music">Music</option>
+                                        <option value="education">Education</option>
+                                        <option value="interviews">Interviews</option>
+                                        <option value="animation">Animation</option>
+                                        <option value="web_series">Web Series</option>
+                                        <option value="feature_series">Feature Series</option>
+                                        <option value="web_shorts">Web Shorts</option>
+                                        <option value="shorts">Shorts</option>
+                                        <option value="drama">Drama</option>
+                                        <option value="short_series">Short Series</option>
+                                        <option value="stand_up">Stand Up Comedy</option>
+                                        <option value="Creatives">Creatives</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>File</td>
+                                <td><input class="form-input form-control-has-validation" id="id_file" type="file"
+                                        name="file" data-constraints="@Required" fdprocessedid="w2q0tf">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Thumbnail</td>
+                                <td><input class="form-input form-control-has-validation" id="id_thumbnail"
+                                        accept="image/*" type="file" name="thumbnail" data-constraints="@Required"
+                                        fdprocessedid="w2q0tf">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><Label for="id_is_premium">Wants To Monetize : </Label></td>
+                                <td>
+                                    <input class=" form-control-has-validation" type="checkbox" name="is_premium"
+                                        id="id_is_premium" class="checkbox-custom">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" name="promote"> Promote this content?
+                                    </label>
+                                </td>
+                                <td>
+                                    <!-- <input class="form-input form-control-has-validation" id="id_thumbnail" accept="image/*" type="file" name="thumbnail" data-constraints="@Required" fdprocessedid="w2q0tf"> -->
+                                    <select class="form-input form-control-has-validation" name="promotion_duration">
+                                        <option value="1">1 Day - $4.99</option>
+                                        <option value="14">14 Days - $14.99</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+
+
+
+
+                        <button class="button button-lg button-primary" type="submit">Upload</button>
+
+                        <div id="progressContainer" style="display:none; margin-top: 15px;">
+                            <progress id="uploadProgress" value="0" max="100"
+                                style="width: 100%; height: 18px;"></progress>
+                            <div><span id="uploadPercent">0%</span> uploaded</div>
+                        </div>
+                    </form>
+
                 </article>
             </div>
             <div class="col-lg-4 text-center text-lg-left">
-                <div class="movie-page-imageg"><img src="{% static 'content/images/movie-page-image-375x491.jpg' %}" alt="image..." width="375" height="491" />
+                <div class="movie-page-imageg"><img src="{% static 'content/images/movie-page-image-375x491.jpg' %}"
+                        alt="image..." width="375" height="491" />
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("uploadForm");
+    const progressBar = document.getElementById("uploadProgress");
+    const progressContainer = document.getElementById("progressContainer");
+    const percentLabel = document.getElementById("uploadPercent");
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const xhr = new XMLHttpRequest();
+
+        xhr.open("POST", "", true); // Submit to the same URL
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
+        xhr.upload.addEventListener("progress", function (e) {
+            if (e.lengthComputable) {
+                const percent = Math.round((e.loaded / e.total) * 100);
+                progressBar.value = percent;
+                percentLabel.textContent = percent + "%";
+            }
+        });
+
+        xhr.onloadstart = function () {
+            progressContainer.style.display = "block";
+            progressBar.value = 0;
+            percentLabel.textContent = "0%";
+        };
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                try {
+                    const res = JSON.parse(xhr.responseText);
+                    if (res.redirect_url) {
+                        window.location.href = res.redirect_url;
+                    } else {
+                        alert("Upload complete!");
+                        form.reset();
+                        progressContainer.style.display = "none";
+                    }
+                } catch (err) {
+                    alert("Upload finished, but unexpected response.");
+                }
+            } else {
+                alert("Upload failed.");
+            }
+        };
+
+        xhr.onerror = function () {
+            alert("An error occurred during upload.");
+        };
+
+        xhr.send(formData);
+    });
+});
+</script>
+
+
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", function () {
         let promoteCheckbox = document.querySelector("#id_promote");
         let durationField = document.querySelector("#id_promotion_duration").closest("p");
 
@@ -223,7 +305,7 @@ Upload Content | EchoesRipple | Empowering Creators to Share & Earn
         promoteCheckbox.addEventListener("change", togglePromotionOptions);
         togglePromotionOptions();  // Run on page load
     });
-</script>
+</script> -->
 
 <!-- <div style="margin: 100px;"></div>
 <h2>Upload Your Content</h2>

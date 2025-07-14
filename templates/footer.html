@@ -90,6 +90,7 @@
                                     <li><a href="{% url 'genre' 'Horror' %}">Horror</a></li>
                                     <li><a href="{% url 'genre' 'Mystery' %}">Mystery</a></li>
                                     <li><a href="{% url 'genre' 'Friction' %}">Friction</a></li>
+                                    <li><a href="{% url 'genre' 'Creatives' %}">Creatives</a></li>
                                 </ul>
                             </div>
                             <div class="col-6">
@@ -162,7 +163,7 @@
     </div>
     <div class="footer-modern-aside">
         <div class="container">
-            <div class="footer-modern-aside-layout"><a class="brand" href="index.html"><img class="brand-logo-dark"
+            <div class="footer-modern-aside-layout"><a class="brand" href="{% url 'home' %}"><img class="brand-logo-dark"
                         src="{% static 'images/logo-default-133x19.png' %}" alt="logo" width="133" height="19"
                         srcset="{% static 'images/logo-default-266x37.png' %} 2x" /><img class="brand-logo-light"
                         src="{% static 'images/logo-inverse-133x19.png' %}" alt="logo" width="133" height="19"

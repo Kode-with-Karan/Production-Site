@@ -22,6 +22,7 @@ from django.http import HttpResponse
 from decimal import Decimal
 from users.models import Profile
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 def robots_txt(request):
     lines = [
@@ -111,6 +112,7 @@ def genre(request, genre_type):
         ('Health', 'Health'),
         ('Fantasy', 'Fantasy'),
         ('Mystery', 'Mystery'),
+        ('Creatives', 'Creatives'),
         ('Other', 'Other'),
     ]
 
@@ -168,33 +170,70 @@ def regional(request, region_type):
 
     return render(request, 'content/category.html', {'contents': contents, 'region_type': region_type, "num": str(num), 'type': type})
 
+# @login_required
+# def upload_content(request):
+#     if request.method == 'POST':
+#         form = ContentUploadForm(request.POST, request.FILES)
+        
+#         if form.is_valid():
+#             content = form.save(commit=False)
+#             content.uploaded_by = request.user.profile
+#             content.save()
+
+#             # Check if the user selected promotion
+#             if form.cleaned_data['promote']:
+#                 duration = form.cleaned_data['promotion_duration']
+                
+#                 amount = 14.99 if duration == '14' else 4.99
+                
+#                 request.session['promotion_content_id'] = content.id
+#                 request.session['promotion_duration'] = duration
+#                 request.session['promotion_amount'] = amount
+
+#                 print("Session content_id:", request.session.get('promotion_content_id'))
+#                 print("Session duration:", request.session.get('promotion_duration'))
+#                 print("Session amount:", request.session.get('promotion_amount'))
+
+#                 return redirect('promote_content', content_id=content.id)  # Redirect to payment page
+
+#             return redirect('home')
+
+#     else:
+#         form = ContentUploadForm()
+
+#     return render(request, 'content/upload_content.html', {'form': form})
+
+
 @login_required
 def upload_content(request):
     if request.method == 'POST':
         form = ContentUploadForm(request.POST, request.FILES)
-        
+
         if form.is_valid():
             content = form.save(commit=False)
             content.uploaded_by = request.user.profile
             content.save()
 
-            # Check if the user selected promotion
-            if form.cleaned_data['promote']:
-                duration = form.cleaned_data['promotion_duration']
-                
+            if form.cleaned_data.get('promote'):
+                duration = form.cleaned_data.get('promotion_duration')
                 amount = 14.99 if duration == '14' else 4.99
-                
+
                 request.session['promotion_content_id'] = content.id
                 request.session['promotion_duration'] = duration
                 request.session['promotion_amount'] = amount
 
-                print("Session content_id:", request.session.get('promotion_content_id'))
-                print("Session duration:", request.session.get('promotion_duration'))
-                print("Session amount:", request.session.get('promotion_amount'))
+                redirect_url = reverse('promote_content', args=[content.id])
+            else:
+                redirect_url = reverse('home')
 
-                return redirect('promote_content', content_id=content.id)  # Redirect to payment page
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                return JsonResponse({'redirect_url': redirect_url})
 
-            return redirect('home')
+            return redirect(redirect_url)
+        
+        else:
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                return JsonResponse({'errors': form.errors}, status=400)
 
     else:
         form = ContentUploadForm()
