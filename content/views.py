@@ -1,12 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
-from .models import Content, Rating
+from .models import Content, Rating, Contest
 from .forms import ContentUploadForm,CollaborateUploadForm
 from django.db.models import Q
 from django.contrib import messages
 from blog.models import Blog
-# from django.core.mail import send_mail
 from utils.email_utils import send_email
 from .models import PromotedContent
 from django.utils import timezone
@@ -23,6 +22,10 @@ from decimal import Decimal
 from users.models import Profile
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+from django.contrib.auth import get_user
+import os
 
 def robots_txt(request):
     lines = [
@@ -57,12 +60,11 @@ def browse_content(request):
 
 
 def home(request):
-    contents = Content.objects.all()[:8]
+    contents = Content.objects.all()[:11]
     blogs = Blog.objects.filter(status='published').order_by('-created_at')[:4]
     promoted = PromotedContent.objects.filter(is_active=True, promotion_end__gte=timezone.now())
     all_content = Content.objects.all().exclude(id__in=[p.content.id for p in promoted])
 
-    # return render(request, "home.html", {"promoted": promoted, "all_content": all_content})
     return render(request, 'content/home.html', {'contents': contents, 'blogs': blogs, "promoted": promoted, "promoted_all_content": all_content})
 
 def category(request, content_type):
@@ -84,6 +86,10 @@ def category(request, content_type):
         ('web_shorts', 'Web Shorts'),
         ('feature_series', 'Feature Series'),
         ('stand_up', 'Stand Up Comedy'),
+        ('gaming', 'gaming'),
+        ('reels', 'reels'),
+        ('vlogs', 'vLogs'),
+        ('monologue', 'Monologue'),
         ('Other', 'Other'),
     ]
 
@@ -91,10 +97,17 @@ def category(request, content_type):
         if (CONTENT_TYPES[i][0]== content_type):
             content_type = CONTENT_TYPES[i][1]
             num = i+1
+
+    free_contents = Content.objects.filter(content_type = type).order_by('-uploaded_at')  # or use your free criteria
+    print(contents)
+    paginator = Paginator(free_contents, 12)  # 10 items per page
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     
 
 
-    return render(request, 'content/category.html', {'contents': contents, 'content_type': content_type, "num": str(num), 'type': type})
+    return render(request, 'content/category.html', {'page_obj': page_obj, 'contents': contents, 'content_type': content_type, "num": str(num), 'type': type})
 
 def genre(request, genre_type):
     type = genre_type
@@ -170,39 +183,6 @@ def regional(request, region_type):
 
     return render(request, 'content/category.html', {'contents': contents, 'region_type': region_type, "num": str(num), 'type': type})
 
-# @login_required
-# def upload_content(request):
-#     if request.method == 'POST':
-#         form = ContentUploadForm(request.POST, request.FILES)
-        
-#         if form.is_valid():
-#             content = form.save(commit=False)
-#             content.uploaded_by = request.user.profile
-#             content.save()
-
-#             # Check if the user selected promotion
-#             if form.cleaned_data['promote']:
-#                 duration = form.cleaned_data['promotion_duration']
-                
-#                 amount = 14.99 if duration == '14' else 4.99
-                
-#                 request.session['promotion_content_id'] = content.id
-#                 request.session['promotion_duration'] = duration
-#                 request.session['promotion_amount'] = amount
-
-#                 print("Session content_id:", request.session.get('promotion_content_id'))
-#                 print("Session duration:", request.session.get('promotion_duration'))
-#                 print("Session amount:", request.session.get('promotion_amount'))
-
-#                 return redirect('promote_content', content_id=content.id)  # Redirect to payment page
-
-#             return redirect('home')
-
-#     else:
-#         form = ContentUploadForm()
-
-#     return render(request, 'content/upload_content.html', {'form': form})
-
 
 @login_required
 def upload_content(request):
@@ -240,7 +220,6 @@ def upload_content(request):
 
     return render(request, 'content/upload_content.html', {'form': form})
 
-
 @login_required
 def edit_content(request, pk):
     content = get_object_or_404(Content, pk=pk)
@@ -266,7 +245,6 @@ def edit_content(request, pk):
 
     return render(request, "content/edit_content.html", {"content": content})
 
-
 @login_required
 def rate_content(request, content_id):
     if request.method == "POST":
@@ -288,8 +266,6 @@ def rate_content(request, content_id):
         content.save()
 
         return JsonResponse({"message": "Rating submitted", "average_rating": content.average_rating})
-
-
 
 @login_required
 def promote_content(request, content_id):
@@ -323,9 +299,6 @@ def promote_content(request, content_id):
     return render(request, "content/promote_content.html", {"promotion_duration": int(promotion_duration), "promotion_amount":promotion_amount})
 
 
-
-
-
 def content_detail(request, pk):
     content = get_object_or_404(Content, pk=pk)
 
@@ -342,7 +315,6 @@ def content_display(request, pk):
     content.save()
 
     payments = PayPalTransaction.objects.filter(user=request.user, is_status_active=True)
-    # ad = Ad.objects.filter(active=True).order_by('?').first()
     ad_list = list(Ad.objects.values("id", "category", "video_url"))
 
     print(ad_list)
@@ -371,7 +343,6 @@ def collaborate(request):
             content.user = request.user
             content.save()
 
-            # Prepare email content
             subject = "New Collaboration Submission"
             recipient_email = "accm8783@gmail.com"  # Change to the actual recipient's email
             sender_email = request.user.email  # Sender is the logged-in user's email
@@ -395,9 +366,6 @@ def collaborate(request):
         form = CollaborateUploadForm()
     return render(request, 'content/collaborate.html', {'form': form})
 
-
-
-
 @login_required
 def delete_content(request, pk):
     content = get_object_or_404(Content, pk=pk)
@@ -418,8 +386,6 @@ def delete_content(request, pk):
     print(content)
     return render(request, "content/delete_confirm.html", {"content": content})
 
-
-
 def free_content_list(request, content_type, show):
     if show == 'all':
         free_contents = Content.objects.filter(content_type = content_type).order_by('-uploaded_at')  # or use your free criteria
@@ -435,7 +401,6 @@ def free_content_list(request, content_type, show):
         page_obj = paginator.get_page(page_number)
         
     return render(request, 'content/free_content_list.html', {'page_obj': page_obj})
-
 
 
 @csrf_exempt
@@ -458,15 +423,6 @@ def track_ad_view(request, content_id):
 
     return JsonResponse({"error": "Invalid request"}, status=400)
 
-# @csrf_exempt
-# def track_ad_view(request, content_id):
-#     if request.method == 'POST':
-#         data = json.loads(request.body)
-#         watched_full = data.get('full', False)
-#         # Save to DB (optional): e.g., AdView.objects.create(content_id=..., full=watched_full)
-#         return JsonResponse({'status': 'ok'})
-#     return JsonResponse({'error': 'Invalid request'}, status=400)
-
 
 
 def creator_profile(request, username):
@@ -474,3 +430,58 @@ def creator_profile(request, username):
     creator = get_object_or_404(Profile, user=creator.id)
     contents = Content.objects.filter(uploaded_by=creator).order_by('-uploaded_at')
     return render(request, 'content/creator_profile.html', {'creator': creator, 'contents': contents})
+
+@login_required
+def contest(request):
+    if request.method == "POST":
+            user = get_user(request) 
+            name = user
+            email = user.email
+            phone = request.POST.get("phone")
+            country = request.POST.get("country")
+            genre = request.POST.get("genre")
+            description = request.POST.get("description")
+            uploaded_file = request.FILES.get("file")
+
+
+            # Save file temporarily
+            fs = FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'contest_uploads'))
+            filename = fs.save(uploaded_file.name, uploaded_file)
+            file_url = fs.url(filename)  # e.g. /media/contest_uploads/myfile.mp4
+            file_url =  file_url.replace("/media/", "/media/contest_uploads/")
+
+            
+
+
+            Contest.objects.create(
+                user=user,
+                phone=phone,
+                country=country,
+                genre=genre,
+                description=description,
+                file_url=file_url
+            )
+
+
+            # Build message
+            message = f"""
+    Name: {name}
+    Phone: {phone}
+    Email: {email}
+    Country: {country}
+    Genre: {genre}
+    Description : {description}
+    File: {request.build_absolute_uri(file_url)}
+    """
+
+            send_email(
+                subject=f"Contest Submission from {name}",
+                message=message,
+                # recipient_list=["karanost12@gmail.com"],  # or your test email
+                recipient_list=["accm8783@gmail.com"],  # or your test email
+            )
+
+            return render(request, "content/contest.html", {"success": True})
+
+
+    return render(request, "content/contest.html")

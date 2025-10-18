@@ -2,6 +2,84 @@
 {% load static %}
 {% load socialaccount %}
 {% block content %}
+
+<style>
+    /* ==== Error Alert Box ==== */
+    .alert.alert-danger {
+        background-color: #ffe6e6;
+        /* soft red background */
+        border: 1px solid #ff4d4d;
+        /* red border */
+        color: #b30000;
+        /* dark red text */
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin: 100px 20px 20px;
+        font-family: "Poppins", sans-serif;
+        box-shadow: 0 2px 6px rgba(255, 77, 77, 0.15);
+        animation: fadeInDown 0.4s ease-in-out;
+
+    }
+
+    /* ==== Unordered List ==== */
+    .alert.alert-danger ul {
+        list-style-type: none;
+        /* remove default bullets */
+        padding-left: 0;
+        margin: 0;
+    }
+
+    /* ==== Each Error Line ==== */
+    .alert.alert-danger li {
+        background-color: #fff2f2;
+        /* slightly lighter background per error */
+        border-left: 4px solid #ff4d4d;
+        /* red line accent */
+        padding: 8px 12px;
+        margin-bottom: 6px;
+        border-radius: 4px;
+        font-size: 15px;
+        transition: background 0.2s ease;
+    }
+
+    .alert.alert-danger li:hover {
+        background-color: #ffe0e0;
+    }
+
+    /* ==== Field Label in Bold ==== */
+    .alert.alert-danger strong {
+        color: #990000;
+        font-weight: 600;
+    }
+
+    /* ==== Entry Animation ==== */
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+{% if form.errors %}
+<div class="alert alert-danger">
+    <ul>
+        {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+        <li><strong>{{ field|title }}</strong>: {{ error }}</li>
+        {% endfor %}
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+
+
 <div id="particles-container"></div>
 <section class="section-lg section-one-screen">
     <div class="container">
@@ -13,7 +91,8 @@
                         <div class="row row-10 align-items-end">
                             <div class="col-6 col-sm-7"><a href="index.html"><img src="images/logo-default-155x43.png"
                                         alt=""></a></div>
-                            <div class="col-6 col-sm-5 text-right"><a class="font-weight-bold" href="{% url 'login' %}">Sign
+                            <div class="col-6 col-sm-5 text-right"><a class="font-weight-bold"
+                                    href="{% url 'login' %}">Sign
                                     In</a><span class="px-2">|</span><a href="{% url 'register' %}">Register</a></div>
                         </div>
                     </div>
@@ -48,7 +127,7 @@
                                         <div class="input-group-prepend"><span
                                                 class="input-group-text fa fa-user"></span></div>
                                         <input class="form-control" id="id_username" type="text" name="username"
-                                            placeholder="Enter username" >
+                                            placeholder="Enter username">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -66,19 +145,25 @@
                         <div class="row row-10">
                             <div class="col-sm-6">
                                 <div class="custom-control custom-switch custom-switch-lg custom-switch-primary">
-                                    <input class="custom-control-input" type="checkbox" id="terms" required/>
-                                    <label class="custom-control-label" for="terms" >I agree to <a href="{% url 'terms' %}">Terms and Conditions </a>
+                                    <input class="custom-control-input" type="checkbox" id="terms" required />
+                                    <label class="custom-control-label" for="terms">I agree to <a
+                                            href="{% url 'terms' %}">Terms and Conditions </a>
                                     </label>
                                 </div>
                                 <div class="custom-control custom-switch custom-switch-lg custom-switch-primary">
-                                    <input class="custom-control-input" type="checkbox" id="Privacy" required/>
-                                    <label class="custom-control-label" for="Privacy" >I agree to <a href="{% url 'privacy' %}">Privacy-policy </a>
+                                    <input class="custom-control-input" type="checkbox" id="Privacy" required />
+                                    <label class="custom-control-label" for="Privacy">I agree to <a
+                                            href="{% url 'privacy' %}">Privacy-policy </a>
                                     </label>
                                 </div>
                             </div>
+                                
                             <div class="col-sm-6 text-sm-right">
+                                <a href="{% url 'password_reset' %}" class="text-black">Forgot Password?</a>
                                 <button class="btn btn-primary" type="submit">Sign In</button>
+                                
                             </div>
+
                         </div>
                     </div>
                 </form>

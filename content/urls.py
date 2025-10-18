@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -21,5 +22,8 @@ urlpatterns = [
     path('track-ad/<int:content_id>/', views.track_ad_view, name='track_ad_view'),
     path("robots.txt", views.robots_txt),
     path('creator/<str:username>/', views.creator_profile, name='creator-profile'),
-    # path('finalize-promotion/', views.finalize_promotion, name='finalize_promotion')
+    path('contest', views.contest, name='contest'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

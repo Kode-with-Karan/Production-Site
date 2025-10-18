@@ -1,0 +1,466 @@
+[2025-10-11 14:08:49 +0000] [1204587] [INFO] Starting gunicorn 23.0.0
+[2025-10-11 14:08:49 +0000] [1204587] [INFO] Listening at: http://0.0.0.0:8000 (1204587)
+[2025-10-11 14:08:49 +0000] [1204587] [INFO] Using worker: sync
+[2025-10-11 14:08:49 +0000] [1204588] [INFO] Booting worker with pid: 1204588
+Not Found: /users/login/images/logo-default-155x43.png
+Not Found: /users/login/images/logo-default-155x43.png
+Not Found: /users/login/images/logo-default-155x43.png
+[2025-10-11 14:20:16 +0000] [1204587] [INFO] Handling signal: term
+[2025-10-11 14:20:16 +0000] [1204588] [INFO] Worker exiting (pid: 1204588)
+[2025-10-11 14:20:17 +0000] [1204685] [INFO] Starting gunicorn 23.0.0
+[2025-10-11 14:20:17 +0000] [1204685] [INFO] Listening at: http://0.0.0.0:8000 (1204685)
+[2025-10-11 14:20:17 +0000] [1204685] [INFO] Using worker: sync
+[2025-10-11 14:20:17 +0000] [1204686] [INFO] Booting worker with pid: 1204686
+[2025-10-11 14:20:17 +0000] [1204587] [INFO] Shutting down: Master
+Not Found: /users/login/images/logo-default-155x43.png
+[2025-10-11 14:39:59 +0000] [1204685] [INFO] Handling signal: term
+[2025-10-11 14:39:59 +0000] [1204686] [INFO] Worker exiting (pid: 1204686)
+[2025-10-11 14:39:59 +0000] [1204837] [INFO] Starting gunicorn 23.0.0
+[2025-10-11 14:39:59 +0000] [1204837] [INFO] Listening at: http://0.0.0.0:8000 (1204837)
+[2025-10-11 14:39:59 +0000] [1204837] [INFO] Using worker: sync
+[2025-10-11 14:39:59 +0000] [1204838] [INFO] Booting worker with pid: 1204838
+[2025-10-11 14:39:59 +0000] [1204685] [INFO] Shutting down: Master
+(0.001) SELECT "content_promotedcontent"."id", "content_promotedcontent"."creator_id", "content_promotedcontent"."content_id", "content_promotedcontent"."promotion_start", "content_promotedcontent"."promotion_end", "content_promotedcontent"."amount_paid", "content_promotedcontent"."is_active" FROM "content_promotedcontent" WHERE ("content_promotedcontent"."is_active" AND "content_promotedcontent"."promotion_end" >= '2025-10-11 14:40:44.018383'); args=('2025-10-11 14:40:44.018383',); alias=default
+(0.000) SELECT "content_content"."id", "content_content"."title", "content_content"."country", "content_content"."duration", "content_content"."genre", "content_content"."language", "content_content"."age_rating", "content_content"."description", "content_content"."cast", "content_content"."content_type", "content_content"."file", "content_content"."is_premium", "content_content"."preview_duration", "content_content"."thumbnail", "content_content"."uploaded_by_id", "content_content"."uploaded_at", "content_content"."views", "content_content"."earnings", "content_content"."average_rating", "content_content"."total_ratings" FROM "content_content" LIMIT 11; args=(); alias=default
+(0.000) SELECT "blog_blog"."id", "blog_blog"."title", "blog_blog"."slug", "blog_blog"."content", "blog_blog"."author_id", "blog_blog"."category_id", "blog_blog"."banner_image", "blog_blog"."main_image", "blog_blog"."optional_image1", "blog_blog"."optional_image2", "blog_blog"."optional_image3", "blog_blog"."created_at", "blog_blog"."updated_at", "blog_blog"."status", "blog_blog"."views" FROM "blog_blog" WHERE "blog_blog"."status" = 'published' ORDER BY "blog_blog"."created_at" DESC LIMIT 4; args=('published',); alias=default
+(0.001) SELECT "socialaccount_socialapp"."id", "socialaccount_socialapp"."provider", "socialaccount_socialapp"."provider_id", "socialaccount_socialapp"."name", "socialaccount_socialapp"."client_id", "socialaccount_socialapp"."secret", "socialaccount_socialapp"."key", "socialaccount_socialapp"."settings" FROM "socialaccount_socialapp" WHERE ("socialaccount_socialapp"."provider" = 'twitter' OR "socialaccount_socialapp"."provider_id" = 'twitter'); args=('twitter', 'twitter'); alias=default
+(0.000) SELECT "socialaccount_socialapp"."id", "socialaccount_socialapp"."provider", "socialaccount_socialapp"."provider_id", "socialaccount_socialapp"."name", "socialaccount_socialapp"."client_id", "socialaccount_socialapp"."secret", "socialaccount_socialapp"."key", "socialaccount_socialapp"."settings" FROM "socialaccount_socialapp" WHERE ("socialaccount_socialapp"."provider" = 'google' OR "socialaccount_socialapp"."provider_id" = 'google'); args=('google', 'google'); alias=default
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'allauth.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/urls.py'> (None:None) 'accounts/'>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern '' [name='home']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'upload/' [name='upload_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'collaborate/' [name='collaborate']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'category/<str:content_type>/' [name='category']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'genre/<str:genre_type>/' [name='genre']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'language/<str:language_type>/' [name='language']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'regional/<str:region_type>/' [name='regional']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'content/<int:pk>/' [name='content_detail']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'content_display/<int:pk>/' [name='content_display']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'browse/' [name='browse_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'edit/<int:pk>/' [name='edit_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'delete/<int:pk>/' [name='delete_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'promote/<int:content_id>/' [name='promote_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'rate/<int:content_id>/' [name='rate_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'free-content/<str:content_type>/<str:show>' [name='free_content_list']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'track-ad/<int:content_id>/' [name='track_ad_view']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'robots.txt'>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'creator/<str:username>/' [name='creator-profile']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'contest' [name='contest']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern '^media/(?P<path>.*)$'>], [<URLResolver <module 'blog.urls' from '/opt/myproject/myproject/Productions/blog/urls.py'> (None:None) 'blog/'>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'password-reset/' [name='password_reset']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'password-reset/done/' [name='password_reset_done']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'reset/<uidb64>/<token>/' [name='password_reset_confirm']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'reset/done/' [name='password_reset_complete']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'register/' [name='register']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'profile/' [name='profile']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'login/' [name='login']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'logout/' [name='logout']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'edit-profile/' [name='edit_profile']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'dashboard/' [name='dashboard']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'change-password/' [name='change_password']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'login/cancelled/' [name='socialaccount_login_cancelled']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'login/error/' [name='socialaccount_login_error']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'signup/' [name='socialaccount_signup']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern '' [name='socialaccount_connections']>], [<URLResolver <module 'payments.urls' from '/opt/myproject/myproject/Productions/payments/urls.py'> (None:None) 'payments/'>], [<URLResolver <module 'notifications.urls' from '/opt/myproject/myproject/Productions/notifications/urls.py'> (None:None) 'notifications/'>], [<URLResolver <module 'support.urls' from '/opt/myproject/myproject/Productions/support/urls.py'> (None:None) 'support/'>], [<URLPattern '^media/(?P<path>.*)$'>], [<URLPattern 'investor/' [name='investor']>], [<URLPattern 'talent/' [name='talent']>], [<URLPattern 'filmmaker/' [name='filmmaker']>], [<URLPattern 'terms/' [name='terms']>], [<URLPattern 'team/' [name='team']>], [<URLPattern 'faq/' [name='faq']>], [<URLPattern 'privacy/' [name='privacy']>], [<URLPattern 'about/' [name='about']>], [<URLPattern 'pricing/' [name='pricing']>], [<URLPattern 'subscription/' [name='subscription']>], [<URLPattern 'pay-per-view/' [name='pay-per-view']>], [<URLPattern 'Promote-Your-Content/' [name='Promote-Your-Content']>], [<URLPattern 'Video_Explainer/' [name='Video_Explainer']>], [<URLPattern '^media/(?P<path>.*)$'>]], 'path': 'users/login/images/logo-default-155x43.png'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 893, in _resolve_lookup
+    current = getattr(current, bit)
+              ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 899, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 906, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'allauth.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/urls.py'> (None:None) 'accounts/'>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern '' [name='home']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'upload/' [name='upload_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'collaborate/' [name='collaborate']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'category/<str:content_type>/' [name='category']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'genre/<str:genre_type>/' [name='genre']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'language/<str:language_type>/' [name='language']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'regional/<str:region_type>/' [name='regional']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'content/<int:pk>/' [name='content_detail']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'content_display/<int:pk>/' [name='content_display']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'browse/' [name='browse_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'edit/<int:pk>/' [name='edit_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'delete/<int:pk>/' [name='delete_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'promote/<int:content_id>/' [name='promote_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'rate/<int:content_id>/' [name='rate_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'free-content/<str:content_type>/<str:show>' [name='free_content_list']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'track-ad/<int:content_id>/' [name='track_ad_view']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'robots.txt'>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'creator/<str:username>/' [name='creator-profile']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'contest' [name='contest']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern '^media/(?P<path>.*)$'>], [<URLResolver <module 'blog.urls' from '/opt/myproject/myproject/Productions/blog/urls.py'> (None:None) 'blog/'>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'password-reset/' [name='password_reset']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'password-reset/done/' [name='password_reset_done']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'reset/<uidb64>/<token>/' [name='password_reset_confirm']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'reset/done/' [name='password_reset_complete']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'register/' [name='register']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'profile/' [name='profile']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'login/' [name='login']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'logout/' [name='logout']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'edit-profile/' [name='edit_profile']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'dashboard/' [name='dashboard']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'change-password/' [name='change_password']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'login/cancelled/' [name='socialaccount_login_cancelled']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'login/error/' [name='socialaccount_login_error']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'signup/' [name='socialaccount_signup']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern '' [name='socialaccount_connections']>], [<URLResolver <module 'payments.urls' from '/opt/myproject/myproject/Productions/payments/urls.py'> (None:None) 'payments/'>], [<URLResolver <module 'notifications.urls' from '/opt/myproject/myproject/Productions/notifications/urls.py'> (None:None) 'notifications/'>], [<URLResolver <module 'support.urls' from '/opt/myproject/myproject/Productions/support/urls.py'> (None:None) 'support/'>], [<URLPattern '^media/(?P<path>.*)$'>], [<URLPattern 'investor/' [name='investor']>], [<URLPattern 'talent/' [name='talent']>], [<URLPattern 'filmmaker/' [name='filmmaker']>], [<URLPattern 'terms/' [name='terms']>], [<URLPattern 'team/' [name='team']>], [<URLPattern 'faq/' [name='faq']>], [<URLPattern 'privacy/' [name='privacy']>], [<URLPattern 'about/' [name='about']>], [<URLPattern 'pricing/' [name='pricing']>], [<URLPattern 'subscription/' [name='subscription']>], [<URLPattern 'pay-per-view/' [name='pay-per-view']>], [<URLPattern 'Promote-Your-Content/' [name='Promote-Your-Content']>], [<URLPattern 'Video_Explainer/' [name='Video_Explainer']>], [<URLPattern '^media/(?P<path>.*)$'>]], 'path': 'users/login/images/logo-default-155x43.png'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 893, in _resolve_lookup
+    current = getattr(current, bit)
+              ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 899, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 906, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'allauth.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/urls.py'> (None:None) 'accounts/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'allauth.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/urls.py'> (None:None) 'accounts/'>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern '' [name='home']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'upload/' [name='upload_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'collaborate/' [name='collaborate']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'category/<str:content_type>/' [name='category']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'genre/<str:genre_type>/' [name='genre']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'language/<str:language_type>/' [name='language']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'regional/<str:region_type>/' [name='regional']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'content/<int:pk>/' [name='content_detail']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'content_display/<int:pk>/' [name='content_display']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'browse/' [name='browse_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'edit/<int:pk>/' [name='edit_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'delete/<int:pk>/' [name='delete_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'promote/<int:content_id>/' [name='promote_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'rate/<int:content_id>/' [name='rate_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'free-content/<str:content_type>/<str:show>' [name='free_content_list']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'track-ad/<int:content_id>/' [name='track_ad_view']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'robots.txt'>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'creator/<str:username>/' [name='creator-profile']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'contest' [name='contest']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern '^media/(?P<path>.*)$'>], [<URLResolver <module 'blog.urls' from '/opt/myproject/myproject/Productions/blog/urls.py'> (None:None) 'blog/'>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'password-reset/' [name='password_reset']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'password-reset/done/' [name='password_reset_done']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'reset/<uidb64>/<token>/' [name='password_reset_confirm']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'reset/done/' [name='password_reset_complete']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'register/' [name='register']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'profile/' [name='profile']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'login/' [name='login']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'logout/' [name='logout']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'edit-profile/' [name='edit_profile']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'dashboard/' [name='dashboard']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'change-password/' [name='change_password']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'login/cancelled/' [name='socialaccount_login_cancelled']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'login/error/' [name='socialaccount_login_error']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'signup/' [name='socialaccount_signup']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern '' [name='socialaccount_connections']>], [<URLResolver <module 'payments.urls' from '/opt/myproject/myproject/Productions/payments/urls.py'> (None:None) 'payments/'>], [<URLResolver <module 'notifications.urls' from '/opt/myproject/myproject/Productions/notifications/urls.py'> (None:None) 'notifications/'>], [<URLResolver <module 'support.urls' from '/opt/myproject/myproject/Productions/support/urls.py'> (None:None) 'support/'>], [<URLPattern '^media/(?P<path>.*)$'>], [<URLPattern 'investor/' [name='investor']>], [<URLPattern 'talent/' [name='talent']>], [<URLPattern 'filmmaker/' [name='filmmaker']>], [<URLPattern 'terms/' [name='terms']>], [<URLPattern 'team/' [name='team']>], [<URLPattern 'faq/' [name='faq']>], [<URLPattern 'privacy/' [name='privacy']>], [<URLPattern 'about/' [name='about']>], [<URLPattern 'pricing/' [name='pricing']>], [<URLPattern 'subscription/' [name='subscription']>], [<URLPattern 'pay-per-view/' [name='pay-per-view']>], [<URLPattern 'Promote-Your-Content/' [name='Promote-Your-Content']>], [<URLPattern 'Video_Explainer/' [name='Video_Explainer']>], [<URLPattern '^media/(?P<path>.*)$'>]], 'path': 'users/login/images/logo-default-155x43.png'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 893, in _resolve_lookup
+    current = getattr(current, bit)
+              ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 899, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 906, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'blog.urls' from '/opt/myproject/myproject/Productions/blog/urls.py'> (None:None) 'blog/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'allauth.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/urls.py'> (None:None) 'accounts/'>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern '' [name='home']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'upload/' [name='upload_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'collaborate/' [name='collaborate']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'category/<str:content_type>/' [name='category']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'genre/<str:genre_type>/' [name='genre']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'language/<str:language_type>/' [name='language']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'regional/<str:region_type>/' [name='regional']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'content/<int:pk>/' [name='content_detail']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'content_display/<int:pk>/' [name='content_display']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'browse/' [name='browse_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'edit/<int:pk>/' [name='edit_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'delete/<int:pk>/' [name='delete_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'promote/<int:content_id>/' [name='promote_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'rate/<int:content_id>/' [name='rate_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'free-content/<str:content_type>/<str:show>' [name='free_content_list']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'track-ad/<int:content_id>/' [name='track_ad_view']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'robots.txt'>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'creator/<str:username>/' [name='creator-profile']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'contest' [name='contest']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern '^media/(?P<path>.*)$'>], [<URLResolver <module 'blog.urls' from '/opt/myproject/myproject/Productions/blog/urls.py'> (None:None) 'blog/'>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'password-reset/' [name='password_reset']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'password-reset/done/' [name='password_reset_done']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'reset/<uidb64>/<token>/' [name='password_reset_confirm']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'reset/done/' [name='password_reset_complete']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'register/' [name='register']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'profile/' [name='profile']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'login/' [name='login']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'logout/' [name='logout']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'edit-profile/' [name='edit_profile']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'dashboard/' [name='dashboard']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'change-password/' [name='change_password']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'login/cancelled/' [name='socialaccount_login_cancelled']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'login/error/' [name='socialaccount_login_error']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'signup/' [name='socialaccount_signup']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern '' [name='socialaccount_connections']>], [<URLResolver <module 'payments.urls' from '/opt/myproject/myproject/Productions/payments/urls.py'> (None:None) 'payments/'>], [<URLResolver <module 'notifications.urls' from '/opt/myproject/myproject/Productions/notifications/urls.py'> (None:None) 'notifications/'>], [<URLResolver <module 'support.urls' from '/opt/myproject/myproject/Productions/support/urls.py'> (None:None) 'support/'>], [<URLPattern '^media/(?P<path>.*)$'>], [<URLPattern 'investor/' [name='investor']>], [<URLPattern 'talent/' [name='talent']>], [<URLPattern 'filmmaker/' [name='filmmaker']>], [<URLPattern 'terms/' [name='terms']>], [<URLPattern 'team/' [name='team']>], [<URLPattern 'faq/' [name='faq']>], [<URLPattern 'privacy/' [name='privacy']>], [<URLPattern 'about/' [name='about']>], [<URLPattern 'pricing/' [name='pricing']>], [<URLPattern 'subscription/' [name='subscription']>], [<URLPattern 'pay-per-view/' [name='pay-per-view']>], [<URLPattern 'Promote-Your-Content/' [name='Promote-Your-Content']>], [<URLPattern 'Video_Explainer/' [name='Video_Explainer']>], [<URLPattern '^media/(?P<path>.*)$'>]], 'path': 'users/login/images/logo-default-155x43.png'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 893, in _resolve_lookup
+    current = getattr(current, bit)
+              ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 899, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 906, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'payments.urls' from '/opt/myproject/myproject/Productions/payments/urls.py'> (None:None) 'payments/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'allauth.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/urls.py'> (None:None) 'accounts/'>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern '' [name='home']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'upload/' [name='upload_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'collaborate/' [name='collaborate']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'category/<str:content_type>/' [name='category']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'genre/<str:genre_type>/' [name='genre']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'language/<str:language_type>/' [name='language']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'regional/<str:region_type>/' [name='regional']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'content/<int:pk>/' [name='content_detail']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'content_display/<int:pk>/' [name='content_display']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'browse/' [name='browse_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'edit/<int:pk>/' [name='edit_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'delete/<int:pk>/' [name='delete_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'promote/<int:content_id>/' [name='promote_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'rate/<int:content_id>/' [name='rate_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'free-content/<str:content_type>/<str:show>' [name='free_content_list']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'track-ad/<int:content_id>/' [name='track_ad_view']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'robots.txt'>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'creator/<str:username>/' [name='creator-profile']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'contest' [name='contest']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern '^media/(?P<path>.*)$'>], [<URLResolver <module 'blog.urls' from '/opt/myproject/myproject/Productions/blog/urls.py'> (None:None) 'blog/'>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'password-reset/' [name='password_reset']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'password-reset/done/' [name='password_reset_done']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'reset/<uidb64>/<token>/' [name='password_reset_confirm']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'reset/done/' [name='password_reset_complete']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'register/' [name='register']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'profile/' [name='profile']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'login/' [name='login']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'logout/' [name='logout']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'edit-profile/' [name='edit_profile']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'dashboard/' [name='dashboard']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'change-password/' [name='change_password']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'login/cancelled/' [name='socialaccount_login_cancelled']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'login/error/' [name='socialaccount_login_error']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'signup/' [name='socialaccount_signup']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern '' [name='socialaccount_connections']>], [<URLResolver <module 'payments.urls' from '/opt/myproject/myproject/Productions/payments/urls.py'> (None:None) 'payments/'>], [<URLResolver <module 'notifications.urls' from '/opt/myproject/myproject/Productions/notifications/urls.py'> (None:None) 'notifications/'>], [<URLResolver <module 'support.urls' from '/opt/myproject/myproject/Productions/support/urls.py'> (None:None) 'support/'>], [<URLPattern '^media/(?P<path>.*)$'>], [<URLPattern 'investor/' [name='investor']>], [<URLPattern 'talent/' [name='talent']>], [<URLPattern 'filmmaker/' [name='filmmaker']>], [<URLPattern 'terms/' [name='terms']>], [<URLPattern 'team/' [name='team']>], [<URLPattern 'faq/' [name='faq']>], [<URLPattern 'privacy/' [name='privacy']>], [<URLPattern 'about/' [name='about']>], [<URLPattern 'pricing/' [name='pricing']>], [<URLPattern 'subscription/' [name='subscription']>], [<URLPattern 'pay-per-view/' [name='pay-per-view']>], [<URLPattern 'Promote-Your-Content/' [name='Promote-Your-Content']>], [<URLPattern 'Video_Explainer/' [name='Video_Explainer']>], [<URLPattern '^media/(?P<path>.*)$'>]], 'path': 'users/login/images/logo-default-155x43.png'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 893, in _resolve_lookup
+    current = getattr(current, bit)
+              ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 899, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 906, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'notifications.urls' from '/opt/myproject/myproject/Productions/notifications/urls.py'> (None:None) 'notifications/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'allauth.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/urls.py'> (None:None) 'accounts/'>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern '' [name='home']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'upload/' [name='upload_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'collaborate/' [name='collaborate']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'category/<str:content_type>/' [name='category']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'genre/<str:genre_type>/' [name='genre']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'language/<str:language_type>/' [name='language']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'regional/<str:region_type>/' [name='regional']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'content/<int:pk>/' [name='content_detail']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'content_display/<int:pk>/' [name='content_display']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'browse/' [name='browse_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'edit/<int:pk>/' [name='edit_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'delete/<int:pk>/' [name='delete_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'promote/<int:content_id>/' [name='promote_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'rate/<int:content_id>/' [name='rate_content']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'free-content/<str:content_type>/<str:show>' [name='free_content_list']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'track-ad/<int:content_id>/' [name='track_ad_view']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'robots.txt'>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'creator/<str:username>/' [name='creator-profile']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern 'contest' [name='contest']>], [<URLResolver <module 'content.urls' from '/opt/myproject/myproject/Productions/content/urls.py'> (None:None) ''>, <URLPattern '^media/(?P<path>.*)$'>], [<URLResolver <module 'blog.urls' from '/opt/myproject/myproject/Productions/blog/urls.py'> (None:None) 'blog/'>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'password-reset/' [name='password_reset']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'password-reset/done/' [name='password_reset_done']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'reset/<uidb64>/<token>/' [name='password_reset_confirm']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'reset/done/' [name='password_reset_complete']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'register/' [name='register']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'profile/' [name='profile']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'login/' [name='login']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'logout/' [name='logout']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'edit-profile/' [name='edit_profile']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'dashboard/' [name='dashboard']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLPattern 'change-password/' [name='change_password']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'login/cancelled/' [name='socialaccount_login_cancelled']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'login/error/' [name='socialaccount_login_error']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern 'signup/' [name='socialaccount_signup']>], [<URLResolver <module 'users.urls' from '/opt/myproject/myproject/Productions/users/urls.py'> (None:None) 'users/'>, <URLResolver <module 'allauth.socialaccount.urls' from '/opt/myproject/lib/python3.12/site-packages/allauth/socialaccount/urls.py'> (None:None) ''>, <URLPattern '' [name='socialaccount_connections']>], [<URLResolver <module 'payments.urls' from '/opt/myproject/myproject/Productions/payments/urls.py'> (None:None) 'payments/'>], [<URLResolver <module 'notifications.urls' from '/opt/myproject/myproject/Productions/notifications/urls.py'> (None:None) 'notifications/'>], [<URLResolver <module 'support.urls' from '/opt/myproject/myproject/Productions/support/urls.py'> (None:None) 'support/'>], [<URLPattern '^media/(?P<path>.*)$'>], [<URLPattern 'investor/' [name='investor']>], [<URLPattern 'talent/' [name='talent']>], [<URLPattern 'filmmaker/' [name='filmmaker']>], [<URLPattern 'terms/' [name='terms']>], [<URLPattern 'team/' [name='team']>], [<URLPattern 'faq/' [name='faq']>], [<URLPattern 'privacy/' [name='privacy']>], [<URLPattern 'about/' [name='about']>], [<URLPattern 'pricing/' [name='pricing']>], [<URLPattern 'subscription/' [name='subscription']>], [<URLPattern 'pay-per-view/' [name='pay-per-view']>], [<URLPattern 'Promote-Your-Content/' [name='Promote-Your-Content']>], [<URLPattern 'Video_Explainer/' [name='Video_Explainer']>], [<URLPattern '^media/(?P<path>.*)$'>]], 'path': 'users/login/images/logo-default-155x43.png'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 893, in _resolve_lookup
+    current = getattr(current, bit)
+              ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 899, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 906, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'support.urls' from '/opt/myproject/myproject/Productions/support/urls.py'> (None:None) 'support/'>
+Not Found: /users/login/images/logo-default-155x43.png
+(0.000) SELECT "content_promotedcontent"."id", "content_promotedcontent"."creator_id", "content_promotedcontent"."content_id", "content_promotedcontent"."promotion_start", "content_promotedcontent"."promotion_end", "content_promotedcontent"."amount_paid", "content_promotedcontent"."is_active" FROM "content_promotedcontent" WHERE ("content_promotedcontent"."is_active" AND "content_promotedcontent"."promotion_end" >= '2025-10-11 14:41:32.334880'); args=('2025-10-11 14:41:32.334880',); alias=default
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-10-11 14:41:32.336955' AND "django_session"."session_key" = 'tudgbbu6p6l1yo6ftsjqt9zxn0zamzrw') LIMIT 21; args=('2025-10-11 14:41:32.336955', 'tudgbbu6p6l1yo6ftsjqt9zxn0zamzrw'); alias=default
+(0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 16 LIMIT 21; args=(16,); alias=default
+(0.000) SELECT "content_content"."id", "content_content"."title", "content_content"."country", "content_content"."duration", "content_content"."genre", "content_content"."language", "content_content"."age_rating", "content_content"."description", "content_content"."cast", "content_content"."content_type", "content_content"."file", "content_content"."is_premium", "content_content"."preview_duration", "content_content"."thumbnail", "content_content"."uploaded_by_id", "content_content"."uploaded_at", "content_content"."views", "content_content"."earnings", "content_content"."average_rating", "content_content"."total_ratings" FROM "content_content" LIMIT 11; args=(); alias=default
+(0.000) SELECT "blog_blog"."id", "blog_blog"."title", "blog_blog"."slug", "blog_blog"."content", "blog_blog"."author_id", "blog_blog"."category_id", "blog_blog"."banner_image", "blog_blog"."main_image", "blog_blog"."optional_image1", "blog_blog"."optional_image2", "blog_blog"."optional_image3", "blog_blog"."created_at", "blog_blog"."updated_at", "blog_blog"."status", "blog_blog"."views" FROM "blog_blog" WHERE "blog_blog"."status" = 'published' ORDER BY "blog_blog"."created_at" DESC LIMIT 4; args=('published',); alias=default
+(0.000) SELECT "content_content"."id", "content_content"."title", "content_content"."country", "content_content"."duration", "content_content"."genre", "content_content"."language", "content_content"."age_rating", "content_content"."description", "content_content"."cast", "content_content"."content_type", "content_content"."file", "content_content"."is_premium", "content_content"."preview_duration", "content_content"."thumbnail", "content_content"."uploaded_by_id", "content_content"."uploaded_at", "content_content"."views", "content_content"."earnings", "content_content"."average_rating", "content_content"."total_ratings" FROM "content_content" LIMIT 21; args=(); alias=default
+Exception while resolving variable 'unread_notifications' in template 'content/home.html'.
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/context.py", line 85, in __getitem__
+    raise KeyError(key)
+KeyError: 'unread_notifications'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(
+                                            ^^^^^^^^
+AttributeError: type object 'RequestContext' has no attribute 'unread_notifications'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 899, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'unread_notifications'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 906, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [unread_notifications] in [{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x786e9ce63880>>, 'request': <WSGIRequest: GET '/'>, 'user': <SimpleLazyObject: <User: A>>, 'perms': PermWrapper(<SimpleLazyObject: <User: A>>), 'messages': <FallbackStorage: request=<WSGIRequest: GET '/'>>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}}, {}, {'contents': <QuerySet [<Content: Short Film>, <Content: Podcast>, <Content: Documentry>, <Content: Entertainment>, <Content: Music>, <Content: Education>, <Content: Interview>, <Content: Animation>, <Content: Short Film>, <Content: Padcast>, <Content: When Doves Fly>]>, 'blogs': <QuerySet [<Blog: The Ultimate Hub for Creators to Upload, Earn, and Get Funded!>, <Blog: The Best Platform for Creators to Upload, Fund, and Get Paid!>]>, 'promoted': <QuerySet []>, 'promoted_all_content': <QuerySet [<Content: Short Film>, <Content: Podcast>, <Content: Documentry>, <Content: Entertainment>, <Content: Music>, <Content: Education>, <Content: Interview>, <Content: Animation>, <Content: Short Film>, <Content: Padcast>, <Content: When Doves Fly>, <Content: Sigma 7.0 01. Message from the Teacher>, <Content: PATTUKORA NAA NADUMU ITEM SONG/ PARTY SONG>]>}, {'block': <Block Node: navbar. Contents: [<TextNode: '\n    '>, <IncludeNode: template=<FilterExpression "'nav_white.html'">>, <TextNode: '\n    '>]>}, {}]
+(0.000) SELECT "content_content"."id", "content_content"."title", "content_content"."country", "content_content"."duration", "content_content"."genre", "content_content"."language", "content_content"."age_rating", "content_content"."description", "content_content"."cast", "content_content"."content_type", "content_content"."file", "content_content"."is_premium", "content_content"."preview_duration", "content_content"."thumbnail", "content_content"."uploaded_by_id", "content_content"."uploaded_at", "content_content"."views", "content_content"."earnings", "content_content"."average_rating", "content_content"."total_ratings" FROM "content_content" LIMIT 11; args=(); alias=default
+(0.000) SELECT "blog_blog"."id", "blog_blog"."title", "blog_blog"."slug", "blog_blog"."content", "blog_blog"."author_id", "blog_blog"."category_id", "blog_blog"."banner_image", "blog_blog"."main_image", "blog_blog"."optional_image1", "blog_blog"."optional_image2", "blog_blog"."optional_image3", "blog_blog"."created_at", "blog_blog"."updated_at", "blog_blog"."status", "blog_blog"."views" FROM "blog_blog" WHERE "blog_blog"."status" = 'published' ORDER BY "blog_blog"."created_at" DESC LIMIT 4; args=('published',); alias=default
+(0.000) SELECT "content_content"."id", "content_content"."title", "content_content"."country", "content_content"."duration", "content_content"."genre", "content_content"."language", "content_content"."age_rating", "content_content"."description", "content_content"."cast", "content_content"."content_type", "content_content"."file", "content_content"."is_premium", "content_content"."preview_duration", "content_content"."thumbnail", "content_content"."uploaded_by_id", "content_content"."uploaded_at", "content_content"."views", "content_content"."earnings", "content_content"."average_rating", "content_content"."total_ratings" FROM "content_content" LIMIT 21; args=(); alias=default
+Exception while resolving variable 'unread_notifications' in template 'content/home.html'.
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/context.py", line 85, in __getitem__
+    raise KeyError(key)
+KeyError: 'unread_notifications'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(
+                                            ^^^^^^^^
+AttributeError: type object 'RequestContext' has no attribute 'unread_notifications'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 899, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'unread_notifications'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 906, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [unread_notifications] in [{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: 'yIjYVnX6ozIkvf3mZ7sQLdkAiFYFKaXba8CBBHPb9rcbYrEsKadC4sNrxSJ9EmNb'>, 'request': <WSGIRequest: GET '/'>, 'user': <SimpleLazyObject: <User: A>>, 'perms': PermWrapper(<SimpleLazyObject: <User: A>>), 'messages': <FallbackStorage: request=<WSGIRequest: GET '/'>>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}}, {}, {'contents': <QuerySet [<Content: Short Film>, <Content: Podcast>, <Content: Documentry>, <Content: Entertainment>, <Content: Music>, <Content: Education>, <Content: Interview>, <Content: Animation>, <Content: Short Film>, <Content: Padcast>, <Content: When Doves Fly>]>, 'blogs': <QuerySet [<Blog: The Ultimate Hub for Creators to Upload, Earn, and Get Funded!>, <Blog: The Best Platform for Creators to Upload, Fund, and Get Paid!>]>, 'promoted': <QuerySet []>, 'promoted_all_content': <QuerySet [<Content: Short Film>, <Content: Podcast>, <Content: Documentry>, <Content: Entertainment>, <Content: Music>, <Content: Education>, <Content: Interview>, <Content: Animation>, <Content: Short Film>, <Content: Padcast>, <Content: When Doves Fly>, <Content: Sigma 7.0 01. Message from the Teacher>, <Content: PATTUKORA NAA NADUMU ITEM SONG/ PARTY SONG>]>}]
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-10-11 14:41:56.851494' AND "django_session"."session_key" = 'tudgbbu6p6l1yo6ftsjqt9zxn0zamzrw') LIMIT 21; args=('2025-10-11 14:41:56.851494', 'tudgbbu6p6l1yo6ftsjqt9zxn0zamzrw'); alias=default
+(0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 16 LIMIT 21; args=(16,); alias=default
+Exception while resolving variable 'unread_notifications' in template 'content/contest.html'.
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/context.py", line 85, in __getitem__
+    raise KeyError(key)
+KeyError: 'unread_notifications'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(
+                                            ^^^^^^^^
+AttributeError: type object 'RequestContext' has no attribute 'unread_notifications'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 899, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'unread_notifications'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 906, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [unread_notifications] in [{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x786e9ce637e0>>, 'request': <WSGIRequest: GET '/contest'>, 'user': <SimpleLazyObject: <User: A>>, 'perms': PermWrapper(<SimpleLazyObject: <User: A>>), 'messages': <FallbackStorage: request=<WSGIRequest: GET '/contest'>>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}}, {}]
+Exception while resolving variable 'unread_notifications' in template 'content/contest.html'.
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/context.py", line 85, in __getitem__
+    raise KeyError(key)
+KeyError: 'unread_notifications'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(
+                                            ^^^^^^^^
+AttributeError: type object 'RequestContext' has no attribute 'unread_notifications'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 899, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'unread_notifications'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 906, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [unread_notifications] in [{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: 'tpCAhsD4g7g71PsjGQ3fYTKu2CaJuIWp5PVdXMv91ZKYu13prTO1h8dlhPVdoUMp'>, 'request': <WSGIRequest: GET '/contest'>, 'user': <SimpleLazyObject: <User: A>>, 'perms': PermWrapper(<SimpleLazyObject: <User: A>>), 'messages': <FallbackStorage: request=<WSGIRequest: GET '/contest'>>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}}, {}]
+(0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE ("auth_user"."email" LIKE 'pythoncodeworld@gmail.com' ESCAPE '\' AND "auth_user"."is_active"); args=('pythoncodeworld@gmail.com',); alias=default
+Exception while resolving variable 'form' in template 'users/password_reset_done.html'.
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 883, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/context.py", line 85, in __getitem__
+    raise KeyError(key)
+KeyError: 'form'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 889, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(
+                                            ^^^^^^^^
+AttributeError: type object 'RequestContext' has no attribute 'form'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 899, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'form'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/myproject/lib/python3.12/site-packages/django/template/base.py", line 906, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [form] in [{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x786e9ce63920>>, 'request': <WSGIRequest: GET '/users/password-reset/done/'>, 'user': <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x786e9cc2bad0>>, 'perms': PermWrapper(<SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x786e9cc2bad0>>), 'messages': <FallbackStorage: request=<WSGIRequest: GET '/users/password-reset/done/'>>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}}, {}, {'view': <django.contrib.auth.views.PasswordResetDoneView object at 0x786e9cc1a810>, 'title': 'Password reset sent', 'subtitle': None}, {'block': <Block Node: content. Contents: [<TextNode: '\n<style>\n    .panel {\n   '>, <IfNode>, <TextNode: '\n\n<section class="section'>, <URLNode view_name=''login'' args=[] kwargs={} as=None>, <TextNode: '" class="btn btn-primary '>]>}]
+

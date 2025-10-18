@@ -97,6 +97,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
+
             ],
         },
     },
@@ -177,6 +179,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = [
@@ -260,9 +265,10 @@ EMAIL_USE_TLS = False  # Use True if using port 587
 
 EMAIL_USE_SSL = True  # Use True if using port 465
 
-EMAIL_HOST_USER = "businesscollab@echoesripple.com"  # Your Hostinger business email
+EMAIL_HOST_USER = "support@echoesripple.com" # Your Hostinger business email
 
-EMAIL_HOST_PASSWORD = "Echoes@accmbusiness#collab1"  # Your Hostinger email password
+EMAIL_HOST_PASSWORD ="Echoes@accmbusiness#support1"  # Your Hostinger email password
+
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
@@ -280,9 +286,9 @@ SECONDARY_EMAIL_CONFIG = {
 
     "EMAIL_USE_SSL": True,  
 
-    "EMAIL_HOST_USER": "support@echoesripple.com",  # Your secondary email
+    "EMAIL_HOST_USER": "businesscollab@echoesripple.com" ,  # Your secondary email
 
-    "EMAIL_HOST_PASSWORD": "Echoes@accmbusiness#support1",
+    "EMAIL_HOST_PASSWORD":  "Echoes@accmbusiness#collab1",
 
 }
 
@@ -293,3 +299,20 @@ PAYPAL_SECRET = 'EBtok7ON-dgObK7zin80iQSbxJfW4Vo_0TPC4Or8w_aV0UKoxnAd5rdC0Q7CIxl
 PAYPAL_BASE_URL = 'https://api-m.paypal.com'
 PAYPAL_API_BASE = 'https://api-m.paypal.com'
 PAYPAL_MODE = 'live'
+
+
+# EMAIL_FAIL_SILENTLY = False
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {'class': 'logging.StreamHandler'},
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#         },
+#     },
+# }

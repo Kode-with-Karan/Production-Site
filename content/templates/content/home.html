@@ -36,6 +36,46 @@ EchoesRipple | Empowering Creators to Share & Earn
 </script>
 
 
+<style>
+    .banner_show{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px;
+        background: #ffe142;
+    }
+    .banner_show>p{
+        margin: 0;
+        font-size: 30px;
+        color: red;
+        font-weight: bolder;
+    }
+    .banner_heading>p{
+        color: red;
+        font-weight: 500;
+    }
+    .banner_button>a{
+        border: 1px solid red;
+        padding: 11px 17px;
+        border-radius: 20px;
+        background: red;
+        font-size: 20px;
+        font-weight: 800;
+        cursor: pointer;
+    }
+
+    @media (max-width: 1000px) {
+        .banner_show {
+            flex-direction: column;
+            justify-content: center;
+        }
+        .banner_heading>p{
+            text-align: center;
+        }
+    }
+</style>
+
 
 {% endblock link %}
 
@@ -72,7 +112,7 @@ EchoesRipple | Empowering Creators to Share & Earn
                                         <span class="icon mdi mdi-read"></span>Read More</a></div>
                             </div>
                             <div class="col-md-6 col-lg-7 col-xl-5 onset-1">
-                                <div class="slider-image onset-left-2"><img loading="lazy"
+                                <div class="slider-image onset-left-2"><img loading="lazy" loading="lazy"
                                         src="{% static 'images/home_bgg.jpg' %}" alt="image..." width="422"
                                         height="522" />
                                     <!-- <div class="slider-image-title"><span>Animation</span></div> -->
@@ -95,6 +135,22 @@ EchoesRipple | Empowering Creators to Share & Earn
     <div class="figure-classic-pattern v-3"></div>
 </section>
 
+
+<div class="banner_show">
+
+    <div class="banner_heading">
+        <p>🎥 Lights. Camera. One Minute. Infinite Possibilities. <br>
+        ✨ Show the world what you can create in just 60 seconds!</p>
+    </div>
+    <br>
+    <p>1-Minute Contest</p>
+    <br>
+    <div class="banner_button">
+        <a href="{% url 'contest' %}">Participate Now!</a>
+    </div>
+
+</div>
+
 <section class="section section-lg bg-default">
     <div class="container">
         <div class="row row-50 justify-content-center align-items-center">
@@ -116,7 +172,7 @@ EchoesRipple | Empowering Creators to Share & Earn
                 </div><a class="button button-lg button-primary mt-lg-40" href="#">Read More</a>
             </div> -->
             <div class="col-md-10 col-lg-5 parallax-scene-js">
-                <div class="section-image-1 v2"><img src="{% static 'images/section-image-1-546x33.png' %}"
+                <div class="section-image-1 v2"><img loading="lazy" src="{% static 'images/section-image-1-546x33.png' %}"
                         alt="image..." width="546" height="33" />
                     <div class="section-image-decorative-1">
                         <div class="layer" data-depth="-.25">
@@ -160,7 +216,7 @@ EchoesRipple | Empowering Creators to Share & Earn
                                         now</a></div>
                             </div>
                             <div class="col-md-6 col-lg-7 col-xl-5 onset-1">
-                                <div class="slider-image onset-left-2"><img loading="lazy"  src="{{ item.thumbnail.url }}"
+                                <div class="slider-image onset-left-2"><img loading="lazy" loading="lazy"  src="{{ item.thumbnail.url }}"
                                         alt="image..." width="422" height="522" /> -->
 <!-- <div class="slider-image-title"><span>Animation</span></div> -->
 <!-- </div>
@@ -188,7 +244,7 @@ EchoesRipple | Empowering Creators to Share & Earn
     {% for promo in promoted %}
         <div class="promoted-item">
             <h3>{{ promo.content.title }}</h3>
-            <img loading="lazy"  src="{{ promo.content.thumbnail.url }}" alt="{{ promo.content.title }}">
+            <img loading="lazy" loading="lazy"  src="{{ promo.content.thumbnail.url }}" alt="{{ promo.content.title }}">
         </div>
     {% endfor %}
 </div>
@@ -210,7 +266,7 @@ EchoesRipple | Empowering Creators to Share & Earn
             {% for item in promoted %}
             <div class="item">
                 <div class="box-nina">
-                    <div class="box-nina-media"><img loading="lazy" src="{{ item.content.thumbnail.url }}"
+                    <div class="box-nina-media"><img loading="lazy" loading="lazy" src="{{ item.content.thumbnail.url }}"
                             alt="image..." width="356" height="412" />
                     </div>
                     <div class="box-nina-text">
@@ -241,7 +297,7 @@ EchoesRipple | Empowering Creators to Share & Earn
             {% for item in contents %}
             <div class="item">
                 <div class="box-nina">
-                    <div class="box-nina-media"><img loading="lazy" src="{{ item.thumbnail.url }}" alt="image..."
+                    <div class="box-nina-media"><img loading="lazy" loading="lazy" src="{{ item.thumbnail.url }}" alt="image..."
                             width="356" height="412" />
                     </div>
                     <div class="box-nina-text">
@@ -271,13 +327,12 @@ EchoesRipple | Empowering Creators to Share & Earn
             {% for item in contents %}
             <div class="item">
                 <div class="box-nina">
-                    <div class="box-nina-media"><img loading="lazy" src="{{ item.thumbnail.url }}" alt="image..."
+                    <div class="box-nina-media"><img loading="lazy" loading="lazy" src="{{ item.thumbnail.url }}" alt="image..."
                             width="356" height="412" />
                     </div>
                     <div class="box-nina-text">
                         <h4><a class="link-white" href="{% url 'content_detail' pk=item.pk %}">{{ item.title }}</a></h4>
-                        <div class="box-nina-info"><span class="icon mdi mdi-calendar-today"></span><span>{{
-                                item.uploaded_at|date:"Y" }},
+                        <div class="box-nina-info"><span class="icon mdi mdi-calendar-today"></span><span>{{ item.uploaded_at|date:"Y" }},
                                 {{ item.content_type }}</span></div>
                     </div>
                 </div>
@@ -455,12 +510,12 @@ EchoesRipple | Empowering Creators to Share & Earn
 
 
 
-                <!-- <div class="button-wrap wow fadeInUp" data-wow-delay="1s"><a href="#"><img loading="lazy" 
-                            src="{% static 'content/images/button-img-01-151x49.png' %}" alt="image..." width="151" height="49" /></a><a href="#"><img loading="lazy" 
+                <!-- <div class="button-wrap wow fadeInUp" data-wow-delay="1s"><a href="#"><img loading="lazy" loading="lazy" 
+                            src="{% static 'content/images/button-img-01-151x49.png' %}" alt="image..." width="151" height="49" /></a><a href="#"><img loading="lazy" loading="lazy" 
                             src="{% static 'content/images/button-img-02-153x49.png' %}" alt="image..." width="153" height="49" /></a></div> -->
             </div>
             <div class="col-lg-7 parallax-scene-js">
-                <div class="section-image-1"><img loading="lazy"
+                <div class="section-image-1"><img loading="lazy" loading="lazy"
                         src="{% static 'content/images/section-image-1-546x33.png' %}" alt="image..." width="546"
                         height="33" />
                     <div class="section-image-decorative-1">

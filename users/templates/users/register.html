@@ -2,6 +2,65 @@
 {% load socialaccount %}
 {% block content %}
 
+
+<style>
+    /* ==== Error Alert Box ==== */
+.alert.alert-danger {
+  background-color: #ffe6e6;          /* soft red background */
+  border: 1px solid #ff4d4d;          /* red border */
+  color: #b30000;                     /* dark red text */
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 100px 20px 20px;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 2px 6px rgba(255, 77, 77, 0.15);
+  animation: fadeInDown 0.4s ease-in-out;
+  
+}
+
+/* ==== Unordered List ==== */
+.alert.alert-danger ul {
+  list-style-type: none;              /* remove default bullets */
+  padding-left: 0;
+  margin: 0;
+}
+
+/* ==== Each Error Line ==== */
+.alert.alert-danger li {
+  background-color: #fff2f2;          /* slightly lighter background per error */
+  border-left: 4px solid #ff4d4d;     /* red line accent */
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  border-radius: 4px;
+  font-size: 15px;
+  transition: background 0.2s ease;
+}
+
+.alert.alert-danger li:hover {
+  background-color: #ffe0e0;
+}
+
+/* ==== Field Label in Bold ==== */
+.alert.alert-danger strong {
+  color: #990000;
+  font-weight: 600;
+}
+
+/* ==== Entry Animation ==== */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+</style>
+
+
 {% if form.errors %}
     <div class="alert alert-danger">
         <ul>

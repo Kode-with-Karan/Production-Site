@@ -1,8 +1,9 @@
 from django.contrib import admin
-from .models import Content,Collaborate,PromotedContent,Rating, Ad, AdView
+from .models import Content,Collaborate,PromotedContent,Rating, Ad, AdView,Contest
 
 # Register your models here.
 
+admin.site.register(Contest)
 admin.site.register(Content)
 admin.site.register(Collaborate)
 admin.site.register(PromotedContent)

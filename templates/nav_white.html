@@ -1,4 +1,9 @@
 {% load static %}
+<!-- <style>
+    .rd-navbar-nav-wrap {
+    overflow-x: auto;
+}
+</style> -->
 <div class="page">
     <!--Header Main Classic-->
     <!-- RD Navbar-->
@@ -25,28 +30,28 @@
                                     srcset="{% static 'images/logo-inverse-266x37.png' %} 2x" /></a>
                         </div> -->
 
-                        <div class="rd-navbar-brand"><a class="brand" href="{% url 'home' %}"><img loading="lazy"  class="brand-logo-light"
-                            src="{% static 'images/logo-default-133x19.png' %}" alt="image..." width="133" height="19"
-                            srcset="{% static 'images/logo-default-266x37.png' %} 2x" /><img loading="lazy" 
-                            class="brand-logo-dark" src="{% static 'images/logo-inverse-133x19.png' %}" alt="image..."
-                            width="133" height="19"
-                            srcset="{% static 'images/logo-inverse-266x37.png' %} 2x" /></a>
-                </div>
+                        <div class="rd-navbar-brand"><a class="brand" href="{% url 'home' %}"><img loading="lazy"
+                                    class="brand-logo-light" src="{% static 'images/logo-default-133x19.png' %}"
+                                    alt="image..." width="133" height="19"
+                                    srcset="{% static 'images/logo-default-266x37.png' %} 2x" /><img loading="lazy"
+                                    class="brand-logo-dark" src="{% static 'images/logo-inverse-133x19.png' %}"
+                                    alt="image..." width="133" height="19"
+                                    srcset="{% static 'images/logo-inverse-266x37.png' %} 2x" /></a>
+                        </div>
                     </div>
                     <div class="rd-navbar-nav-wrap">
                         <!-- RD Navbar Nav-->
                         <ul class="rd-navbar-nav">
                             <li class="rd-nav-item active"><a class="rd-nav-link" href="{% url 'home' %}">Home</a>
                             </li>
-                            
+
                             <li class="rd-nav-item"><a class="rd-nav-link"
                                     href="{% url 'collaborate' %}">Collaborate</a>
                             </li>
 
-                            <li class="rd-nav-item"><a class="rd-nav-link"
-                                href="{% url 'pricing' %}">Pricing</a>
-                        </li>
-                            
+                            <li class="rd-nav-item"><a class="rd-nav-link" href="{% url 'pricing' %}">Pricing</a>
+                            </li>
+
 
                             <!-- <li class="rd-nav-item"><a class="rd-nav-link" href="{% url 'blog_list' %}">Blog</a>
                             </li> -->
@@ -63,7 +68,7 @@
                                         </a></li>
                                 </ul>
                             </li>
-                            
+
                             <li class="rd-nav-item"><a class="rd-nav-link" href="#">Profile</a>
                                 <ul class="rd-menu rd-navbar-dropdown">
                                     <li class="rd-dropdown-item"><a class="rd-dropdown-link"
@@ -82,7 +87,7 @@
 
                                 </ul>
                             </li>
-                            
+
 
 
                             <li class="rd-nav-item"><a class="rd-nav-link" href="#">Support</a>
@@ -96,10 +101,10 @@
                                                 <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link"
                                                         href="{% url 'privacy' %}">Privacy</a></li>
                                                 <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link"
-                                                    href="{% url 'terms' %}">Terms & Condition</a></li>
+                                                        href="{% url 'terms' %}">Terms & Conditions</a></li>
                                                 <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link"
-                                                    href="{% url 'faq' %}">FAQ</a></li>
-                                                    </ul>
+                                                        href="{% url 'faq' %}">FAQ</a></li>
+                                            </ul>
                                             <!-- <ul class="rd-megamenu-list">
                                                 <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link"
                                                         href="icon-lists.html">Icon Lists</a></li>
@@ -135,10 +140,20 @@
                                 {% csrf_token %}
                                 <button type="submit"
                                     style="display: inline-block; background: transparent; outline: none; border: none;">
-                                    <li class="rd-nav-item"><a class="rd-nav-link">Logout</a>
+                                    <li class="rd-nav-item"><a class="rd-nav-link" style="color:black">Logout</a>
                                     </li>
                                 </button>
                             </form>
+                            <!-- <li class="rd-nav-item">
+                                <form action="{% url 'logout' %}" method="post" style="margin: 0;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="rd-nav-link"
+                                        style="background: none; border: none; padding: 0; color: inherit; font: inherit; cursor: pointer;">
+                                        Logout
+                                    </button>
+                                </form>
+                            </li> -->
+
                             {% else %}
                             <li class="rd-nav-item"><a class="rd-nav-link" href="{% url 'login' %}">Login</a>
                             </li>

@@ -17,7 +17,7 @@ def send_email(subject, message, recipient_list, use_secondary=False):
     else:
         backend = None  # Use default Django email backend
         from_email = settings.EMAIL_HOST_USER
-
+        
     host=settings.SECONDARY_EMAIL_CONFIG["EMAIL_HOST"],
     port=settings.SECONDARY_EMAIL_CONFIG["EMAIL_PORT"],
     username=settings.SECONDARY_EMAIL_CONFIG["EMAIL_HOST_USER"],
