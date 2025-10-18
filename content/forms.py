@@ -16,6 +16,7 @@ class ContentUploadForm(forms.ModelForm):
         label="Promotion Duration"
     )
 
+    age_rating = forms.ChoiceField(choices=Content.AGE_RATING_CHOICES, required=True)
 
     class Meta:
         model = Content

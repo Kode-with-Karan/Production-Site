@@ -89,7 +89,15 @@ Edit Content | EchoesRipple | Empowering Creators to Share & Earn
                     </tr>
                     <tr>
                         <td>Age Rating</td>
-                        <td><input class="form-input form-control-has-validation" id="id_age_rating" type="number" name="age_rating"  fdprocessedid="w2q0tf" value="{{ content.age_rating }}">
+                        <td>
+                            <select class="form-input form-control-has-validation" name="age_rating" id="id_age_rating">
+                                <option value="7+" {% if content.age_rating == '7+' %}selected{% endif %}>7+</option>
+                                <option value="10+" {% if content.age_rating == '10+' %}selected{% endif %}>10+</option>
+                                <option value="13+" {% if content.age_rating == '13+' %}selected{% endif %}>13+</option>
+                                <option value="16+" {% if content.age_rating == '16+' %}selected{% endif %}>16+</option>
+                                <option value="18+" {% if content.age_rating == '18+' %}selected{% endif %}>18+</option>
+                                <option value="Below 18" {% if content.age_rating == 'Below 18' %}selected{% endif %}>Below 18</option>
+                            </select>
                         </td>
                 
                             <!-- <td>Сountry</td>

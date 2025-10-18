@@ -141,7 +141,12 @@ Detail | EchoesRipple | Empowering Creators to Share & Earn
 
 <div class="video-container" id="main-video">
 
-    <video id="videoPlayer" src="{{ content.file.url }}" controls preload="metadata"></video>
+    <video id="videoPlayer"
+        src="{{ content.file.url }}"
+        controls
+        preload="metadata"
+        controlsList="nodownload"
+        oncontextmenu="return false;"></video>
 
 </div>
 

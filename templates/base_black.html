@@ -12,6 +12,18 @@
 
     {% include 'style.html' %}
 
+    <style>
+        .logout-link {
+            color: #000 !important;
+            transition: color 0.2s ease;
+        }
+
+        .rd-navbar--is-stuck .logout-link,
+        .rd-navbar--is-clone .logout-link {
+            color: #fff !important;
+        }
+    </style>
+
     {% block extrahead %}
   
     {% endblock extrahead %}
@@ -145,7 +157,7 @@
                                         {% csrf_token %}
                                         <button type="submit"
                                             style="display: inline-block; background: transparent; outline: none; border: none;">
-                                            <li class="rd-nav-item"><a class="rd-nav-link">Logout</a>
+                                            <li class="rd-nav-item"><a class="rd-nav-link logout-link">Logout</a>
                                             </li>
                                         </button>
                                     </form>

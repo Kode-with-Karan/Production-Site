@@ -67,6 +67,15 @@ class Content(models.Model):
         ('Regional_language', 'Regional_language'),
         ( "Other" ,"Other"),
     ]
+
+    AGE_RATING_CHOICES = [
+        ('7+', '7+'),
+        ('10+', '10+'),
+        ('13+', '13+'),
+        ('16+', '16+'),
+        ('18+', '18+'),
+        ('Below 18', 'Below 18'),
+    ]
     
     
     title = models.CharField(max_length=200)
@@ -74,7 +83,7 @@ class Content(models.Model):
     duration = models.CharField(max_length=200,default="Not Mentioned")
     genre = models.CharField(max_length=50, choices=GENRE_TYPE)
     language = models.CharField(max_length=50, choices=LANGUAGE_TYPE)
-    age_rating = models.IntegerField(default="0")
+    age_rating = models.CharField(max_length=10, choices=AGE_RATING_CHOICES, default='7+')
     description = models.TextField()
     cast = models.TextField(default="Not Mentioned")
     content_type = models.CharField(max_length=50, choices=CONTENT_TYPES)

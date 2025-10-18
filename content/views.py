@@ -60,7 +60,7 @@ def browse_content(request):
 
 
 def home(request):
-    contents = Content.objects.all()[:11]
+    contents = Content.objects.all()[11:]
     blogs = Blog.objects.filter(status='published').order_by('-created_at')[:4]
     promoted = PromotedContent.objects.filter(is_active=True, promotion_end__gte=timezone.now())
     all_content = Content.objects.all().exclude(id__in=[p.content.id for p in promoted])

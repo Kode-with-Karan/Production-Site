@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 import stripe
-from django.conf import settings
+from decouple import config, Csv
 
 
 
@@ -25,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8bq0og6)a$bf=&g+m7xyy^!2!2hd(vk9hep^__ti2$))ox9*fv'
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="*", cast=Csv())
 
 
 # Application definition
@@ -97,7 +97,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                
+
 
             ],
         },
@@ -179,10 +179,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:8000",
@@ -198,107 +194,30 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 3145728000  # 500MB
 FILE_UPLOAD_MAX_MEMORY_SIZE = 3145728000  # 500MB
 
 
-
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# EMAIL_HOST = "smtp.hostinger.com"  # Hostinger's SMTP server
-# EMAIL_PORT = 465  # Use 587 for TLS, 465 for SSL
-# EMAIL_USE_TLS = False  # Use True if using port 587
-# EMAIL_USE_SSL = True  # Use True if using port 465
-# EMAIL_HOST_USER = "#"  # Your Hostinger business email
-# EMAIL_HOST_PASSWORD = "#"  # Your Hostinger email password
-# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-# # Secondary Email for Other Purposes
-# SECONDARY_EMAIL_CONFIG = {
-#     "EMAIL_HOST": "smtp.hostinger.com",
-#     "EMAIL_PORT": 465,  # Use 465 for SSL
-#     "EMAIL_USE_TLS": False,  # ❌ DISABLE TLS
-#     "EMAIL_USE_SSL": True,  
-#     "EMAIL_HOST_USER": "#",  # Your secondary email
-#     "EMAIL_HOST_PASSWORD": "#",
-# }
-
-
-
-# PAYPAL_CLIENT_ID = '#'
-# PAYPAL_SECRET = '#'
-# PAYPAL_API_BASE = 'https://api-m.sandbox.paypal.com' 
-# PAYPAL_BASE_URL = 'https://api-m.sandbox.paypal.com'
-# # PAYPAL_BASE_URL = 'https://api-m.paypal.com'
-# PAYPAL_MODE = 'sendbox'
-
-
-
-
-
-
-
-
-
-
-
-
-# PAYPAL_CLIENT_ID = 'AQjkRsl2VepjTTJbLJLubVW6gYUa8bcZ6zVqT0FUMWDa0Di8gkvlO20KdAUIooRyYchPxb7VU6nKzgga'
-
-# PAYPAL_SECRET = 'EAhxujj6kPWJ1mg4KGby_RLdCbzSwTBQzxmu51ZNbugo6nNwfx3OcqdRyYLmUrSY3P-qQpTMA8psnKsG'
-
-# PAYPAL_API_BASE = 'https://api-m.sandbox.paypal.com' 
-
-# PAYPAL_BASE_URL = 'https://api-m.sandbox.paypal.com'
-
-# # PAYPAL_BASE_URL = 'https://api-m.paypal.com'
-
-# PAYPAL_MODE = 'sandbox'
-
-
-
-
-
-
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-
-EMAIL_HOST = "smtp.hostinger.com"  # Hostinger's SMTP server
-
-EMAIL_PORT = 465  # Use 587 for TLS, 465 for SSL
-
-EMAIL_USE_TLS = False  # Use True if using port 587
-
-EMAIL_USE_SSL = True  # Use True if using port 465
-
-EMAIL_HOST_USER = "support@echoesripple.com" # Your Hostinger business email
-
-EMAIL_HOST_PASSWORD ="Echoes@accmbusiness#support1"  # Your Hostinger email password
-
-
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
-
-# Secondary Email for Other Purposes
+EMAIL_BACKEND = config("EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend")
+EMAIL_HOST = config("EMAIL_HOST")
+EMAIL_PORT = config("EMAIL_PORT", cast=int)
+EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=False, cast=bool)
+EMAIL_USE_SSL = config("EMAIL_USE_SSL", default=True, cast=bool)
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default=EMAIL_HOST_USER)
 
 SECONDARY_EMAIL_CONFIG = {
-
-    "EMAIL_HOST": "smtp.hostinger.com",
-
-    "EMAIL_PORT": 465,  # Use 465 for SSL
-
-    "EMAIL_USE_TLS": False, # ❌ DISABLE TLS
-
-    "EMAIL_USE_SSL": True,  
-
-    "EMAIL_HOST_USER": "businesscollab@echoesripple.com" ,  # Your secondary email
-
-    "EMAIL_HOST_PASSWORD":  "Echoes@accmbusiness#collab1",
-
+    "EMAIL_HOST": config("SECONDARY_EMAIL_HOST", default=EMAIL_HOST),
+    "EMAIL_PORT": config("SECONDARY_EMAIL_PORT", default=EMAIL_PORT, cast=int),
+    "EMAIL_USE_TLS": config("SECONDARY_EMAIL_USE_TLS", default=EMAIL_USE_TLS, cast=bool),
+    "EMAIL_USE_SSL": config("SECONDARY_EMAIL_USE_SSL", default=EMAIL_USE_SSL, cast=bool),
+    "EMAIL_HOST_USER": config("SECONDARY_EMAIL_HOST_USER", default=EMAIL_HOST_USER),
+    "EMAIL_HOST_PASSWORD": config("SECONDARY_EMAIL_HOST_PASSWORD", default=EMAIL_HOST_PASSWORD),
 }
 
-PAYPAL_CLIENT_ID = 'AWXBNwaOfoq1xV1TXuUsb_ZtN7yVQG6Q4Vq2VUT9DksUZXWOAO0Sbf8N5YWrz3vhh5w6J6I4sJiaGw0m'
-PAYPAL_SECRET = 'EBtok7ON-dgObK7zin80iQSbxJfW4Vo_0TPC4Or8w_aV0UKoxnAd5rdC0Q7CIxljghEYyIoedz03cZRr'
-# PAYPAL_API_BASE = 'https://api-m.sandbox.paypal.com' 
-# PAYPAL_BASE_URL = 'https://api-m.sandbox.paypal.com'
-PAYPAL_BASE_URL = 'https://api-m.paypal.com'
-PAYPAL_API_BASE = 'https://api-m.paypal.com'
-PAYPAL_MODE = 'live'
+paypal_base_url = config("PAYPAL_BASE_URL", default="https://api-m.paypal.com")
+PAYPAL_CLIENT_ID = config("PAYPAL_CLIENT_ID")
+PAYPAL_SECRET = config("PAYPAL_SECRET")
+PAYPAL_BASE_URL = paypal_base_url
+PAYPAL_API_BASE = config("PAYPAL_API_BASE", default=paypal_base_url)
+PAYPAL_MODE = config("PAYPAL_MODE", default="live")
 
 
 # EMAIL_FAIL_SILENTLY = False
@@ -316,3 +235,15 @@ PAYPAL_MODE = 'live'
 #         },
 #     },
 # }
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,3 +2,4 @@
 /venv/
 /staticfiles/
 /templates/static/content/Video/
+.env

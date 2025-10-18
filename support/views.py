@@ -8,8 +8,8 @@ def feedback(request):
         name = request.POST["name"]
         phone = request.POST["phone"]
         email = request.POST["email"]
-        message = phone+"\n"+email+"\n"+request.POST["message"]
-        print(send_email(f"Support Request from {name}", message,["accm8783@gmail.com"], use_secondary=True))
+        message = "Phone :"+phone+"\n"+"Email :"+email+"\n"+"Message :"+request.POST["message"]
+        print(send_email(f"Feedback Request from {name}", message,["accm8783@gmail.com"], use_secondary=False))
     
     return render(request, "support/feedback.html")
 
@@ -20,9 +20,9 @@ def team(request):
         name = request.POST["name"]
         phone = request.POST["phone"]
         email = request.POST["email"]
-        message = phone+"\n"+email+"\n"+request.POST["message"]
-        print(name, phone, email,message)
-        print(send_email(f"Support Request from {name}", message,["accm8783@gmail.com"], use_secondary=True))
+        message = "Phone :"+phone+"\n"+"Email :"+email+"\n"+"Message :"+request.POST["message"]
+        print(message)
+        print(send_email(f"Support Request from {name}", message,["accm8783@gmail.com"], use_secondary=False))
     
     return render(request, "support/team.html")
 
