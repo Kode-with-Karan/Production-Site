@@ -46,6 +46,18 @@ class ContentUploadForm(forms.ModelForm):
         cleaned_data = super().clean()
         if cleaned_data.get('promote') and not cleaned_data.get('promotion_duration'):
             raise forms.ValidationError("Please select a promotion duration.")
+        # Ensure thumbnail is provided
+        thumbnail = cleaned_data.get('thumbnail')
+        if not thumbnail:
+            self.add_error('thumbnail', 'Thumbnail image is required.')
+
+        # Optional: server-side file size validation for the main file field
+        file_obj = cleaned_data.get('file')
+        if file_obj is not None:
+            # 1.5GB maximum
+            max_bytes = 1536 * 1024 * 1024  # 1.5GB
+            if file_obj.size > max_bytes:
+                self.add_error('file', 'File is too large. Maximum allowed size is 1.5GB.')
         return cleaned_data
 
 # class ContentImageForm(forms.ModelForm):

@@ -191,8 +191,9 @@ SESSION_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SECURE = True  # required when using 'None'
 
 
-DATA_UPLOAD_MAX_MEMORY_SIZE = 3145728000  # 500MB
-FILE_UPLOAD_MAX_MEMORY_SIZE = 3145728000  # 500MB
+# Increase Django in-memory upload size limits to 1.5GB to support larger content uploads
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1610612736  # 1.5GB
+FILE_UPLOAD_MAX_MEMORY_SIZE = 1610612736  # 1.5GB
 
 
 EMAIL_BACKEND = config("EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend")

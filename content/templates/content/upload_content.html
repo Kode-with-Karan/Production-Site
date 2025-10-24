@@ -6,6 +6,72 @@ Upload Content | EchoesRipple | Empowering Creators to Share & Earn
 
 {% endblock title %}
 {% block content %}
+
+
+<style>
+    /* ==== Error Alert Box ==== */
+    .alert.alert-danger {
+        background-color: #ffe6e6;
+        /* soft red background */
+        border: 1px solid #ff4d4d;
+        /* red border */
+        color: #b30000;
+        /* dark red text */
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin: 100px 20px 20px;
+        font-family: "Poppins", sans-serif;
+        box-shadow: 0 2px 6px rgba(255, 77, 77, 0.15);
+        animation: fadeInDown 0.4s ease-in-out;
+
+    }
+
+    /* ==== Unordered List ==== */
+    .alert.alert-danger ul {
+        list-style-type: none;
+        /* remove default bullets */
+        padding-left: 0;
+        margin: 0;
+    }
+
+    /* ==== Each Error Line ==== */
+    .alert.alert-danger li {
+        background-color: #fff2f2;
+        /* slightly lighter background per error */
+        border-left: 4px solid #ff4d4d;
+        /* red line accent */
+        padding: 8px 12px;
+        margin-bottom: 6px;
+        border-radius: 4px;
+        font-size: 15px;
+        transition: background 0.2s ease;
+    }
+
+    .alert.alert-danger li:hover {
+        background-color: #ffe0e0;
+    }
+
+    /* ==== Field Label in Bold ==== */
+    .alert.alert-danger strong {
+        color: #990000;
+        font-weight: 600;
+    }
+
+    /* ==== Entry Animation ==== */
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+
 {% if form.errors %}
 <div class="alert alert-danger">
     <ul>
@@ -18,6 +84,7 @@ Upload Content | EchoesRipple | Empowering Creators to Share & Earn
 </div>
 {% endif %}
 
+<div id="formErrors" style="display:none; margin-bottom:10px;position: fixed; z-index: 100;width: 100%;" class="alert alert-danger"></div>
 
 
 
@@ -34,6 +101,7 @@ Upload Content | EchoesRipple | Empowering Creators to Share & Earn
 
                     <form method="post" enctype="multipart/form-data" id="uploadForm">
                         {% csrf_token %}
+
 
 
                         <table class="post-info-table">
@@ -183,12 +251,13 @@ Upload Content | EchoesRipple | Empowering Creators to Share & Earn
                                     </select>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>File</td>
-                                <td><input class="form-input form-control-has-validation" id="id_file" type="file"
-                                        name="file" data-constraints="@Required" fdprocessedid="w2q0tf">
-                                </td>
-                            </tr>
+                    <tr>
+                    <td>File</td>
+                    <td><input class="form-input form-control-has-validation" id="id_file" type="file"
+                        name="file" data-constraints="@Required" fdprocessedid="w2q0tf">
+                        <div style="font-size:12px;color:#666;margin-top:4px;">Max file size: 1.5GB</div>
+                    </td>
+                    </tr>
                             <tr>
                                 <td>Thumbnail</td>
                                 <td><input class="form-input form-control-has-validation" id="id_thumbnail"
@@ -249,7 +318,30 @@ document.addEventListener("DOMContentLoaded", function () {
     const progressContainer = document.getElementById("progressContainer");
     const percentLabel = document.getElementById("uploadPercent");
 
+    // Client-side constants (1.5GB)
+    const MAX_BYTES = 1536 * 1024 * 1024; // 1.5GB
+    const fileInput = document.getElementById('id_file');
+    const thumbInput = document.getElementById('id_thumbnail');
+
     form.addEventListener("submit", function (e) {
+        // Client-side validation: ensure thumbnail present and file size within limit
+        formErrors.style.display = 'none';
+        formErrors.innerHTML = '';
+
+        if (!thumbInput || thumbInput.files.length === 0) {
+            e.preventDefault();
+            formErrors.innerHTML = '<strong>Thumbnail is required.</strong> Please upload a thumbnail image.';
+            formErrors.style.display = 'block';
+            return false;
+        }
+
+        if (fileInput.files.length > 0 && fileInput.files[0].size > MAX_BYTES) {
+            e.preventDefault();
+            formErrors.innerHTML = '<strong>File too large.</strong> Maximum allowed size is 1.5GB.';
+            formErrors.style.display = 'block';
+            return false;
+        }
+
         e.preventDefault();
 
         const formData = new FormData(form);
@@ -273,6 +365,10 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         xhr.onload = function () {
+            const formErrors = document.getElementById('formErrors');
+            formErrors.style.display = 'none';
+            formErrors.innerHTML = '';
+
             if (xhr.status === 200) {
                 try {
                     const res = JSON.parse(xhr.responseText);
@@ -287,7 +383,25 @@ document.addEventListener("DOMContentLoaded", function () {
                     alert("Upload finished, but unexpected response.");
                 }
             } else {
-                alert("Upload failed.");
+                try {
+                    const res = JSON.parse(xhr.responseText);
+                    const errors = res.errors || res;
+                    let html = '<ul style="margin:0;padding-left:18px;">';
+                    for (let key in errors) {
+                        if (Array.isArray(errors[key])) {
+                            errors[key].forEach(msg => {
+                                html += '<li>' + (key === '__all__' ? msg : (key + ': ' + msg)) + '</li>';
+                            });
+                        } else {
+                            html += '<li>' + key + ': ' + errors[key] + '</li>';
+                        }
+                    }
+                    html += '</ul>';
+                    formErrors.innerHTML = html;
+                    formErrors.style.display = 'block';
+                } catch (err) {
+                    alert("Upload failed.");
+                }
             }
         };
 
@@ -297,6 +411,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
         xhr.send(formData);
     });
+    
+    // Client-side file size validation (500MB)
+    const formErrors = document.getElementById('formErrors');
+
+    fileInput.addEventListener('change', function () {
+        formErrors.style.display = 'none';
+        formErrors.innerHTML = '';
+            if (fileInput.files.length > 0) {
+            const f = fileInput.files[0];
+            if (f.size > MAX_BYTES) {
+                formErrors.innerHTML = '<strong>File too large.</strong> Maximum allowed size is 1.5GB.';
+                formErrors.style.display = 'block';
+            }
+        }
+    });
+    
+        // Thumbnail input validation to give immediate feedback
+        thumbInput.addEventListener('change', function () {
+            formErrors.style.display = 'none';
+            formErrors.innerHTML = '';
+            if (thumbInput.files.length === 0) {
+                formErrors.innerHTML = '<strong>Thumbnail is required.</strong> Please upload a thumbnail image.';
+                formErrors.style.display = 'block';
+            }
+        });
 });
 </script>
 

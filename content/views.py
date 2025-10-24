@@ -60,7 +60,7 @@ def browse_content(request):
 
 
 def home(request):
-    contents = Content.objects.all()[11:]
+    contents = Content.objects.all().order_by('-id')[:10]
     blogs = Blog.objects.filter(status='published').order_by('-created_at')[:4]
     promoted = PromotedContent.objects.filter(is_active=True, promotion_end__gte=timezone.now())
     all_content = Content.objects.all().exclude(id__in=[p.content.id for p in promoted])
@@ -188,11 +188,23 @@ def regional(request, region_type):
 def upload_content(request):
     if request.method == 'POST':
         form = ContentUploadForm(request.POST, request.FILES)
-
         if form.is_valid():
-            content = form.save(commit=False)
-            content.uploaded_by = request.user.profile
-            content.save()
+            try:
+                content = form.save(commit=False)
+                content.uploaded_by = request.user.profile
+                content.save()
+            except Exception as e:
+                # Handle file size, storage, and other upload-related errors
+                err_msg = str(e)
+                # Attach non-field error to form so template can show it
+                form.add_error(None, f"Upload failed: {err_msg}")
+                if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                    # Return structured errors for AJAX
+                    errors = {"__all__": form.non_field_errors()}
+                    return JsonResponse({"errors": errors}, status=400)
+                else:
+                    # fall through to re-render form with errors
+                    pass
 
             if form.cleaned_data.get('promote'):
                 duration = form.cleaned_data.get('promotion_duration')
@@ -213,7 +225,14 @@ def upload_content(request):
         
         else:
             if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                return JsonResponse({'errors': form.errors}, status=400)
+                # Return form errors in a JSON-friendly structure
+                errors = {}
+                for field, errs in form.errors.items():
+                    errors[field] = [str(e) for e in errs]
+                non_field = [str(e) for e in form.non_field_errors()]
+                if non_field:
+                    errors['__all__'] = non_field
+                return JsonResponse({'errors': errors}, status=400)
 
     else:
         form = ContentUploadForm()
